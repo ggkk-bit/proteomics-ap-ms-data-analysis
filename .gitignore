@@ -28,6 +28,7 @@ comppass_official_input*.tsv
 crapome_input.tsv
 
 # Generated algorithm output directories
+secondary_workflow_validation.json
 **/3.数据清洗与预处理/中间结果/
 **/6.CompPASS评分结果/
 **/6.MiST评分结果/

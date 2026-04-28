@@ -72,6 +72,16 @@ def ensure_dir(path: Path) -> Path:
     return path
 
 
+def find_prefixed_dir(parent: Path, prefix: str) -> Path:
+    matches = sorted(
+        (p for p in parent.iterdir() if p.is_dir() and p.name.startswith(prefix)),
+        key=lambda p: (-len(p.name), p.name),
+    )
+    if not matches:
+        raise FileNotFoundError(f"Missing directory under {parent}: {prefix}*")
+    return matches[0]
+
+
 def load_annotation(path: Path) -> pd.DataFrame:
     if not path.exists():
         raise FileNotFoundError(f"Missing sample annotation: {path}")
@@ -270,6 +280,243 @@ def plot_bar(path: Path, labels: list[str], values: list[float], title: str, yla
     plt.close()
 
 
+def plot_score_distribution(
+    path: Path,
+    df: pd.DataFrame,
+    score_col: str,
+    title: str,
+    xlabel: str,
+    threshold: float | None = None,
+) -> None:
+    ensure_dir(path.parent)
+    scores = pd.to_numeric(df[score_col], errors="coerce").dropna()
+    if scores.empty:
+        return
+    plt.figure(figsize=(7, 4.5))
+    plt.hist(scores, bins=50, color="#2f6f9f", edgecolor="white")
+    if threshold is not None:
+        plt.axvline(threshold, color="#b42318", linestyle="--", linewidth=1.6, label=f"threshold={threshold:.3g}")
+        plt.legend(frameon=False)
+    plt.title(title)
+    plt.xlabel(xlabel)
+    plt.ylabel("Count")
+    plt.tight_layout()
+    plt.savefig(path, dpi=170)
+    plt.close()
+
+
+def interaction_label(row: pd.Series) -> str:
+    prey = str(row.get("prey_gene", "") or row.get("prey_id", ""))
+    bait = str(row.get("bait_name", ""))
+    return f"{bait} - {prey}"
+
+
+def remove_self_matches_for_plotting(df: pd.DataFrame, min_rows: int = 10) -> pd.DataFrame:
+    if df.empty or "bait_name" not in df.columns:
+        return df
+    bait = df["bait_name"].fillna("").astype(str).str.upper()
+    prey_gene = df.get("prey_gene", pd.Series("", index=df.index)).fillna("").astype(str).str.upper()
+    prey_id = df.get("prey_id", pd.Series("", index=df.index)).fillna("").astype(str).str.upper()
+    filtered = df[(bait != prey_gene) & (bait != prey_id)].copy()
+    return filtered if len(filtered) >= min_rows else df
+
+
+def plot_top_interactions(path: Path, df: pd.DataFrame, score_col: str, title: str, top_n: int = 25) -> None:
+    ensure_dir(path.parent)
+    if df.empty or score_col not in df.columns:
+        return
+    work = remove_self_matches_for_plotting(df)
+    top = work.sort_values(score_col, ascending=False).head(top_n).copy()
+    if top.empty:
+        return
+    labels = [interaction_label(row) for _, row in top.iterrows()]
+    values = pd.to_numeric(top[score_col], errors="coerce").fillna(0.0).to_list()
+    height = max(5.2, 0.26 * len(top))
+    plt.figure(figsize=(9.5, height))
+    plt.barh(range(len(top)), values, color="#486581")
+    plt.yticks(range(len(top)), labels, fontsize=8)
+    plt.gca().invert_yaxis()
+    plt.xlabel(score_col)
+    plt.title(title)
+    plt.tight_layout()
+    plt.savefig(path, dpi=170)
+    plt.close()
+
+
+def plot_bait_candidate_counts(
+    path: Path,
+    df: pd.DataFrame,
+    score_col: str,
+    title: str,
+    threshold: float | None = None,
+    top_n: int = 25,
+) -> None:
+    ensure_dir(path.parent)
+    if df.empty or score_col not in df.columns:
+        return
+    work = df.copy()
+    work[score_col] = pd.to_numeric(work[score_col], errors="coerce").fillna(0.0)
+    if threshold is None:
+        threshold = float(work[score_col].quantile(0.90))
+    work = work[work[score_col] >= threshold]
+    counts = work.groupby("bait_name")["prey_id"].nunique().sort_values(ascending=False).head(top_n)
+    if counts.empty:
+        return
+    plot_bar(path, counts.index.astype(str).tolist(), counts.astype(float).tolist(), title, "High-confidence prey count")
+
+
+def plot_score_vs_evidence(
+    path: Path,
+    df: pd.DataFrame,
+    score_col: str,
+    evidence_col: str,
+    title: str,
+    xlabel: str,
+) -> None:
+    ensure_dir(path.parent)
+    if df.empty or score_col not in df.columns or evidence_col not in df.columns:
+        return
+    x = pd.to_numeric(df[evidence_col], errors="coerce")
+    y = pd.to_numeric(df[score_col], errors="coerce")
+    mask = x.notna() & y.notna()
+    if not mask.any():
+        return
+    plt.figure(figsize=(7, 5))
+    plt.scatter(x[mask], y[mask], s=8, alpha=0.35, color="#486581", edgecolors="none")
+    plt.title(title)
+    plt.xlabel(xlabel)
+    plt.ylabel(score_col)
+    plt.tight_layout()
+    plt.savefig(path, dpi=170)
+    plt.close()
+
+
+def plot_bait_prey_heatmap(
+    path: Path,
+    df: pd.DataFrame,
+    score_col: str,
+    title: str,
+    max_baits: int = 20,
+    max_preys: int = 35,
+) -> None:
+    ensure_dir(path.parent)
+    if df.empty or score_col not in df.columns:
+        return
+    work = remove_self_matches_for_plotting(df).copy()
+    work[score_col] = pd.to_numeric(work[score_col], errors="coerce").fillna(0.0)
+    bait_order = work.groupby("bait_name")[score_col].max().sort_values(ascending=False).head(max_baits).index.tolist()
+    work["prey_label"] = work["prey_gene"].fillna("").astype(str)
+    work.loc[work["prey_label"].eq(""), "prey_label"] = work.loc[work["prey_label"].eq(""), "prey_id"].astype(str)
+    prey_order = work.groupby("prey_label")[score_col].max().sort_values(ascending=False).head(max_preys).index.tolist()
+    sub = work[work["bait_name"].isin(bait_order) & work["prey_label"].isin(prey_order)]
+    if sub.empty:
+        return
+    matrix = sub.pivot_table(index="prey_label", columns="bait_name", values=score_col, aggfunc="max").reindex(
+        index=prey_order, columns=bait_order
+    )
+    matrix = matrix.fillna(0.0)
+    width = max(8, 0.42 * len(bait_order) + 2)
+    height = max(7, 0.22 * len(prey_order) + 2)
+    plt.figure(figsize=(width, height))
+    image = plt.imshow(matrix.to_numpy(), aspect="auto", cmap="viridis")
+    plt.colorbar(image, label=score_col)
+    plt.xticks(range(len(bait_order)), bait_order, rotation=45, ha="right", fontsize=8)
+    plt.yticks(range(len(prey_order)), prey_order, fontsize=8)
+    plt.title(title)
+    plt.tight_layout()
+    plt.savefig(path, dpi=170)
+    plt.close()
+
+
+def plot_ppi_network(path: Path, df: pd.DataFrame, score_col: str, title: str, top_n: int = 45) -> None:
+    ensure_dir(path.parent)
+    if df.empty or score_col not in df.columns:
+        return
+    work = remove_self_matches_for_plotting(df)
+    top = work.sort_values(score_col, ascending=False).head(top_n).copy()
+    if top.empty:
+        return
+    baits = top["bait_name"].astype(str).drop_duplicates().tolist()
+    top["prey_label"] = top["prey_gene"].fillna("").astype(str)
+    top.loc[top["prey_label"].eq(""), "prey_label"] = top.loc[top["prey_label"].eq(""), "prey_id"].astype(str)
+    preys = top["prey_label"].drop_duplicates().tolist()
+    bait_y = np.linspace(0.95, 0.05, len(baits)) if len(baits) > 1 else np.array([0.5])
+    prey_y = np.linspace(0.95, 0.05, len(preys)) if len(preys) > 1 else np.array([0.5])
+    bait_pos = {bait: (0.08, y) for bait, y in zip(baits, bait_y)}
+    prey_pos = {prey: (0.92, y) for prey, y in zip(preys, prey_y)}
+    scores = pd.to_numeric(top[score_col], errors="coerce").fillna(0.0)
+    score_min = float(scores.min())
+    score_span = max(float(scores.max() - score_min), 1e-9)
+    plt.figure(figsize=(12, max(7, 0.18 * (len(baits) + len(preys)))))
+    ax = plt.gca()
+    for _, row in top.iterrows():
+        bait = str(row["bait_name"])
+        prey = str(row["prey_label"])
+        value = float(row[score_col])
+        width = 0.4 + 2.6 * ((value - score_min) / score_span)
+        ax.plot([bait_pos[bait][0], prey_pos[prey][0]], [bait_pos[bait][1], prey_pos[prey][1]], color="#9fb3c8", linewidth=width, alpha=0.55)
+    ax.scatter([x for x, _ in bait_pos.values()], [y for _, y in bait_pos.values()], s=130, color="#d95f02", label="Bait", zorder=3)
+    ax.scatter([x for x, _ in prey_pos.values()], [y for _, y in prey_pos.values()], s=70, color="#2f80c0", label="Prey", zorder=3)
+    for bait, (x, y) in bait_pos.items():
+        ax.text(x - 0.015, y, bait, ha="right", va="center", fontsize=8)
+    for prey, (x, y) in prey_pos.items():
+        ax.text(x + 0.015, y, prey, ha="left", va="center", fontsize=8)
+    ax.set_title(title)
+    ax.set_xlim(0, 1)
+    ax.set_ylim(0, 1)
+    ax.axis("off")
+    ax.legend(loc="upper center", ncol=2, frameon=False)
+    plt.tight_layout()
+    plt.savefig(path, dpi=170)
+    plt.close()
+
+
+def plot_ppirank_component_summary(path: Path, df: pd.DataFrame) -> None:
+    ensure_dir(path.parent)
+    required = {"hgs_score", "cs_score", "project_background_contaminant"}
+    if df.empty or not required.issubset(df.columns):
+        return
+    work = df.copy()
+    hgs_thr = float(pd.to_numeric(work["hgs_score"], errors="coerce").quantile(0.75))
+    cs_thr = float(pd.to_numeric(work["cs_score"], errors="coerce").quantile(0.75))
+    clean = ~work["project_background_contaminant"].astype(bool)
+    categories = {
+        "HGS+CS supported": int(((work["hgs_score"] >= hgs_thr) & (work["cs_score"] >= cs_thr) & clean).sum()),
+        "HGS only": int(((work["hgs_score"] >= hgs_thr) & (work["cs_score"] < cs_thr) & clean).sum()),
+        "CS only": int(((work["hgs_score"] < hgs_thr) & (work["cs_score"] >= cs_thr) & clean).sum()),
+        "Background flagged": int((~clean).sum()),
+    }
+    plot_bar(path, list(categories.keys()), [float(v) for v in categories.values()], "PPIrank component support summary", "Candidate count")
+
+
+def add_standard_plots(
+    out_dir: Path,
+    df: pd.DataFrame,
+    prefix: str,
+    score_col: str,
+    display_name: str,
+    evidence_col: str,
+    evidence_label: str,
+    threshold: float | None = None,
+) -> list[str]:
+    ensure_dir(out_dir)
+    if threshold is None and score_col in df.columns and len(df):
+        threshold = float(pd.to_numeric(df[score_col], errors="coerce").quantile(0.90))
+    figures = [
+        f"{prefix}_01_score_distribution.png",
+        f"{prefix}_02_top_interactions.png",
+        f"{prefix}_03_bait_candidate_counts.png",
+        f"{prefix}_04_score_vs_evidence.png",
+        f"{prefix}_05_bait_prey_heatmap.png",
+    ]
+    plot_score_distribution(out_dir / figures[0], df, score_col, f"{display_name} score distribution", score_col, threshold)
+    plot_top_interactions(out_dir / figures[1], df, score_col, f"{display_name} top interactions")
+    plot_bait_candidate_counts(out_dir / figures[2], df, score_col, f"{display_name} high-confidence candidates by bait", threshold)
+    plot_score_vs_evidence(out_dir / figures[3], df, score_col, evidence_col, f"{display_name}: score vs evidence", evidence_label)
+    plot_bait_prey_heatmap(out_dir / figures[4], df, score_col, f"{display_name} top bait-prey heatmap")
+    return [str(out_dir / name) for name in figures if (out_dir / name).exists()]
+
+
 def run_workflows(paths: Paths, top_n: int, contaminant_frequency: float) -> dict:
     annotation = load_annotation(paths.annotation)
     cleaned, annotation, clean_stats = load_and_clean(paths, annotation)
@@ -290,6 +537,14 @@ def run_workflows(paths: Paths, top_n: int, contaminant_frequency: float) -> dic
     ]
 
     root = paths.root
+    hgs_dir = find_prefixed_dir(root, "03_HGSCore")
+    cs_dir = find_prefixed_dir(root, "04_CS_Score")
+    crapome_dir = find_prefixed_dir(root, "05_CRAPome")
+    ppi_dir = find_prefixed_dir(root, "06_PPIrank")
+    hgs_figure_dir = ensure_dir(find_prefixed_dir(hgs_dir, "7."))
+    cs_figure_dir = ensure_dir(find_prefixed_dir(cs_dir, "7."))
+    crapome_figure_dir = ensure_dir(find_prefixed_dir(crapome_dir, "7."))
+    ppi_figure_dir = ensure_dir(find_prefixed_dir(ppi_dir, "7."))
     all_summary = {
         "input": {
             "protein_groups": str(paths.protein_groups),
@@ -332,6 +587,15 @@ def run_workflows(paths: Paths, top_n: int, contaminant_frequency: float) -> dic
         "HGSCore candidate score distribution",
         "HGSCore-like score",
     )
+    hgs_figures = add_standard_plots(
+        hgs_figure_dir,
+        hgs_out,
+        "hgscore",
+        "hgs_score",
+        "HGSCore",
+        "replicate_fraction",
+        "Replicate fraction",
+    )
 
     # CS Score-like co-membership scoring.
     cs = bait_stats.copy()
@@ -347,6 +611,15 @@ def run_workflows(paths: Paths, top_n: int, contaminant_frequency: float) -> dic
         cs_out["cs_score"],
         "CS Score candidate distribution",
         "CS-like score",
+    )
+    cs_figures = add_standard_plots(
+        cs_figure_dir,
+        cs_out,
+        "cs_score",
+        "cs_score",
+        "CS Score",
+        "specificity",
+        "Bait specificity",
     )
 
     # CRAPome/background filter.
@@ -366,6 +639,16 @@ def run_workflows(paths: Paths, top_n: int, contaminant_frequency: float) -> dic
         crap["background_frequency"],
         "Project background frequency distribution",
         "Fraction of baits where prey appears",
+    )
+    crapome_figures = add_standard_plots(
+        crapome_figure_dir,
+        crap_out,
+        "crapome",
+        "crapome_filter_score",
+        "Project background filter",
+        "background_frequency",
+        "Background frequency",
+        threshold=1.0 - contaminant_frequency,
     )
 
     # PPIrank-style rank aggregation from the three upstream signals.
@@ -387,12 +670,22 @@ def run_workflows(paths: Paths, top_n: int, contaminant_frequency: float) -> dic
     )
     ppi.loc[ppi["project_background_contaminant"].astype(bool), "ppirank_score"] *= 0.5
     ppi_out = top_per_bait(ppi[common_cols + ["hgs_score", "cs_score", "crapome_filter_score", "project_background_contaminant", "ppirank_score"]], "ppirank_score", top_n)
+    ppi_out["apms_support_score"] = 0.5 * ppi_out["hgs_score"] + 0.5 * ppi_out["cs_score"]
     write_tsv(root / "06_PPIrank_网络补充排序" / "6.PPIrank排序结果" / "ppirank_ranked.tsv", ppi_out)
     plot_hist(
         root / "06_PPIrank_网络补充排序" / "7.可视化结果" / "ppirank_score_distribution.png",
         ppi_out["ppirank_score"],
         "PPIrank score distribution",
         "PPIrank aggregate score",
+    )
+    ppi_figures = add_standard_plots(
+        ppi_figure_dir,
+        ppi_out,
+        "ppirank",
+        "ppirank_score",
+        "PPIrank",
+        "apms_support_score",
+        "HGS/CS support score",
     )
 
     top_baits = (
@@ -408,6 +701,16 @@ def run_workflows(paths: Paths, top_n: int, contaminant_frequency: float) -> dic
         "Top baits by retained candidate count",
         "Candidate count",
     )
+    plot_ppi_network(ppi_figure_dir / "ppirank_06_top_network.png", ppi_out, "ppirank_score", "PPIrank top bait-prey network")
+    plot_ppirank_component_summary(ppi_figure_dir / "ppirank_07_component_support_summary.png", ppi_out)
+    ppi_figures.extend(
+        str(path)
+        for path in [
+            ppi_figure_dir / "ppirank_06_top_network.png",
+            ppi_figure_dir / "ppirank_07_component_support_summary.png",
+        ]
+        if path.exists()
+    )
 
     all_summary["outputs"] = {
         "HGSCore_rows": int(len(hgs_out)),
@@ -417,6 +720,12 @@ def run_workflows(paths: Paths, top_n: int, contaminant_frequency: float) -> dic
         "PPIrank_rows": int(len(ppi_out)),
         "top_n_per_bait": int(top_n),
         "contaminant_frequency_threshold": float(contaminant_frequency),
+        "figures_generated": {
+            "HGSCore": len(hgs_figures),
+            "CS_Score": len(cs_figures),
+            "CRAPome": len(crapome_figures),
+            "PPIrank": len(ppi_figures),
+        },
     }
     all_summary["assumptions"] = [
         "MaxQuant contaminants/reverse/site-only rows are removed before all scoring.",

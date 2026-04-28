@@ -15,6 +15,7 @@ import yaml
 from run_secondary_workflows import (
     Paths,
     build_bait_statistics,
+    find_prefixed_dir,
     load_and_clean,
     load_annotation,
     run_workflows,
@@ -67,6 +68,29 @@ def copy_if_exists(src: Path, dest: Path) -> None:
         return
     dest.parent.mkdir(parents=True, exist_ok=True)
     shutil.copy2(src, dest)
+
+
+def copy_algorithm_figures(root: Path, figures_dir: Path) -> dict[str, str]:
+    figure_specs = [
+        ("HGSCore", "03_HGSCore"),
+        ("CS Score", "04_CS_Score"),
+        ("CRAPome", "05_CRAPome"),
+        ("PPIrank", "06_PPIrank"),
+    ]
+    copied: dict[str, str] = {}
+    for display_name, dir_prefix in figure_specs:
+        try:
+            algorithm_dir = find_prefixed_dir(root, dir_prefix)
+            source_dir = find_prefixed_dir(algorithm_dir, "7.")
+        except FileNotFoundError:
+            continue
+        safe_prefix = display_name.lower().replace(" ", "_")
+        for src in sorted(source_dir.glob("*.png")):
+            dest = figures_dir / f"{safe_prefix}_{src.name}"
+            copy_if_exists(src, dest)
+            if dest.exists():
+                copied[f"{display_name}: {src.stem}"] = str(dest)
+    return copied
 
 
 def write_standard_table(path: Path, cleaned: pd.DataFrame, annotation: pd.DataFrame) -> dict[str, int]:
@@ -281,6 +305,7 @@ def run_command(args: argparse.Namespace) -> int:
         copy_if_exists(src, dest)
         if dest.exists():
             figure_summaries[name] = str(dest)
+    figure_summaries.update(copy_algorithm_figures(root, figures_dir))
 
     shutil.copy2(config_path, run_dir / "config.yaml")
     provenance = {

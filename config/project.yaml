@@ -1,0 +1,27 @@
+project:
+  name: proteomics_ap_ms_demo
+
+input:
+  protein_groups: proteinGroups.txt
+  sample_annotation: 00_统一数据准备/2.样本注释/sample_annotation_master.tsv
+
+cleaning:
+  remove_reverse: true
+  remove_contaminant: true
+  remove_site_only: true
+  drop_missing_protein_id: true
+  drop_all_zero_quant: true
+
+algorithms:
+  hgscore: true
+  cs_score: true
+  crapome: true
+  ppirank: true
+
+parameters:
+  top_n_per_bait: 100
+  contaminant_frequency: 0.25
+  write_standard_table: true
+
+output:
+  runs_dir: runs

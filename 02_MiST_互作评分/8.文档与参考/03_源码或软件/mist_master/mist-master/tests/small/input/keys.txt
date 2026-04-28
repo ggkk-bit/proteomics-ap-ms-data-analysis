@@ -1,0 +1,12 @@
+AP-1	VIF+
+AP-2	VIF
+AP-3	VIF+
+AP-4	VIF+
+AP-5	VIF
+AP-6	VIF
+AP-7	vector
+AP-8	vector
+AP-9	vector
+AP-10	GFP
+AP-11	GFP
+AP-12	GFP

@@ -1,0 +1,2 @@
+input_file	output_file	protein_id_col	unique_pep_col	intensity_col_count	positive_intensity_count	input_rows	output_rows	removed_rows	min_unique_peptides	drop_all_zero_intensity	timestamp
+C:\Users\dakey\Desktop\01_进行中\古老蛋白算法调研\多算法分析工作区\02_MiST_互作评分\1.原始输入\proteinGroups.txt	C:\Users\dakey\Desktop\01_进行中\古老蛋白算法调研\多算法分析工作区\02_MiST_互作评分\3.数据清洗与预处理\proteinGroups_已清洗.tsv	Majority protein IDs	Unique peptides	1612	1219962	8650	7745	905	1	TRUE	2026-04-18 10:51:42

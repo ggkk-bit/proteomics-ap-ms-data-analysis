@@ -1,0 +1,18 @@
+# SMAD 1.3.2
+
+* Add `Hart()` function
+* Add `DICE()` function
+
+# SMAD 1.3.1
+
+* Add `PE()` function combing Spoke and Matrix model
+
+# SMAD 0.1.0
+
+## New functions
+
+* Spoke model `CompPASS()` function.
+
+* Matrix model `HG()` function.
+
+## Improved speed by Rcpp computing

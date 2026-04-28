@@ -1,0 +1,6 @@
+﻿sample_id	bait_name	replicate_id	is_control
+BaitA_rep1	BaitA	rep1	FALSE
+BaitA_rep2	BaitA	rep2	FALSE
+BaitA_rep3	BaitA	rep3	FALSE
+Ctrl_1	Control	ctrl1	TRUE
+Ctrl_2	Control	ctrl2	TRUE

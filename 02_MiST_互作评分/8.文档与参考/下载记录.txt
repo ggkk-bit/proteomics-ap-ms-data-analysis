@@ -1,0 +1,3 @@
+﻿[ok] https://pmc.ncbi.nlm.nih.gov/articles/PMC4378866/ -> C:\Users\dakey\Desktop\01_进行中\古老蛋白算法调研\下载的文献进行测试\多算法分析工作区\02_MiST_互作评分\8.文档与参考\01_论文原文\MiST_论文原文.html
+[ok] https://github.com/kroganlab/mist -> C:\Users\dakey\Desktop\01_进行中\古老蛋白算法调研\下载的文献进行测试\多算法分析工作区\02_MiST_互作评分\8.文档与参考\02_官方页面\MiST_GitHub页面.html
+[ok] https://codeload.github.com/kroganlab/mist/zip/refs/heads/master -> C:\Users\dakey\Desktop\01_进行中\古老蛋白算法调研\下载的文献进行测试\多算法分析工作区\02_MiST_互作评分\8.文档与参考\03_源码或软件\mist_master.zip

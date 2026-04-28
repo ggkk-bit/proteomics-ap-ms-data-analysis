@@ -1,0 +1,14 @@
+setwd("C:/Users/dakey/Desktop/01_进行中/古老蛋白算法调研/下载的文献进行测试/多算法分析工作区/02_MiST_互作评分")
+
+system2(
+  "C:/Program Files/R/R-4.5.1/bin/Rscript.exe",
+  c(
+    "脚本/02_格式转换脚本.R",
+    "--input=3.数据清洗与预处理/proteinGroups_已清洗.tsv",
+    "--data_out=4.MiST输入文件/data.txt",
+    "--keys_out=4.MiST输入文件/keys.txt",
+    "--remove_out=4.MiST输入文件/remove.txt",
+    "--collapse_out=4.MiST输入文件/collapse.txt",
+    "--spec_out=4.MiST输入文件/specificity_exclusions.txt"
+  )
+)

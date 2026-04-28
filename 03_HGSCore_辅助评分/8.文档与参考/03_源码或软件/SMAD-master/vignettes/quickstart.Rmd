@@ -1,0 +1,120 @@
+---
+title: "SMAD Quick Start"
+author: 
+- name: "Qingzhou (Johnson) Zhang"
+  email: zqzneptune@hotmail.com
+date: "`r Sys.Date()`"
+package: SMAD
+output: 
+  BiocStyle::html_document:
+    toc_float: true
+vignette: >
+  %\VignetteIndexEntry{SMAD Quick Start}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+# Introduction
+This R package implements statistical modelling of affinity purification–mass 
+spectrometry (AP-MS) data to compute confidence scores to identify *bona fide* 
+protein-protein interactions (PPI).
+
+# Prepare Input Data
+Prepare input data into the dataframe *datInput* with the following format:
+
+|idRun|idBait|idPrey|countPrey|lenPrey|
+|-----|:----:|:----:|:-------:|:-------:|
+|AP-MS run ID|Bait ID|Prey ID|Prey peptide count|Prey protein length|
+
+
+```{r}
+library(SMAD)
+data("TestDatInput")
+head(TestDatInput)
+```
+
+The test data is subset from the unfiltered BioPlex 2.0 data, which consists of
+apoptosis proteins as baits.
+
+# Methods
+
+## CompPASS
+
+Comparative Proteomic Analysis Software Suite (CompPASS) is based on spoke 
+model. This algorithm was developed by Dr. Mathew Sowa for defining the human 
+deubiquitinating enzyme interaction landscape [(Sowa, Mathew E., et al., 
+2009)][1]. The implementation of this 
+algorithm was inspired by Dr. Sowa's [online tutorial][2]. 
+The output includes Z-score, S-score, D-score and WD-score. In its 
+implementation in BioPlex 1.0 [(Huttlin, Edward L., et al., 2015)][3] and 
+BioPlex 2.0 [(Huttlin, Edward L., et al., 2017)][4], a naive 
+Bayes classifier that learns to distinguish true interacting proteins from 
+non-specific background and false positive identifications was included in the 
+compPASS pipline. This function was optimized from the [source code][5].
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}
+scoreCompPASS <- CompPASS(TestDatInput)
+head(scoreCompPASS)
+```
+
+Based on the scores, bait-prey interactions could be ranked and ready for downstream analyses.
+
+```{r CompPASS output figure, echo=FALSE, fig.height=7, fig.width=7, message=FALSE, warning=FALSE, paged.print=FALSE}
+par(mfrow = c(2, 2))
+plot(sort(scoreCompPASS$scoreZ, decreasing = TRUE), pch = 16,
+     xlab = "Ranked bait-prey interactions",
+     ylab = "Z-score")
+plot(sort(scoreCompPASS$scoreS, decreasing = TRUE), pch = 16,
+     xlab = "Ranked bait-prey interactions",
+     ylab = "S-score")
+plot(sort(scoreCompPASS$scoreD, decreasing = TRUE), pch = 16,
+     xlab = "Ranked bait-prey interactions",
+     ylab = "D-score")
+plot(sort(scoreCompPASS$scoreWD, decreasing = TRUE), pch = 16,
+     xlab = "Ranked bait-prey interactions",
+     ylab = "WD-score")
+
+```
+
+
+## HGScore
+
+HGScore Scoring algorithm based on a hypergeometric distribution error model 
+[(Hart et al., 2007)][6] with incorporation of 
+NSAF [(Zybailov, Boris, et al., 2006)][7]. This algorithm was first introduced 
+to predict the protein complex network of Drosophila melanogaster 
+[(Guruharsha, K. G., et al., 2011)][8]. This scoring algorithm was based on
+matrix model. Unlike CompPASS, we need protein length for each prey in 
+the additional column.
+
+```{r}
+scoreHG <- HG(TestDatInput)
+head(scoreHG)
+```
+
+```{r HG output figure, echo=FALSE, fig.height=7, fig.width=7, message=FALSE, warning=FALSE, paged.print=FALSE}
+
+plot(sort(scoreHG$HG, decreasing = TRUE), pch = 16,
+     xlab = "Ranked prey-prey interactions",
+     ylab = "HGscore")
+
+```
+
+Noted that HG scoring implements matrix models which leads to significant increase of inferred protein-protein interactions.
+
+
+[1]: https://doi.org/10.1016/j.cell.2009.04.042
+[2]: http://besra.hms.harvard.edu/ipmsmsdbs/cgi-bin/tutorial.cgi
+[3]: https://doi.org/10.1016/j.cell.2015.06.043
+[4]: https://www.nature.com/articles/nature22366
+[5]: https://github.com/dnusinow/cRomppass
+[6]: https://doi.org/10.1186/1471-2105-8-236
+[7]: https://doi.org/10.1021/pr060161n
+[8]: https://doi.org/10.1016/j.cell.2011.08.047

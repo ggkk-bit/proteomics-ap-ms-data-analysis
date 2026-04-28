@@ -1,0 +1,39 @@
+# Local assistant/editor state
+.claude/
+.DS_Store
+
+# Runtime/cache files
+__pycache__/
+*.py[cod]
+*.log
+.Rhistory
+.RData
+.RDataTmp
+.Rproj.user/
+
+# Archives and binary reports
+*.zip
+
+# Large raw/intermediate proteomics tables
+proteinGroups.txt
+proteinGroups*.txt
+proteinGroups*.tsv
+proteinGroups_cleaned.*
+*.cleaned.tsv
+data.txt
+preprocessed*.txt
+comppass_input.tsv
+comppass_results.tsv
+comppass_official_input*.tsv
+crapome_input.tsv
+
+# Generated algorithm output directories
+**/3.数据清洗与预处理/中间结果/
+**/6.CompPASS评分结果/
+**/6.MiST评分结果/
+**/6.HGSCore评分结果/
+**/6.CS_Score评分结果/
+**/6.CRAPome过滤结果/
+**/6.PPIrank排序结果/
+**/7.可视化结果/
+**/7.结果可视化/

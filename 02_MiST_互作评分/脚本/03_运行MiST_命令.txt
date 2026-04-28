@@ -1,0 +1,7 @@
+在项目根目录执行：
+
+& "C:\Program Files\R\R-4.5.1\bin\Rscript.exe" "脚本\03_运行MiST.R"
+
+如果依赖未装全，先执行：
+
+& "C:\Program Files\R\R-4.5.1\bin\Rscript.exe" "脚本\03_安装MiST依赖.R"

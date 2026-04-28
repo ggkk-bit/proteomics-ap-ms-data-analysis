@@ -1,0 +1,31 @@
+files:
+  data: 4.MiST输入文件/data.txt
+  keys: 4.MiST输入文件/keys.txt
+  remove: 4.MiST输入文件/remove.txt
+  collapse: 4.MiST输入文件/collapse.txt
+  specificity_exclusions: 4.MiST输入文件/specificity_exclusions.txt
+  output_dir: 6.MiST评分结果
+preprocess:
+  enabled: 1
+  remove_carryover: 1
+  filter_contaminants: 1
+  contaminants_file: 8.文档与参考/03_源码或软件/mist_master/mist-master/files/contaminants.txt
+  id_colname: id
+  prey_colname: ms_uniprot_ac
+  pepcount_colname: ms_num_unique_peptide
+  mw_colname: ms_protein_mw
+qc:
+  enabled: 1
+  matrix_file:
+  cluster: 1
+  cluster_font_scale: 5
+  ip_distributions: 1
+mist:
+  enabled: 1
+  matrix_file:
+  weights: fixed
+  training_file:
+  reproducibility: 0.30853
+  specificity: 0.68551
+  abundance: 0.00596
+  standardize_specificity: 18

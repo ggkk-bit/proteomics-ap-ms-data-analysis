@@ -1,0 +1,18 @@
+{
+  "input": "C:/Users/dakey/Desktop/01_进行中/古老蛋白算法调研/多算法分析工作区/proteinGroups.txt",
+  "output": "C:/Users/dakey/Desktop/01_进行中/古老蛋白算法调研/多算法分析工作区/00_统一数据准备/3.清洗后数据/proteinGroups_cleaned.tsv",
+  "protein_id_column": "Majority protein IDs",
+  "quant_column_count": 1614,
+  "drop_all_zero_quant": true,
+  "initial_rows": 8650,
+  "remaining_rows": 7861,
+  "removed_rows": 789,
+  "removed": {
+    "reverse": 162,
+    "potential_contaminant": 138,
+    "only_identified_by_site": 489,
+    "missing_protein_id": 0,
+    "all_zero_or_missing_quant": 0
+  },
+  "timestamp": "2026-04-18 10:39:46"
+}

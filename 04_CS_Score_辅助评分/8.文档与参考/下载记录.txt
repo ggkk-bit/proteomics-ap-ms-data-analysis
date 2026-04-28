@@ -1,0 +1,2 @@
+﻿[ok] https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1000515 -> C:\Users\dakey\Desktop\01_进行中\古老蛋白算法调研\下载的文献进行测试\多算法分析工作区\04_CS_Score_辅助评分\7.文档与参考\01_论文原文\CS_Score_原始论文.html
+[ok] https://pmc.ncbi.nlm.nih.gov/articles/PMC2738424/ -> C:\Users\dakey\Desktop\01_进行中\古老蛋白算法调研\下载的文献进行测试\多算法分析工作区\04_CS_Score_辅助评分\7.文档与参考\02_官方页面\CS_Score_PMC页面.html

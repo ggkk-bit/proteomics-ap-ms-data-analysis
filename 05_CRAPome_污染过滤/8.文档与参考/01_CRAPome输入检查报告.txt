@@ -1,0 +1,14 @@
+CRAPome 输入确认报告
+文件: ..\1.原始输入\proteinGroups.txt
+总行数: 8650
+proteinGroups 关键列检查: 通过
+
+CRAPome 实际需要的上传表:
+Bait Name / AP Name / Prey Name / Spectral Count
+
+当前结论:
+proteinGroups.txt 只能作为上游过滤与 ID 统一来源，不能单独生成完整 CRAPome 上传表。
+如果要转换成上传表，还需要样本级谱数信息，例如 evidence.txt 或等价的样本级计数矩阵。
+
+样本注释: ..\2.样本信息与分组\sample_annotation.tsv
+可识别映射: ip_name -> AP Name, bait_name -> Bait Name

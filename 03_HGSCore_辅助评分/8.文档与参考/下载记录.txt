@@ -1,0 +1,3 @@
+﻿[ok] https://rdrr.io/bioc/SMAD/man/HG.html -> C:\Users\dakey\Desktop\01_进行中\古老蛋白算法调研\下载的文献进行测试\多算法分析工作区\03_HGSCore_辅助评分\7.文档与参考\01_论文原文\HGSCore_SMAD_HGScore说明.html
+[ok] https://rdrr.io/github/zqzneptune/SMAD/src/R/HG.R -> C:\Users\dakey\Desktop\01_进行中\古老蛋白算法调研\下载的文献进行测试\多算法分析工作区\03_HGSCore_辅助评分\7.文档与参考\03_源码或软件\HGScore_R源码.html
+[ok] https://codeload.github.com/zqzneptune/SMAD/zip/refs/heads/master -> C:\Users\dakey\Desktop\01_进行中\古老蛋白算法调研\下载的文献进行测试\多算法分析工作区\03_HGSCore_辅助评分\7.文档与参考\03_源码或软件\SMAD_master.zip

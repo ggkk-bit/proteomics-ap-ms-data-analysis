@@ -1,0 +1,3 @@
+sample_id	raw_file_name	plate	well	replicate_letter	ip_name	bait_name	replicate_group	keep
+example_01	example_01.raw	81002	A03	A	example_01	ATOX1	ATOX1_rep	Y
+example_02	example_02.raw	81002	A03	B	example_02	ATOX1	ATOX1_rep	Y

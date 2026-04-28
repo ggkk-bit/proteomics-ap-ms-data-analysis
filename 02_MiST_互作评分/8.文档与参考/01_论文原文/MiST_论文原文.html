@@ -1,0 +1,2818 @@
+
+<!DOCTYPE html>
+<html lang="en" >
+    <head >
+
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="HandheldFriendly" content="True" />
+        <meta name="MobileOptimized" content="320" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        
+        
+
+        
+        
+  <link  rel="stylesheet" href="https://cdn.ncbi.nlm.nih.gov/pmc/pd-medc-pmc-cloudpmc-viewer/production/a2b04810/var/data/static/assets/base_style-BxRs1iOp.css" />
+<script type="module" crossorigin="" src="https://cdn.ncbi.nlm.nih.gov/pmc/pd-medc-pmc-cloudpmc-viewer/production/a2b04810/var/data/static/assets/base_style-D-jH62-1.js"></script>
+
+  <link  rel="stylesheet" href="https://cdn.ncbi.nlm.nih.gov/pmc/pd-medc-pmc-cloudpmc-viewer/production/a2b04810/var/data/static/assets/article_style-B67IZFds.css" />
+<link  rel="stylesheet" href="https://cdn.ncbi.nlm.nih.gov/pmc/pd-medc-pmc-cloudpmc-viewer/production/a2b04810/var/data/static/assets/style-D77LS1kY.css" />
+<script type="module" crossorigin="" src="https://cdn.ncbi.nlm.nih.gov/pmc/pd-medc-pmc-cloudpmc-viewer/production/a2b04810/var/data/static/assets/article_style-CTAd1LmM.js"></script>
+
+  
+  
+    <style>
+  
+  
+  @media screen and (min-width: 64em) {
+    div.pmc-wm {
+      background: repeat-y;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='350' xmlns:xlink='http://www.w3.org/1999/xlink'%3E%3Cdefs%3E%3Cfilter x='-.02' y='0' width='1.05' height='1' id='c'%3E%3CfeFlood flood-color='%23FFF'/%3E%3CfeComposite in='SourceGraphic'/%3E%3C/filter%3E%3Ctext id='b' font-family='Helvetica' font-size='11pt' style='opacity:1;fill:%23005ea2;stroke:none;text-anchor:middle' x='175' y='14'%3EAuthor Manuscript%3C/text%3E%3Cpath id='a' style='fill:%23005ea2' d='M0 8h350v3H0z'/%3E%3C/defs%3E%3Cuse xlink:href='%23a' transform='rotate(90 10 10)'/%3E%3Cuse xlink:href='%23b' transform='rotate(90 10 10)' filter='url(%23c)'/%3E%3C/svg%3E");
+      padding-left: 3rem;
+    }
+  }
+</style>
+
+  
+
+
+
+        
+            <link rel="apple-touch-icon"
+                  sizes="180x180"
+                  href="https://cdn.ncbi.nlm.nih.gov/pmc/pd-medc-pmc-cloudpmc-viewer/production/a2b04810/var/data/static/img/favicons/apple-touch-icon.png" />
+            <link rel="icon"
+                  type="image/png"
+                  sizes="48x48"
+                  href="https://cdn.ncbi.nlm.nih.gov/pmc/pd-medc-pmc-cloudpmc-viewer/production/a2b04810/var/data/static/img/favicons/favicon-48x48.png" />
+            <link rel="icon"
+                  type="image/png"
+                  sizes="32x32"
+                  href="https://cdn.ncbi.nlm.nih.gov/pmc/pd-medc-pmc-cloudpmc-viewer/production/a2b04810/var/data/static/img/favicons/favicon-32x32.png" />
+            <link rel="icon"
+                  type="image/png"
+                  sizes="16x16"
+                  href="https://cdn.ncbi.nlm.nih.gov/pmc/pd-medc-pmc-cloudpmc-viewer/production/a2b04810/var/data/static/img/favicons/favicon-16x16.png" />
+            <link rel="manifest" href="https://cdn.ncbi.nlm.nih.gov/pmc/pd-medc-pmc-cloudpmc-viewer/production/a2b04810/var/data/static/img/favicons/site.webmanifest" />
+            <link rel="mask-icon"
+                  href="https://cdn.ncbi.nlm.nih.gov/pmc/pd-medc-pmc-cloudpmc-viewer/production/a2b04810/var/data/static/img/favicons/safari-pinned-tab.svg"
+                  color="#0071bc" />
+            <meta name="msapplication-config"
+                  content="https://cdn.ncbi.nlm.nih.gov/pmc/pd-medc-pmc-cloudpmc-viewer/production/a2b04810/var/data/static/img/favicons/browserconfig.xml" />
+            <meta name="theme-color" content="#ffffff" />
+        
+
+        <title>
+            Scoring Large Scale Affinity Purification Mass Spectrometry Datasets with MIST - PMC
+        </title>
+
+        
+        
+  
+  <!-- Logging params: Pinger defaults -->
+<meta name="ncbi_app" content="cloudpmc-viewer" />
+<meta name="ncbi_db" content="pmc" />
+<meta name="ncbi_phid" content="321FA61D9CAAB28309A61D0012D55014.m_1" />
+<meta name="ncbi_pinger_stat_url" content="https://pmc.ncbi.nlm.nih.gov/stat" />
+<!-- Logging params: Pinger custom -->
+<meta name="ncbi_pdid" content="article" />
+  
+    <link rel="preconnect" href="https://www.google-analytics.com" />
+
+    
+        <link rel="preconnect" href="https://cdn.ncbi.nlm.nih.gov" />
+    
+
+    <!-- Include USWDS Init Script -->
+    <script src="https://cdn.ncbi.nlm.nih.gov/pmc/pd-medc-pmc-cloudpmc-viewer/production/a2b04810/var/data/static/assets/uswds-init.js"></script>
+
+
+    <meta name="ncbi_domain" content="nihpa">
+<meta name="ncbi_type" content="fulltext">
+<meta name="ncbi_pcid" content="manuscript">
+<link rel="canonical" href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4378866/">
+<meta name="robots" content="INDEX,NOFOLLOW,NOARCHIVE">
+<meta name="citation_journal_title" content="Current protocols in bioinformatics / editoral board, Andreas D. Baxevanis ... [et al.]">
+<meta name="citation_title" content="Scoring Large Scale Affinity Purification Mass Spectrometry Datasets with MIST">
+<meta name="citation_author" content="Erik Verschueren">
+<meta name="citation_author_institution" content="Department of Cellular &amp; Molecular Pharmacology, University of California, San Francisco, San Francisco, CA 94158-2530">
+<meta name="citation_author_institution" content="California Institute for Quantitative Biomedical Sciences, San Francisco, 94158-2530">
+<meta name="citation_author" content="John Von Dollen">
+<meta name="citation_author_institution" content="Department of Cellular &amp; Molecular Pharmacology, University of California, San Francisco, San Francisco, CA 94158-2530">
+<meta name="citation_author_institution" content="California Institute for Quantitative Biomedical Sciences, San Francisco, 94158-2530">
+<meta name="citation_author" content="Peter Cimermancic">
+<meta name="citation_author_institution" content="Department of Cellular &amp; Molecular Pharmacology, University of California, San Francisco, San Francisco, CA 94158-2530">
+<meta name="citation_author_institution" content="Graduate Group in Biological and Medical Informatics, University of California, San Francisco, San Francisco, CA 94158-2530">
+<meta name="citation_author_institution" content="California Institute for Quantitative Biomedical Sciences, San Francisco, 94158-2530">
+<meta name="citation_author" content="Natali Gulbahce">
+<meta name="citation_author" content="Andrej Sali">
+<meta name="citation_author_institution" content="Department of Bioengineering and Therapeutic Science, University of California, San Francisco, San Francisco, 94158-2530">
+<meta name="citation_author_institution" content="Department of Pharmaceutical Chemistry, University of California, San Francisco, San Francisco, 94158-2530">
+<meta name="citation_author_institution" content="California Institute for Quantitative Biomedical Sciences, San Francisco, 94158-2530">
+<meta name="citation_author" content="Nevan Krogan">
+<meta name="citation_author_institution" content="Department of Cellular &amp; Molecular Pharmacology, University of California, San Francisco, San Francisco, CA 94158-2530">
+<meta name="citation_author_institution" content="Gladstone Institutes, University of California, San Francisco, San Francisco, CA 94158-2530">
+<meta name="citation_author_institution" content="California Institute for Quantitative Biomedical Sciences, San Francisco, 94158-2530">
+<meta name="citation_publication_date" content="2015 Mar 9">
+<meta name="citation_volume" content="49">
+<meta name="citation_firstpage" content="8.19.1">
+<meta name="citation_doi" content="10.1002/0471250953.bi0819s49">
+<meta name="citation_pmid" content="25754993">
+<meta name="citation_abstract_html_url" content="https://pmc.ncbi.nlm.nih.gov/articles/PMC4378866/">
+<meta name="citation_fulltext_html_url" content="https://pmc.ncbi.nlm.nih.gov/articles/PMC4378866/">
+<meta name="citation_pdf_url" content="https://pmc.ncbi.nlm.nih.gov/articles/PMC4378866/pdf/nihms-672081.pdf">
+<meta name="description" content="High-throughput Affinity Purification Mass Spectrometry (AP-MS) experiments can identify a large number of protein interactions but only a fraction of these interactions are biologically relevant. Here, we describe a comprehensive computational ...">
+<meta name="og:title" content="Scoring Large Scale Affinity Purification Mass Spectrometry Datasets with MIST">
+<meta name="og:type" content="article">
+<meta name="og:site_name" content="PubMed Central (PMC)">
+<meta name="og:description" content="High-throughput Affinity Purification Mass Spectrometry (AP-MS) experiments can identify a large number of protein interactions but only a fraction of these interactions are biologically relevant. Here, we describe a comprehensive computational ...">
+<meta name="og:url" content="https://pmc.ncbi.nlm.nih.gov/articles/PMC4378866/">
+<meta name="og:image" content="https://cdn.ncbi.nlm.nih.gov/pmc/cms/images/pmc-card-share.jpg?_=0">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@ncbi">
+    
+    
+
+    </head>
+    <body >
+        
+    <a class="usa-skipnav " href="#main-content">
+      Skip to main content
+    </a>
+
+
+        
+            
+
+<section class="usa-banner " aria-label="Official website of the United States government" >
+    <div class="usa-accordion">
+        <header class="usa-banner__header">
+            <div class="usa-banner__inner">
+                <div class="grid-col-auto">
+                    <img aria-hidden="true"
+                         class="usa-banner__header-flag"
+                         src="https://cdn.ncbi.nlm.nih.gov/pmc/pd-medc-pmc-cloudpmc-viewer/production/a2b04810/var/data/static/img/us_flag.svg"
+                         alt="" />
+                </div>
+
+                <div class="grid-col-fill tablet:grid-col-auto" aria-hidden="true">
+                    <p class="usa-banner__header-text">
+                        An official website of the United States government
+                    </p>
+                    <span class="usa-banner__header-action">Here's how you know</span>
+                </div>
+
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+        <button
+            type="button"
+        
+    
+    class="usa-accordion__button usa-banner__button
+           
+
+           
+               
+               
+               
+               
+            
+
+           
+           
+           
+           "
+    aria-expanded="false"
+    aria-controls="gov-banner-default"
+    
+    data-testid="storybook-django-banner"
+    
+    >
+    
+        
+
+        
+                    <span class="usa-banner__button-text">Here's how you know</span>
+                
+
+        
+    
+        
+            </button>
+        
+
+
+            </div>
+        </header>
+
+        <div class="usa-banner__content usa-accordion__content"
+             id="gov-banner-default"
+             hidden>
+            <div class="grid-row grid-gap-lg">
+                <div class="usa-banner__guidance tablet:grid-col-6">
+                    <img class="usa-banner__icon usa-media-block__img"
+                         src="https://cdn.ncbi.nlm.nih.gov/pmc/pd-medc-pmc-cloudpmc-viewer/production/a2b04810/var/data/static/img/icon-dot-gov.svg"
+                         alt=""
+                         aria-hidden="true" />
+                    <div class="usa-media-block__body">
+                        <p>
+                            <strong>Official websites use .gov</strong>
+                            <br />
+                            A
+                            <strong>.gov</strong> website belongs to an official
+                            government organization in the United States.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="usa-banner__guidance tablet:grid-col-6">
+                    <img class="usa-banner__icon usa-media-block__img"
+                         src="https://cdn.ncbi.nlm.nih.gov/pmc/pd-medc-pmc-cloudpmc-viewer/production/a2b04810/var/data/static/img/icon-https.svg"
+                         alt=""
+                         aria-hidden="true" />
+
+                    <div class="usa-media-block__body">
+                        <p>
+                            <strong>Secure .gov websites use HTTPS</strong>
+                            <br />
+                            A <strong>lock</strong> (
+                            <span class="icon-lock">
+                                <svg xmlns="http://www.w3.org/2000/svg"
+                                     width="52"
+                                     height="64"
+                                     viewBox="0 0 52 64"
+                                     class="usa-banner__lock-image"
+                                     role="graphics-symbol"
+                                     aria-labelledby="banner-lock-description"
+                                     focusable="false">
+                                    <title id="banner-lock-title">Lock</title>
+                                    <desc id="banner-lock-description">
+                                    Locked padlock icon
+                                    </desc>
+                                    <path fill="#000000"
+                                          fill-rule="evenodd"
+                                          d="M26 0c10.493 0 19 8.507 19 19v9h3a4 4 0 0 1 4 4v28a4 4 0 0 1-4 4H4a4 4 0 0 1-4-4V32a4 4 0 0 1 4-4h3v-9C7 8.507 15.507 0 26 0zm0 8c-5.979 0-10.843 4.77-10.996 10.712L15 19v9h22v-9c0-6.075-4.925-11-11-11z" />
+                                </svg>
+</span>) or <strong>https://</strong> means you've safely
+                                connected to the .gov website. Share sensitive
+                                information only on official, secure websites.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+        
+
+        
+    
+    
+    
+
+<div class="usa-overlay">
+</div>
+
+
+
+<header class="usa-header usa-header--extended usa-header--wide" data-header data-testid="header"    >
+    <div class="ncbi-header">
+        <div class="ncbi-header__container">
+            <a class="ncbi-header__logo-container"
+               href="https://www.ncbi.nlm.nih.gov/">
+                <img alt="NCBI home page"
+                     class="ncbi-header__logo-image"
+                     src="https://cdn.ncbi.nlm.nih.gov/pmc/pd-medc-pmc-cloudpmc-viewer/production/a2b04810/var/data/static/img/ncbi-logos/nih-nlm-ncbi--white.svg"
+                     width="410"
+                     height="100" />
+            </a>
+
+            <!-- Mobile menu hamburger button -->
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+        <button
+            type="button"
+        
+    
+    class="usa-menu-btn ncbi-header__hamburger-button
+           
+
+           
+               
+               
+               
+               
+            
+
+           
+           
+           
+           "
+    
+    
+    aria-label="Show menu"
+    data-testid="navMenuButton"
+    
+    >
+    
+        
+
+        
+                <svg aria-hidden="true"
+                     class="ncbi-hamburger-icon"
+                     fill="none"
+                     focusable="false"
+                     height="21"
+                     viewBox="0 0 31 21"
+                     width="31"
+                     xmlns="http://www.w3.org/2000/svg">
+                    <path clip-rule="evenodd"
+                          d="M0.125 20.75H30.875V17.3333H0.125V20.75ZM0.125 12.2083H30.875V8.79167H0.125V12.2083ZM0.125 0.25V3.66667H30.875V0.25H0.125Z"
+                          fill="#F1F1F1"
+                          fill-rule="evenodd" />
+                </svg>
+            
+
+        
+    
+        
+            </button>
+        
+
+
+
+            
+                <!-- Desktop buttons-->
+                <div class="ncbi-header__desktop-buttons">
+                    
+                        <!-- Desktop search button -->
+                        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+        <button
+            type="button"
+        
+    
+    class="usa-button
+           
+
+           
+               
+               
+               
+               
+            
+
+           
+           
+           usa-button--unstyled ncbi-header__desktop-button
+           "
+    aria-expanded="false"
+    aria-controls="search-field-desktop-navigation"
+    aria-label="Show search overlay"
+    data-testid="toggleSearchPanelButton"
+    data-toggle-search-panel-button
+    >
+    
+        
+
+        
+                            
+
+
+
+    <img
+        src="https://cdn.ncbi.nlm.nih.gov/pmc/pd-medc-pmc-cloudpmc-viewer/production/a2b04810/var/data/static/img/search.svg"
+        class="usa-icon "
+        aria-hidden="true"
+        
+        
+    />
+
+
+                            Search
+                        
+
+        
+    
+        
+            </button>
+        
+
+
+                    
+
+                    <!-- Desktop login dropdown -->
+                    
+                        <div class="ncbi-header__login-dropdown">
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+        <button
+            type="button"
+        
+    
+    class="usa-button
+           
+
+           
+               
+               
+               
+               
+            
+
+           
+           
+           usa-button--unstyled ncbi-header__desktop-button ncbi-header__login-dropdown-button
+           "
+    aria-expanded="false"
+    aria-controls="login-dropdown-menu"
+    aria-label="Show login menu"
+    data-testid="toggleLoginMenuDropdown"
+    data-desktop-login-button
+    >
+    
+        
+
+        
+                                
+
+
+
+    <img
+        src="https://cdn.ncbi.nlm.nih.gov/pmc/pd-medc-pmc-cloudpmc-viewer/production/a2b04810/var/data/static/img/person.svg"
+        class="usa-icon "
+        aria-hidden="true"
+        
+        
+    />
+
+
+
+                                <span data-login-dropdown-text>Log in</span>
+
+                                <!-- Dropdown icon pointing up -->
+                                
+
+
+
+    <img
+        src="https://cdn.ncbi.nlm.nih.gov/pmc/pd-medc-pmc-cloudpmc-viewer/production/a2b04810/var/data/static/img/expand_less.svg"
+        class="usa-icon ncbi-header__login-dropdown-icon ncbi-header__login-dropdown-icon--expand-less ncbi-header__login-dropdown-icon--hidden"
+        aria-hidden="true"
+        data-login-dropdown-up-arrow
+        
+    />
+
+
+
+                                <!-- Dropdown icon pointing down -->
+                                
+
+
+
+    <img
+        src="https://cdn.ncbi.nlm.nih.gov/pmc/pd-medc-pmc-cloudpmc-viewer/production/a2b04810/var/data/static/img/expand_more.svg"
+        class="usa-icon ncbi-header__login-dropdown-icon ncbi-header__login-dropdown-icon--expand-more ncbi-header__login-dropdown-icon--hidden"
+        aria-hidden="true"
+        data-login-dropdown-down-arrow
+        
+    />
+
+
+                            
+
+        
+    
+        
+            </button>
+        
+
+
+
+                            <!-- Login dropdown menu -->
+                            <ul class="usa-nav__submenu ncbi-header__login-dropdown-menu"
+                                id="login-dropdown-menu"
+                                data-desktop-login-menu-dropdown
+                                hidden>
+                                
+                                    <li class="usa-nav__submenu-item">
+                                        <!-- Uses custom style overrides to render external and document links. -->
+                                        
+
+
+
+
+
+
+
+
+
+    <a href="https://www.ncbi.nlm.nih.gov/myncbi/" class="usa-link  "  >
+        
+
+        
+            Dashboard
+        
+
+        
+    </a>
+
+
+                                    </li>
+                                
+                                    <li class="usa-nav__submenu-item">
+                                        <!-- Uses custom style overrides to render external and document links. -->
+                                        
+
+
+
+
+
+
+
+
+
+    <a href="https://www.ncbi.nlm.nih.gov/myncbi/collections/bibliography/" class="usa-link  "  >
+        
+
+        
+            Publications
+        
+
+        
+    </a>
+
+
+                                    </li>
+                                
+                                    <li class="usa-nav__submenu-item">
+                                        <!-- Uses custom style overrides to render external and document links. -->
+                                        
+
+
+
+
+
+
+
+
+
+    <a href="https://www.ncbi.nlm.nih.gov/account/settings/" class="usa-link  "  >
+        
+
+        
+            Account settings
+        
+
+        
+    </a>
+
+
+                                    </li>
+                                
+                                <li class="usa-nav__submenu-item">
+                                    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+        <button
+            type="button"
+        
+    
+    class="usa-button
+           
+
+           
+               
+               
+               
+               
+            
+
+           
+           
+           usa-button--outline ncbi-header__login-dropdown-logout-button
+           "
+    
+    
+    
+    data-testid="desktopLogoutButton"
+    data-desktop-logout-button
+    >
+    
+        
+
+        Log out
+
+        
+    
+        
+            </button>
+        
+
+
+                                </li>
+                            </ul>
+                        </div>
+                    
+                </div>
+            
+        </div>
+    </div>
+
+    <!-- Search panel -->
+    
+        <div class="ncbi-search-panel ncbi--show-only-at-desktop"
+             data-header-search-panel
+             hidden>
+            <div class="ncbi-search-panel__container">
+                <form action="https://www.ncbi.nlm.nih.gov/search/all/"
+                      
+                      autocomplete="off"
+                      class="usa-search usa-search--big ncbi-search-panel__form"
+                      data-testid="desktop-navigation-search-form"
+                      method="GET"
+                      role="search">
+                    <label class="usa-sr-only" for="search-field-desktop-navigation">
+                        Search…
+                    </label>
+                    <input class="usa-input"
+                           id="search-field-desktop-navigation"
+                           name="term"
+                           
+                               placeholder="Search NCBI"
+                           
+                           type="search"
+                           value="" />
+                    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+        <button
+            type="submit"
+        
+    
+    class="usa-button
+           
+
+           
+               
+               
+               
+               
+            
+
+           
+           
+           
+           "
+    
+    
+    
+    
+    
+    >
+    
+        
+
+        
+                        <span class="usa-search__submit-text">
+                            Search NCBI
+                        </span>
+                    
+
+        
+    
+        
+            </button>
+        
+
+
+                </form>
+
+                
+            </div>
+        </div>
+    
+
+    <nav aria-label="Primary navigation" class="usa-nav">
+        <p class="usa-sr-only" id="primary-navigation-sr-only-title">
+            Primary site navigation
+        </p>
+
+        <!-- Mobile menu close button -->
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+        <button
+            type="button"
+        
+    
+    class="usa-nav__close ncbi-nav__close-button
+           
+
+           
+               
+               
+               
+               
+            
+
+           
+           
+           
+           "
+    
+    
+    aria-label="Close navigation menu"
+    data-testid="navCloseButton"
+    
+    >
+    
+        
+
+        
+            <img src="https://cdn.ncbi.nlm.nih.gov/pmc/pd-medc-pmc-cloudpmc-viewer/production/a2b04810/var/data/static/img/usa-icons/close.svg" alt="Close" />
+        
+
+        
+    
+        
+            </button>
+        
+
+
+
+        
+            <!-- Mobile search component -->
+            <form class="usa-search usa-search--small ncbi--hide-at-desktop"
+                  action="https://www.ncbi.nlm.nih.gov/search/all/"
+                  
+                  autocomplete="off"
+                  data-testid="mobile-navigation-search-form"
+                  method="GET"
+                  role="search">
+                <label class="usa-sr-only" for="search-field-mobile-navigation">
+                    Search
+                </label>
+
+                <input class="usa-input"
+                       id="search-field-mobile-navigation"
+                       type="search"
+                       
+                           placeholder="Search NCBI"
+                       
+                       name="term" />
+
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+        <button
+            type="submit"
+        
+    
+    class="usa-button
+           
+
+           
+               
+               
+               
+               
+            
+
+           
+           
+           
+           "
+    
+    
+    
+    
+    
+    >
+    
+        
+
+        
+                    <!-- This SVG should be kept inline and not replaced with a link to the icon as otherwise it will render in the wrong color -->
+                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjI0Ij48cGF0aCBkPSJNMCAwaDI0djI0SDB6IiBmaWxsPSJub25lIi8+PHBhdGggZmlsbD0iI2ZmZiIgZD0iTTE1LjUgMTRoLS43OWwtLjI4LS4yN0E2LjQ3MSA2LjQ3MSAwIDAgMCAxNiA5LjUgNi41IDYuNSAwIDEgMCA5LjUgMTZjMS42MSAwIDMuMDktLjU5IDQuMjMtMS41N2wuMjcuMjh2Ljc5bDUgNC45OUwyMC40OSAxOWwtNC45OS01em0tNiAwQzcuMDEgMTQgNSAxMS45OSA1IDkuNVM3LjAxIDUgOS41IDUgMTQgNy4wMSAxNCA5LjUgMTEuOTkgMTQgOS41IDE0eiIvPjwvc3ZnPg=="
+                         class="usa-search__submit-icon"
+                         alt="Search" />
+                
+
+        
+    
+        
+            </button>
+        
+
+
+            </form>
+
+            
+        
+
+        <!-- Primary navigation menu items -->
+        <!-- This usa-nav__inner wrapper is required to correctly style the navigation items on Desktop -->
+        
+
+        
+            <div class="ncbi-nav__mobile-login-menu ncbi--hide-at-desktop"
+                 data-mobile-login-menu
+                 hidden>
+                <p class="ncbi-nav__mobile-login-menu-status">
+                    Logged in as:
+                    <strong class="ncbi-nav__mobile-login-menu-email"
+                            data-mobile-login-email-text></strong>
+                </p>
+                <ul class="usa-nav__primary usa-accordion">
+                    
+                        <li class="usa-nav__primary-item">
+                            
+
+
+
+
+
+
+
+
+
+    <a href="https://www.ncbi.nlm.nih.gov/myncbi/" class="usa-link  "  >
+        
+
+        
+            Dashboard
+        
+
+        
+    </a>
+
+
+                        </li>
+                    
+                        <li class="usa-nav__primary-item">
+                            
+
+
+
+
+
+
+
+
+
+    <a href="https://www.ncbi.nlm.nih.gov/myncbi/collections/bibliography/" class="usa-link  "  >
+        
+
+        
+            Publications
+        
+
+        
+    </a>
+
+
+                        </li>
+                    
+                        <li class="usa-nav__primary-item">
+                            
+
+
+
+
+
+
+
+
+
+    <a href="https://www.ncbi.nlm.nih.gov/account/settings/" class="usa-link  "  >
+        
+
+        
+            Account settings
+        
+
+        
+    </a>
+
+
+                        </li>
+                    
+                </ul>
+            </div>
+        
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+        <button
+            type="button"
+        
+    
+    class="usa-button
+           
+
+           
+               
+               
+               
+               
+            
+
+           
+           
+           ncbi-nav__mobile-login-button ncbi--hide-at-desktop
+           "
+    
+    
+    
+    data-testid="mobileLoginButton"
+    data-mobile-login-button
+    >
+    
+        
+
+        Log in
+
+        
+    
+        
+            </button>
+        
+
+
+    </nav>
+</header>
+
+    
+    
+        
+
+<section class="pmc-header pmc-header--basic" aria-label="PMC Header with search box">
+    <div class="pmc-nav-container">
+        <div class="pmc-header__bar">
+           <div class="pmc-header__logo">
+               <a href="/" title="Home" aria-label="PMC Home"></a>
+           </div>
+            <button
+                    type="button"
+                    class="usa-button usa-button--unstyled pmc-header__search__button"
+                    aria-label="Open search"
+                    data-ga-category="search"
+                    data-ga-action="PMC"
+                    data-ga-label="pmc_search_panel_mobile"
+            >
+                <img src="https://cdn.ncbi.nlm.nih.gov/pmc/pd-medc-pmc-cloudpmc-viewer/production/a2b04810/var/data/static/img/search.svg" alt="PMC search open icon" aria-hidden="true" class="usa-icon usa-icon--size-4 pmc-icon__open" />
+                <img src="https://cdn.ncbi.nlm.nih.gov/pmc/pd-medc-pmc-cloudpmc-viewer/production/a2b04810/var/data/static/img/close.svg" alt="PMC search close ison" aria-hidden="true" class="usa-icon usa-icon--size-4 pmc-icon__close" />
+            </button>
+        </div>
+        <div class="pmc-header__search">
+            
+
+
+<form class="usa-search usa-search--extra usa-search--article-right-column  pmc-header__search__form" id="pmc-search-form" autocomplete="off" role="search">
+<label class="usa-sr-only" for="pmc-search">Search PMC Full-Text Archive</label>
+<span class="autoComplete_wrapper flex-1">
+<input class="usa-input width-full maxw-none" required="required" placeholder="Search PMC Full-Text Archive" id="pmc-search"  type="search" name="term" data-autocomplete-url="https://pmc.ncbi.nlm.nih.gov/autocomp/search/autocomp/"/>
+</span>
+<button
+class="usa-button"
+type="submit"
+formaction="https://pmc.ncbi.nlm.nih.gov/search/"
+data-ga-category="search"
+data-ga-action="PMC"
+data-ga-label="PMC_search_button"
+>
+<span class="usa-search__submit-text">Search in PMC</span>
+<img
+src="https://cdn.ncbi.nlm.nih.gov/pmc/pd-medc-pmc-cloudpmc-viewer/production/a2b04810/var/data/static/img/usa-icons-bg/search--white.svg"
+class="usa-search__submit-icon"
+alt="Search"
+/>
+</button>
+</form>
+            <div class="display-flex flex-column tablet:flex-row tablet:flex-justify flex-justify-center flex-align-center width-full desktop:maxw-44">
+                <ul class="pmc-header__search__menu">
+                    <li>
+                        
+                            <a class="usa-link" href="/journals/" data-ga-action="featured_link" data-ga-label="journal list">
+                                Journal List
+                            </a>
+                        
+                    </li>
+                    <li>
+                        
+                            <a class="usa-link" href="/about/userguide/" data-ga-action="featured_link"
+                            data-ga-label="user guide">
+                                User Guide
+                            </a>
+                        
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+    
+
+
+        
+        
+
+       
+  <div class="usa-section padding-top-0 desktop:padding-top-6 pmc-article-section" data-article-db="pmc" data-article-id="4378866">
+
+    
+
+   
+
+
+
+<div class="grid-container pmc-actions-bar" aria-label="Actions bar" role="complementary">
+    <div class="grid-row">
+        <div class="grid-col-fill display-flex">
+             <div class="display-flex">
+                <ul class="usa-list usa-list--unstyled usa-list--horizontal">
+                    <li class="margin-right-2 mobile-lg:margin-right-4 display-flex mob">
+                        <button
+                                type="button"
+                                class="usa-button pmc-sidenav__container__open usa-button--unstyled width-auto display-flex"
+                                aria-label="Open resources"
+                                data-extra-class="is-visible-resources"
+                                data-ga-category="resources_accordion"
+                                data-ga-action="click"
+                                data-ga-label="mobile_icon"
+                        >
+                            <img src="https://cdn.ncbi.nlm.nih.gov/pmc/pd-medc-pmc-cloudpmc-viewer/production/a2b04810/var/data/static/img/more_vert.svg" alt="Open resources icon" class="usa-icon usa-icon--size-4 usa-icon--link" />
+                        </button>
+                    </li>
+                    
+                    <li class="margin-right-2 mobile-lg:margin-right-4 display-flex mob">
+                        <a
+                                href="https://doi.org/10.1002/0471250953.bi0819s49"
+                                class="usa-link display-flex usa-tooltip"
+                                role="button"
+                                target="_blank"
+                                rel="noreferrer noopener"
+                                title="View on publisher site"
+                                data-position="bottom"
+                                aria-label="View on publisher site"
+                                data-ga-category="actions"
+                                data-ga-action="click"
+                                data-ga-label="publisher_link_mobile"
+                        >
+                                <img src="https://cdn.ncbi.nlm.nih.gov/pmc/pd-medc-pmc-cloudpmc-viewer/production/a2b04810/var/data/static/img/launch.svg" alt="View on publisher site icon" class="usa-icon usa-icon--size-4 usa-icon--link" />
+                        </a>
+                    </li>
+                    
+                    
+                        <li class="margin-right-2 mobile-lg:margin-right-4 display-flex">
+                             <a
+                                     href="pdf/nihms-672081.pdf"
+                                     class="usa-link display-flex usa-tooltip"
+                                     role="button"
+                                     title="Download PDF"
+                                     data-position="bottom"
+                                     aria-label="Download PDF"
+                                     data-ga-category="actions"
+                                     data-ga-action="click"
+                                     data-ga-label="pdf_download_mobile"
+                             >
+
+                                 <img src="https://cdn.ncbi.nlm.nih.gov/pmc/pd-medc-pmc-cloudpmc-viewer/production/a2b04810/var/data/static/img/file_download.svg" alt="Download PDF icon" aria-hidden="true" class="usa-icon usa-icon--size-4 usa-icon--link" />
+                            </a>
+                        </li>
+                    
+                    <li class="margin-right-2 mobile-lg:margin-right-4 display-flex">
+                        <button
+                            class="usa-button usa-button--unstyled  usa-tooltip collections-dialog-trigger collections-button display-flex collections-button-empty"
+                            title="Add to Collections"
+                            data-position="bottom"
+                            aria-label="Save article in MyNCBI collections."
+                            data-ga-category="actions"
+                            data-ga-action="click"
+                            data-ga-label="collections_button_mobile"
+                            data-collections-open-dialog-enabled="false"
+                            data-collections-open-dialog-url="https://account.ncbi.nlm.nih.gov/?back_url=https%3A%2F%2Fpmc.ncbi.nlm.nih.gov%2Farticles%2FPMC4378866%2F%23open-collections-dialog"
+                            data-in-collections="false"
+                        >
+                            <img src="https://cdn.ncbi.nlm.nih.gov/pmc/pd-medc-pmc-cloudpmc-viewer/production/a2b04810/var/data/static/img/action-bookmark-full.svg" alt="Collections icon" aria-hidden="true" class="usa-icon usa-icon--size-4 usa-icon--link usa-icon--bookmark-full" />
+                            <img src="https://cdn.ncbi.nlm.nih.gov/pmc/pd-medc-pmc-cloudpmc-viewer/production/a2b04810/var/data/static/img/action-bookmark-empty.svg" alt="Collections icon" aria-hidden="true" class="usa-icon usa-icon--size-4 usa-icon--link usa-icon--bookmark-empty" />
+                        </button>
+                    </li>
+                    
+                    <li class="margin-right-2 mobile-lg:margin-right-4 display-flex">
+                        <button role="button" class="usa-button usa-button--unstyled usa-tooltip citation-dialog-trigger display-flex"
+                            aria-label="Open dialog with citation text in different styles"
+                            title="Cite"
+                            data-position="bottom"
+                            data-ga-category="actions"
+                            data-ga-action="open"
+                            data-ga-label="cite_mobile"
+                            data-all-citations-url="/resources/citations/4378866/"
+                            data-citation-style="nlm"
+                            data-download-format-link="/resources/citations/4378866/export/"
+                        >
+                            <img src="https://cdn.ncbi.nlm.nih.gov/pmc/pd-medc-pmc-cloudpmc-viewer/production/a2b04810/var/data/static/img/format_quote.svg" alt="Cite icon" aria-hidden="true" class="usa-icon usa-icon--size-4 usa-icon--link" />
+                        </button>
+                    </li>
+                    
+                    <li class="pmc-permalink display-flex" >
+                         <button
+                                 type="button"
+                                 title="Permalink"
+                                 data-position="bottom"
+                                 class="usa-button usa-button--unstyled display-flex usa-tooltip"
+                                 aria-label="Show article permalink"
+                                 aria-expanded="false"
+                                 aria-haspopup="true"
+                                 data-ga-category="actions"
+                                 data-ga-action="open"
+                                 data-ga-label="permalink_mobile"
+                         >
+                            <img src="https://cdn.ncbi.nlm.nih.gov/pmc/pd-medc-pmc-cloudpmc-viewer/production/a2b04810/var/data/static/img/share.svg" alt="Show article permalink icon" aria-hidden="true" class="usa-icon usa-icon--size-4 usa-icon--link" />
+                        </button>
+                        
+
+<div class="pmc-permalink__dropdown" hidden>
+    <div class="pmc-permalink__dropdown__container">
+          <h2 class="usa-modal__heading margin-top-0 margin-bottom-2 text-uppercase font-sans-xs">PERMALINK</h2>
+          <div class="pmc-permalink__dropdown__content">
+              <input type="text" class="usa-input" value="https://pmc.ncbi.nlm.nih.gov/articles/PMC4378866/" aria-label="Article permalink">
+              <button class="usa-button display-inline-flex pmc-permalink__dropdown__copy__btn margin-right-0" title="Copy article permalink" data-ga-category="save_share" data-ga-action="link" data-ga-label="copy_link">
+                  <img src="https://cdn.ncbi.nlm.nih.gov/pmc/pd-medc-pmc-cloudpmc-viewer/production/a2b04810/var/data/static/img/content_copy.svg" alt="Copy icon" aria-hidden="true" class="usa-icon usa-icon--white" />
+                  <span class="margin-left-1">Copy</span>
+              </button>
+          </div>
+    </div>
+</div>
+                    </li>
+                </ul>
+            </div>
+            <button
+                    type="button"
+                    class="usa-button pmc-sidenav__container__open usa-button--unstyled width-auto display-flex"
+                    aria-label="Open article navigation"
+                    data-extra-class="is-visible-in-page"
+                    data-ga-category="actions"
+                    data-ga-action="open"
+                    data-ga-label="article_nav_mobile"
+            >
+                <img src="https://cdn.ncbi.nlm.nih.gov/pmc/pd-medc-pmc-cloudpmc-viewer/production/a2b04810/var/data/static/img/list.svg" alt="Open article navigation icon" aria-hidden="true" class="usa-icon usa-icon--size-4 usa-icon--link" />
+            </button>
+        </div>
+    </div>
+</div>
+    <div class="grid-container desktop:padding-left-6">
+      <div id="article-container" class="grid-row grid-gap">
+        <div class="grid-col-12 desktop:grid-col-8 order-2 pmc-layout__content">
+            <div class="grid-container padding-left-0 padding-right-0">
+                <div class="grid-row desktop:margin-left-neg-6">
+                    <div class="grid-col-12">
+                        <div class="pmc-layout__disclaimer" role="complementary" aria-label="Disclaimer note">
+    As a library, NLM provides access to scientific literature. Inclusion in an NLM database does not imply endorsement of, or agreement with,
+    the contents by NLM or the National Institutes of Health.<br/>
+    Learn more:
+    <a class="usa-link" data-ga-category="Link click" data-ga-action="Disclaimer" data-ga-label="New disclaimer box" href="/about/disclaimer/">PMC Disclaimer</a>
+    |
+    <a class="usa-link" data-ga-category="Link click" data-ga-action="PMC Copyright Notice" data-ga-label="New disclaimer box" href="/about/copyright/">
+        PMC Copyright Notice
+    </a>
+</div>
+                    </div>
+                </div>
+                <div class="grid-row pmc-wm desktop:margin-left-neg-6">
+                    <!-- Main content -->
+                    <main
+                      id="main-content"
+                      class="usa-layout-docs__main usa-layout-docs grid-col-12 pmc-layout pmc-prose padding-0"
+                    >
+
+                      
+                        <section class="pmc-journal-banner text-center line-height-none" aria-label="Journal banner"><img src="https://cdn.ncbi.nlm.nih.gov/pmc/banners/logo-nihpa.png" alt="NIHPA Author Manuscripts logo" usemap="#pmc-banner-imagemap" width="500" height="75"><map name="pmc-banner-imagemap"><area alt="Link to NIHPA Author Manuscripts" title="Link to NIHPA Author Manuscripts" shape="default" href="https://pmc.ncbi.nlm.nih.gov/about/public-access/" target="_blank" rel="noopener noreferrer"></map></section><article lang="en"><section aria-label="Article citation and metadata"><section class="pmc-layout__citation font-secondary font-xs"><div>
+<div class="display-inline-block"><button type="button" class="cursor-pointer text-no-underline bg-transparent border-0 padding-0 text-left margin-0 text-normal text-primary" aria-controls="journal_context_menu">Curr Protoc Bioinformatics</button></div>. Author manuscript; available in PMC: 2016 Mar 9.</div>
+<div>
+<em>Published in final edited form as: </em>Curr Protoc Bioinformatics. 2015 Mar 9;49:8.19.1–8.19.16. doi: <a href="https://doi.org/10.1002/0471250953.bi0819s49" class="usa-link usa-link--external" data-ga-action="click_feat_suppl" target="_blank" rel="noopener noreferrer">10.1002/0471250953.bi0819s49</a>
+</div>
+<nav id="journal_context_menu" hidden="hidden"><ul class="menu-list font-family-ui" role="menu">
+<li role="presentation"><a href='https://pmc.ncbi.nlm.nih.gov/search/?term="Curr%20Protoc%20Bioinformatics"[jour]' class="usa-link" role="menuitem">Search in PMC</a></li>
+<li role="presentation"><a href='https://pubmed.ncbi.nlm.nih.gov/?term="Curr%20Protoc%20Bioinformatics"[jour]' lang="en" class="usa-link" role="menuitem">Search in PubMed</a></li>
+<li role="presentation"><a href='https://www.ncbi.nlm.nih.gov/nlmcatalog?term="Curr%20Protoc%20Bioinformatics"[Title%20Abbreviation]' class="usa-link" role="menuitem">View in NLM Catalog</a></li>
+<li role="presentation"><a href='?term="Curr%20Protoc%20Bioinformatics"[jour]' class="usa-link" role="menuitem" data-add-to-search="true">Add to search</a></li>
+</ul></nav></section><section class="front-matter"><div class="ameta p font-secondary font-xs">
+<hgroup><h1>Scoring Large Scale Affinity Purification Mass Spectrometry Datasets with MIST</h1></hgroup><div class="cg p">
+<a href='https://pubmed.ncbi.nlm.nih.gov/?term="Verschueren%20E"[Author]' class="usa-link" aria-describedby="id1"><span class="name western">Erik Verschueren</span></a><div hidden="hidden" id="id1">
+<h3><span class="name western">Erik Verschueren</span></h3>
+<div class="p">
+<sup>1</sup> Department of Cellular &amp; Molecular Pharmacology, University of California, San Francisco, San Francisco, CA 94158-2530</div>
+<div class="p">
+<sup>6</sup> California Institute for Quantitative Biomedical Sciences, San Francisco, 94158-2530</div>
+<div class="p">Find articles by <a href='https://pubmed.ncbi.nlm.nih.gov/?term="Verschueren%20E"[Author]' class="usa-link"><span class="name western">Erik Verschueren</span></a>
+</div>
+</div>
+<sup>1,</sup><sup>6</sup>, <a href='https://pubmed.ncbi.nlm.nih.gov/?term="Von%20Dollen%20J"[Author]' class="usa-link" aria-describedby="id2"><span class="name western">John Von Dollen</span></a><div hidden="hidden" id="id2">
+<h3><span class="name western">John Von Dollen</span></h3>
+<div class="p">
+<sup>1</sup> Department of Cellular &amp; Molecular Pharmacology, University of California, San Francisco, San Francisco, CA 94158-2530</div>
+<div class="p">
+<sup>6</sup> California Institute for Quantitative Biomedical Sciences, San Francisco, 94158-2530</div>
+<div class="p">Find articles by <a href='https://pubmed.ncbi.nlm.nih.gov/?term="Von%20Dollen%20J"[Author]' class="usa-link"><span class="name western">John Von Dollen</span></a>
+</div>
+</div>
+<sup>1,</sup><sup>6</sup>, <a href='https://pubmed.ncbi.nlm.nih.gov/?term="Cimermancic%20P"[Author]' class="usa-link" aria-describedby="id3"><span class="name western">Peter Cimermancic</span></a><div hidden="hidden" id="id3">
+<h3><span class="name western">Peter Cimermancic</span></h3>
+<div class="p">
+<sup>1</sup> Department of Cellular &amp; Molecular Pharmacology, University of California, San Francisco, San Francisco, CA 94158-2530</div>
+<div class="p">
+<sup>3</sup> Graduate Group in Biological and Medical Informatics, University of California, San Francisco, San Francisco, CA 94158-2530</div>
+<div class="p">
+<sup>6</sup> California Institute for Quantitative Biomedical Sciences, San Francisco, 94158-2530</div>
+<div class="p">Find articles by <a href='https://pubmed.ncbi.nlm.nih.gov/?term="Cimermancic%20P"[Author]' class="usa-link"><span class="name western">Peter Cimermancic</span></a>
+</div>
+</div>
+<sup>1,</sup><sup>3,</sup><sup>6</sup>, <a href='https://pubmed.ncbi.nlm.nih.gov/?term="Gulbahce%20N"[Author]' class="usa-link" aria-describedby="id4"><span class="name western">Natali Gulbahce</span></a><div hidden="hidden" id="id4">
+<h3><span class="name western">Natali Gulbahce</span></h3>
+<div class="p">Find articles by <a href='https://pubmed.ncbi.nlm.nih.gov/?term="Gulbahce%20N"[Author]' class="usa-link"><span class="name western">Natali Gulbahce</span></a>
+</div>
+</div>, <a href='https://pubmed.ncbi.nlm.nih.gov/?term="Sali%20A"[Author]' class="usa-link" aria-describedby="id5"><span class="name western">Andrej Sali</span></a><div hidden="hidden" id="id5">
+<h3><span class="name western">Andrej Sali</span></h3>
+<div class="p">
+<sup>4</sup> Department of Bioengineering and Therapeutic Science, University of California, San Francisco, San Francisco, 94158-2530</div>
+<div class="p">
+<sup>5</sup> Department of Pharmaceutical Chemistry, University of California, San Francisco, San Francisco, 94158-2530</div>
+<div class="p">
+<sup>6</sup> California Institute for Quantitative Biomedical Sciences, San Francisco, 94158-2530</div>
+<div class="p">Find articles by <a href='https://pubmed.ncbi.nlm.nih.gov/?term="Sali%20A"[Author]' class="usa-link"><span class="name western">Andrej Sali</span></a>
+</div>
+</div>
+<sup>4,</sup><sup>5,</sup><sup>6</sup>, <a href='https://pubmed.ncbi.nlm.nih.gov/?term="Krogan%20N"[Author]' class="usa-link" aria-describedby="id6"><span class="name western">Nevan Krogan</span></a><div hidden="hidden" id="id6">
+<h3><span class="name western">Nevan Krogan</span></h3>
+<div class="p">
+<sup>1</sup> Department of Cellular &amp; Molecular Pharmacology, University of California, San Francisco, San Francisco, CA 94158-2530</div>
+<div class="p">
+<sup>2</sup> Gladstone Institutes, University of California, San Francisco, San Francisco, CA 94158-2530</div>
+<div class="p">
+<sup>6</sup> California Institute for Quantitative Biomedical Sciences, San Francisco, 94158-2530</div>
+<div class="p">Find articles by <a href='https://pubmed.ncbi.nlm.nih.gov/?term="Krogan%20N"[Author]' class="usa-link"><span class="name western">Nevan Krogan</span></a>
+</div>
+</div>
+<sup>1,</sup><sup>2,</sup><sup>6</sup>
+</div>
+<ul class="d-buttons inline-list">
+<li><button class="d-button" aria-controls="aip_a" aria-expanded="false">Author information</button></li>
+<li><button class="d-button" aria-controls="anp_a" aria-expanded="false">Article notes</button></li>
+<li><button class="d-button" aria-controls="clp_a" aria-expanded="false">Copyright and License information</button></li>
+</ul>
+<div class="d-panels font-secondary-light">
+<div id="aip_a" class="d-panel p" style="display: none">
+<div class="p" id="A1">
+<sup>1</sup> Department of Cellular &amp; Molecular Pharmacology, University of California, San Francisco, San Francisco, CA 94158-2530</div>
+<div id="A2">
+<sup>2</sup> Gladstone Institutes, University of California, San Francisco, San Francisco, CA 94158-2530</div>
+<div id="A3">
+<sup>3</sup> Graduate Group in Biological and Medical Informatics, University of California, San Francisco, San Francisco, CA 94158-2530</div>
+<div id="A4">
+<sup>4</sup> Department of Bioengineering and Therapeutic Science, University of California, San Francisco, San Francisco, 94158-2530</div>
+<div id="A5">
+<sup>5</sup> Department of Pharmaceutical Chemistry, University of California, San Francisco, San Francisco, 94158-2530</div>
+<div id="A6">
+<sup>6</sup> California Institute for Quantitative Biomedical Sciences, San Francisco, 94158-2530</div>
+</div>
+<div id="anp_a" class="d-panel p" style="display: none"><div class="notes p"><section id="historyarticle-meta1" class="history"><p>Collection date 2015.</p></section></div></div>
+<div id="clp_a" class="d-panel p" style="display: none"><div class="p"><a href="/about/copyright/" class="usa-link">PMC Copyright notice</a></div></div>
+</div>
+<div>PMCID: PMC4378866  NIHMSID: NIHMS672081  PMID: <a href="https://pubmed.ncbi.nlm.nih.gov/25754993/" class="usa-link">25754993</a>
+</div>
+<div class="ra xbox p" role="complementary" aria-label="Related or updated information about this article"><div>The publisher's version of this article is available at <a href="https://doi.org/10.1002/0471250953.bi0819s49" class="usa-link usa-link--external" data-ga-action="click_feat_suppl" target="_blank" rel="noopener noreferrer">Curr Protoc Bioinformatics</a>
+</div></div>
+</div></section></section><section aria-label="Article content"><section class="body main-article-body"><section class="abstract" id="abstract1"><h2>Abstract</h2>
+<p id="P1">High-throughput Affinity Purification Mass Spectrometry (AP-MS) experiments can identify a large number of protein interactions but only a fraction of these interactions are biologically relevant. Here, we describe a comprehensive computational strategy to process raw AP-MS data, perform quality controls and prioritize biologically relevant bait-prey pairs in a set of replicated AP-MS experiments with Mass spectrometry interaction STatistics (MiST). The MiST score is a linear combination of prey quantity (abundance), abundance invariability across repeated experiments (reproducibility), and prey uniqueness relative to other baits (specificity); We describe how to run the full MiST analysis pipeline in an R environment and discuss a number of configurable options that allow the lay user to convert any large-scale AP-MS data into an interpretable, biologically relevant protein-protein interaction network.</p>
+<section id="kwd-group1" class="kwd-group"><p><strong>Keywords:</strong> Affinity Purification Mass Spectrometry, Protein Interactions, Scoring Algorithms, Interaction networks, Proteomics</p></section></section><section id="S1"><h2 class="pmc_sec_title">Introduction</h2>
+<p id="P2">Affinity Purification Mass-Spectrometry (AP-MS) is one of the primary methods to discover the protein interactions in an unbiased manner. In recent years, due to advances in bottom-up mass-spectrometry and affinity tagging methods, this method has been applied in high throughput to chart the protein-protein interaction networks or ‘interactomes’ from entire pathways to complete eukaryotic, bacterial and even viral organisms (<a href="#R1" class="usa-link" aria-describedby="R1">Arifuzzaman et al., 2006</a>; <a href="#R15" class="usa-link" aria-describedby="R15">Jäger et al., 2011</a>; <a href="#R24" class="usa-link" aria-describedby="R24">Sowa et al., 2009</a>). A high-throughput dataset containing hundreds of replicated AP-MS samples poses a clear challenge for human processing, but also presents an opportunity to mine the data collectively with computational algorithms. To this end, a number of recent studies, which used AP-MS in a high-throughput fashion, developed computational algorithms that transform such a dataset into a list of bait-prey pairs ranked according their predicted biological significance (<a href="#R15" class="usa-link" aria-describedby="R15">Jäger et al., 2011</a>; <a href="#R24" class="usa-link" aria-describedby="R24">Sowa et al., 2009</a>; <a href="#R3" class="usa-link" aria-describedby="R3">Choi et al., 2011</a>). Knowing that a cellular protein is predicted to have on average 5-8 biologically relevant interactions (<a href="#R13" class="usa-link" aria-describedby="R13">Grigoriev, 2003</a>), prioritizing these from over hundreds of proteins and thousands of spectra identified by MS is far from trivial.</p>
+<p id="P3">To understand the high number of ‘false positives’ identified by AP-MS it helps to categorize interactions into 4 broad classes: (I) biologically relevant interactions (II) specific, non-biologically relevant interactions between proteins from different cellular compartments in lysed cells (III) unspecific interactions with contaminants or highly abundant proteins and (IV) nonexisting interactions caused by residual peptides from previous runs or MS identification errors. Conversely, ‘false negatives’ occur because not every biologically relevant interaction is reproducibly detectable, especially if the protein is not very abundant, has peptides difficult to detect by MS or interacts only transiently (<a href="#R29" class="usa-link" aria-describedby="R29">Yu et al., 2009</a>; <a href="#R16" class="usa-link" aria-describedby="R16">MacLean et al., 2010</a>). To account for both false positive and false negative errors, high-throughput experimental setups need to be designed with proper controls and a sufficient amount of biological replicates (at least triplicates) and processed with a computation AP-MS scoring algorithm to separate signal from noise (<a href="#R15" class="usa-link" aria-describedby="R15">Jäger et al., 2011</a>).</p>
+<p id="P4">The protocol we present here outlines our ‘best practices’ approach to convert a large data set of replicated AP-MS experiments into a list of bait-prey pairs ranked according to their predicted biological relevance. After installing MiST as described in the support protocol, the data is preprocessed in Basic Protocol 1 to generate a bait-prey matrix that can be subjected to the quality control protocol in Basic Protocol 2. Basic Protocol 3 is then used to calculate a MiST score.</p></section><section id="S2"><h2 class="pmc_sec_title">Support Protocol 1: Installation of MiST</h2>
+<p id="P5">This MiST pipeline is implemented in R, an open-source programming language for statistical computing and graphics. Here, we describe how the most recent version of the MiST pipeline can be downloaded from GitHub and installed by any user with access to an online computer.</p>
+<section id="S3"><h3 class="pmc_sec_title">Necessary Resources</h3>
+<section id="S4"><h4 class="pmc_sec_title">Hardware</h4>
+<p id="P6">Workstation running any current OS, Unix environment recommended</p></section><section id="S5"><h4 class="pmc_sec_title">Software</h4>
+<p id="P7">R package (<a href="http://www.r-project.org" class="usa-link usa-link--external" data-ga-action="click_feat_suppl" target="_blank" rel="noopener noreferrer">http://www.r-project.org</a>)</p>
+<p id="P8">R packages: getopt, optparse, reshape2, pheatmap, RcolorBrewer, ggplot2, MESS, yaml</p>
+<p id="P9">MiST source code (<a href="https://github.com/everschueren/MiST" class="usa-link usa-link--external" data-ga-action="click_feat_suppl" target="_blank" rel="noopener noreferrer">https://github.com/everschueren/MiST</a>)</p>
+<p id="P10">Git (optional) (<a href="http://git-scm.com" class="usa-link usa-link--external" data-ga-action="click_feat_suppl" target="_blank" rel="noopener noreferrer">http://git-scm.com</a>)</p></section></section><section id="S6"><h3 class="pmc_sec_title">Setting up MiST</h3>
+<ol id="L1" class="list" style="list-style-type:decimal">
+<li><div class="p" id="P11">Downloading the MiST source code to your workstation.
+<ol id="L2" class="list" style="list-style-type:lower-alpha">
+<li><div class="p" id="P12">Download the MiST package as a .zip archive from the public GitHub repository by clicking on the “Download ZIP” button on the bottom right, unzip the files and move the directory to a permanent location.</div></li>
+<li><div class="p" id="P13">Alternatively, you can check out the MiST package through Git as follows: git clone <a href="https://github.com/everschueren/MiST.git" class="usa-link usa-link--external" data-ga-action="click_feat_suppl" target="_blank" rel="noopener noreferrer">https://github.com/everschueren/MiST.git</a> MiST</div></li>
+</ol>
+</div></li>
+<li><p id="P14">The MiST pipeline is designed to run from a terminal using R. This requires the user to have executable permissions. To set these permissions in a Unix environment, navigate in the terminal to the MiST directory, hereafter referred to as the $INSTALL_DIR, then type: sudo chmod -R 775 *</p></li>
+</ol></section></section><section id="S7"><h2 class="pmc_sec_title">Basic Protocol 1: Data pre-processing</h2>
+<p id="P15">Prior to computing MiST scores, it is required to convert the search results into a format compatible with the MiST algorithm. The MiST pre-processing pipeline was initially designed to work with a Prospector (<a href="#R5" class="usa-link" aria-describedby="R5">Clauser et al., 1999</a>) (<a href="http://prospector.ucsf.edu" class="usa-link usa-link--external" data-ga-action="click_feat_suppl" target="_blank" rel="noopener noreferrer">http://prospector.ucsf.edu</a>) protein report file but virtually any report file that lists uniquely identified proteins, their observed peptide frequencies in tabular format is supported currently. Additionally, we built a number of filtering steps, such as contaminant removal and carryover removal, into the pre-processing and formatting steps. The result of the first basic protocol is a bait-prey matrix that can be subjected to the quality control protocol (Basic Protocol 2) and scored by the MiST protocol (Basic Protocol 3) (See <a href="#F1" class="usa-link">Figure 1</a>).</p>
+<figure class="fig xbox font-sm" id="F1"><h3 class="obj_head">Figure 1.</h3>
+<p class="img-box line-height-none margin-x-neg-2 tablet:margin-x-0 text-center"><a class="tileshop" target="_blank" href="https://www.ncbi.nlm.nih.gov/core/lw/2.0/html/tileshop_pmc/tileshop_pmc_inline.html?title=Click%20on%20image%20to%20zoom&amp;p=PMC3&amp;id=4378866_nihms-672081-f0001.jpg"><img class="graphic zoom-in" src="https://cdn.ncbi.nlm.nih.gov/pmc/blobs/0777/4378866/5df2c279337a/nihms-672081-f0001.jpg" loading="lazy" height="1049" width="704" alt="Figure 1"></a></p>
+<div class="p text-right font-secondary"><a href="figure/F1/" class="usa-link" target="_blank" rel="noopener noreferrer">Open in a new tab</a></div>
+<figcaption><p>Flow chart of the Mass Spectrometry Interaction Statistics (MiST) analysis pipeline. Required input files are marked with (*). Optional steps in the protocol and their corresponding input files are indicated in light gray.</p></figcaption></figure><section id="S8"><h3 class="pmc_sec_title">Necessary Resources</h3>
+<section id="S9"><h4 class="pmc_sec_title">Hardware</h4>
+<p id="P16">Workstation running any current OS, Unix environment recommended</p></section><section id="S10"><h4 class="pmc_sec_title">Software</h4>
+<p id="P17">MiST pipeline (installed as described in Support Protocol)</p></section><section id="S11"><h4 class="pmc_sec_title">Files</h4>
+<p id="P18">Data file and Keys file, see below</p>
+<p id="P19">Remove file and Collapse file, optional, see below</p></section></section><section id="S12"><h3 class="pmc_sec_title">Data preparation</h3>
+<p id="P20">Prior to running the MiST pre-processing protocol the user needs to have at least the two following files available (See <a href="#F2" class="usa-link">Figure 2A</a> and <a href="#T1" class="usa-link">Table 1</a>):
+</p>
+<ol id="L3" class="list" style="list-style-type:decimal">
+<li><div class="p" id="P21">
+<strong>Data file (required)</strong>: the data file should be in tab-delimited format with a descriptive header for each column. The number of features in this file is in principal unconstrained but following are required:
+<ol id="L4" class="list" style="list-style-type:lower-alpha">
+<li><div class="p" id="P22">
+<em>Sample identifier</em>: a unique identifier per AP-MS run</div></li>
+<li><div class="p" id="P23">
+<em>Protein identifier</em>: a unique identifier per protein (i.e. Uniprot accession code)</div></li>
+<li><div class="p" id="P24">
+<em>Observed peptide frequency</em>: a quantitative value per protein, for example (from less to most quantitative):
+<ol id="L5" class="list" style="list-style-type:lower-roman">
+<li><div class="p" id="P25">Number of unique peptides per protein or</div></li>
+<li><div class="p" id="P26">Summed spectral counts per protein or</div></li>
+<li><div class="p" id="P27">Summed MS1-intensities per protein, preferably log2-transformed</div></li>
+</ol>
+</div></li>
+<li><div class="p" id="P28">
+<em>Protein molecular weight</em>: The molecular weight will be used as a scaling factor to normalize the quantitative value for each protein to its size</div></li>
+</ol>
+</div></li>
+<li><div class="p" id="P29">
+<strong>Keys file (required)</strong>: The goal of the keys file is two-fold: 1) describing which bait and experimental conditions are in the sample with a human readable description and 2) provide a unique name to group biological replicates. This file also needs to be tab-separated with two columns created by the user:
+<ol id="L6" class="list" style="list-style-type:lower-alpha">
+<li><div class="p" id="P30">
+<em>Sample identifier</em>: a unique identifier per AP-MS experiment that matches a sample identifier in the data file</div></li>
+<li><div class="p" id="P31">
+<em>Bait name</em>: A unique identifier per bait, grouping all replicates. This can be the bait's Uniprot accession number or a more easily readable name (i.e. gene name).</div></li>
+</ol>
+</div></li>
+<li><p id="P32"><strong>Remove file (optional):</strong> The remove option is a feature we put in place to dynamically exclude entire samples from the scoring process while keeping the original data files intact. Single samples might need to be removed for quality reasons, which we will address later, while an entire range of samples might be excluded to score subsets of the complete data set. This file is formatted as a single column, consisting of all sample identifiers that need to be excluded (one sample per line).</p></li>
+<li><p id="P33"><strong>Collapse file (optional):</strong> The collapse option serves to merge samples belonging to different baits into a single group while keeping the original data files intact. This is useful when a particular experimental condition (i.e. compound addition, bait mutation, different affinity tags, differently tagged termini, organelle extraction) shows no perceivable difference to the wild type experiment. In this case it might be desirable to treat these samples as additional replicates of the wild type bait to improve reproducibility estimates. In the following section we will discuss how you can use a clustered heat map to reveal such patterns. The collapse is formatted as tab-separated entries: one for the original bait name, corresponding to an entry in the keys file, followed by the new name or composite group name.</p></li>
+</ol>
+<figure class="fig xbox font-sm" id="F2"><h4 class="obj_head">Figure 2.</h4>
+<p class="img-box line-height-none margin-x-neg-2 tablet:margin-x-0 text-center"><a class="tileshop" target="_blank" href="https://www.ncbi.nlm.nih.gov/core/lw/2.0/html/tileshop_pmc/tileshop_pmc_inline.html?title=Click%20on%20image%20to%20zoom&amp;p=PMC3&amp;id=4378866_nihms-672081-f0002.jpg"><img class="graphic zoom-in" src="https://cdn.ncbi.nlm.nih.gov/pmc/blobs/0777/4378866/13242d20bb7d/nihms-672081-f0002.jpg" loading="lazy" height="587" width="800" alt="Figure 2"></a></p>
+<div class="p text-right font-secondary"><a href="figure/F2/" class="usa-link" target="_blank" rel="noopener noreferrer">Open in a new tab</a></div>
+<figcaption><p>A) Tab-separated input files required to run a first pass of MiST B) Output bait-prey matrix after the pre-processing protocol (1) that serves as input for the MiST protocol (3) C) Output of the quality control protocol depicting the number of detected proteins across replicates for a single bait. Samples AP-10 and AP-3 are candidates for removal from the data set D) Output of the quality control protocol depicting a hierarchically clustered heatmap of the pairwise sample correlation matrix. The signal from sample AP-3 is clearly uncorrelated with the VIF+ replicates while hIP34-15 correlation with the GFP group is acceptable.</p></figcaption></figure><section class="tw xbox font-sm" id="T1"><h4 class="obj_head">Table 1.</h4>
+<div class="caption p"><p>configurable parameters for file input/output</p></div>
+<div class="tbl-box p" tabindex="0"><table class="content" frame="box" rules="all">
+<thead><tr>
+<th align="left" valign="top" rowspan="1" colspan="1">name</th>
+<th align="left" valign="top" rowspan="1" colspan="1">type</th>
+<th align="left" valign="top" rowspan="1" colspan="1">description</th>
+</tr></thead>
+<tbody>
+<tr>
+<td align="left" valign="top" rowspan="1" colspan="1">data</td>
+<td align="left" valign="top" rowspan="1" colspan="1">string</td>
+<td align="left" valign="top" rowspan="1" colspan="1">path to the data file with the identified and quantified proteins (see data preparation)</td>
+</tr>
+<tr>
+<td align="left" valign="top" rowspan="1" colspan="1">keys</td>
+<td align="left" valign="top" rowspan="1" colspan="1">string</td>
+<td align="left" valign="top" rowspan="1" colspan="1">path to the keys file matching samples to bait names (see data preparation)</td>
+</tr>
+<tr>
+<td align="left" valign="top" rowspan="1" colspan="1">remove</td>
+<td align="left" valign="top" rowspan="1" colspan="1">string</td>
+<td align="left" valign="top" rowspan="1" colspan="1">path to the file listing samples that should be excluded from analysis</td>
+</tr>
+<tr>
+<td align="left" valign="top" rowspan="1" colspan="1">collapse</td>
+<td align="left" valign="top" rowspan="1" colspan="1">string</td>
+<td align="left" valign="top" rowspan="1" colspan="1">path to the file listing groups of baits that can be treated as biological replicates</td>
+</tr>
+<tr>
+<td align="left" valign="top" rowspan="1" colspan="1">specificity_exclusions</td>
+<td align="left" valign="top" rowspan="1" colspan="1">string</td>
+<td align="left" valign="top" rowspan="1" colspan="1">path to the file listing baits to mutually exclude when computing specificity (see basic protocol 2)</td>
+</tr>
+<tr>
+<td align="left" valign="top" rowspan="1" colspan="1">output_dir</td>
+<td align="left" valign="top" rowspan="1" colspan="1">string</td>
+<td align="left" valign="top" rowspan="1" colspan="1">directory to write output files</td>
+</tr>
+</tbody>
+</table></div>
+<div class="p text-right font-secondary"><a href="table/T1/" class="usa-link" target="_blank" rel="noopener noreferrer">Open in a new tab</a></div></section><p id="P34">To guide the reader through the various protocols we prepared an example project in $INSTALL_DIR/tests/small/, including example input files and a sample configuration file mist_small_test.yml, which can be run after installation to verify that all necessary resources are in place. The configuration file follows the Yaml Ain't Markup Language (YAML) (<a href="http://www.yaml.org" class="usa-link usa-link--external" data-ga-action="click_feat_suppl" target="_blank" rel="noopener noreferrer">http://www.yaml.org</a>) format that allows defining conceptual blocks of parameters. The first parameter block deals with file input/output (See <a href="#T1" class="usa-link">Table 1</a>) and the consecutive blocks correspond to configuration options for the three basic protocols outlined in this unit. The enabled [0/1] parameter in each parameter block turns each basic protocol off or on respectively. Finally, the MiST pipeline is run as follows:</p>
+<p id="P35">$INSTALL_DIR/main.R --config [path to YML file]</p></section><section id="S13"><h3 class="pmc_sec_title">Running the pre-processing protocol (See <a href="#T2" class="usa-link">Table 2</a>)</h3>
+<section class="tw xbox font-sm" id="T2"><h4 class="obj_head">Table 2.</h4>
+<div class="caption p"><p>configurable parameters for pre-processing</p></div>
+<div class="tbl-box p" tabindex="0"><table class="content" frame="box" rules="all">
+<thead><tr>
+<th align="left" valign="top" rowspan="1" colspan="1">name</th>
+<th align="left" valign="top" rowspan="1" colspan="1">type</th>
+<th align="left" valign="top" rowspan="1" colspan="1">description</th>
+</tr></thead>
+<tbody>
+<tr>
+<td align="left" valign="top" rowspan="1" colspan="1">remove_carryover</td>
+<td align="left" valign="top" rowspan="1" colspan="1">boolean</td>
+<td align="left" valign="top" rowspan="1" colspan="1">enables the attempted removal of carryover proteins from a previous run</td>
+</tr>
+<tr>
+<td align="left" valign="top" rowspan="1" colspan="1">flter_contaminants</td>
+<td align="left" valign="top" rowspan="1" colspan="1">boolean</td>
+<td align="left" valign="top" rowspan="1" colspan="1">enables the removal of known contaminants from the prey list</td>
+</tr>
+<tr>
+<td align="left" valign="top" rowspan="1" colspan="1">contaminants_file</td>
+<td align="left" valign="top" rowspan="1" colspan="1">string</td>
+<td align="left" valign="top" rowspan="1" colspan="1">path to file listing all known contaminants in FASTA format</td>
+</tr>
+<tr>
+<td align="left" valign="top" rowspan="1" colspan="1">ld_colname</td>
+<td align="left" valign="top" rowspan="1" colspan="1">string</td>
+<td align="left" valign="top" rowspan="1" colspan="1">column identifier for sample identifier</td>
+</tr>
+<tr>
+<td align="left" valign="top" rowspan="1" colspan="1">prey_colname</td>
+<td align="left" valign="top" rowspan="1" colspan="1">string</td>
+<td align="left" valign="top" rowspan="1" colspan="1">column identifier for identified proteins in data file</td>
+</tr>
+<tr>
+<td align="left" valign="top" rowspan="1" colspan="1">pepcount_colname</td>
+<td align="left" valign="top" rowspan="1" colspan="1">string</td>
+<td align="left" valign="top" rowspan="1" colspan="1">column identifier for observed peptides per protein in data file</td>
+</tr>
+<tr>
+<td align="left" valign="top" rowspan="1" colspan="1">mw_colname</td>
+<td align="left" valign="top" rowspan="1" colspan="1">string</td>
+<td align="left" valign="top" rowspan="1" colspan="1">column identifier for protein molecular weight in data file</td>
+</tr>
+</tbody>
+</table></div>
+<div class="p text-right font-secondary"><a href="table/T2/" class="usa-link" target="_blank" rel="noopener noreferrer">Open in a new tab</a></div></section><ol id="L7" class="list" style="list-style-type:decimal">
+<li><div class="p" id="P36">The first pre-processing step is to remove common contaminants such as all the keratins and known cross-reacting proteins with beads or affinity tags during purification. To enable this option turn on filter_contaminants in the configuration file and define the path to a text file listing all contaminants using the same identifiers as in the data file.
+<blockquote class="text-italic" id="Q1"><div class="p" id="P37">Even though it's up to the user to define a custom set of contaminants we provided a minimal list, based on the Maxquant (<a href="#R7" class="usa-link" aria-describedby="R7">Cox and Mann, 2008</a>)contaminant file augmented with most Keratin proteins we regularly come across and a ‘decoy’ entry for Prospector false hits. Since contaminants might be condition and even machine specific we encourage users to search the recently published Crapome (<a href="#R19" class="usa-link" aria-describedby="R19">Mellacheruvu et al., 2013</a>) database for cell-, tag- or bead- specific contaminants matching their experimental setup.</div></blockquote>
+</div></li>
+<li><div class="p" id="P38">The second pre-processing step is to computationally remove peptide counts of proteins that are due to sample ‘carryover’ from a previous run on the MS. To enable this feature turn remove_carryover on.
+<blockquote class="text-italic" id="Q2"><div class="p" id="P39">Accurately preventing and detecting sample carryover between consecutive MS runs is not a trivial problem and an active topic of discussion in the MS community. Carryover is caused by residual peptides from a previous sample and is generally serial in nature, often affecting several samples in a sequence (<a href="#R14" class="usa-link" aria-describedby="R14">Hughes et al., 2007</a>). We empirically observed that hydrophobic proteins in combination with over-expression of the bait protein can lead to a higher number of carryover peptides. We recommend addressing this issue by 1) testing various experimental conditions that minimize sample carryover and 2) shuffling the order in which biological replicates of samples are run. A third option is to remove any false hits that are detectable after the facts by a computational procedure similar to the one we implemented. The current procedure checks for carryover in up to four samples following the current sample. Carryover is determined if the following conditions are met in the samples tailing a sample: i) there is a positive number of unique peptides for a specific protein, ii) the number of unique peptides is less than half of the current sample, iii) the number of occurrences of this prey in the data set is less than one third of the number of total experiments.</div></blockquote>
+</div></li>
+<li><div class="p" id="P40">Map the values of the column names in the tab-delimited data file to the column description parameters (See Data preparation section for details):
+<ol id="L8" class="list" style="list-style-type:lower-alpha">
+<li><div class="p" id="P41">id_colname : <em>Sample identifier</em>
+</div></li>
+<li><div class="p" id="P42">prey_colname : <em>Protein identifier</em>
+</div></li>
+<li><div class="p" id="P43">pepcount_colname : <em>Observed peptide frequency</em>
+</div></li>
+<li><div class="p" id="P44">mw_colname : <em>Protein molecular weight</em>
+</div></li>
+</ol>
+</div></li>
+<li><p id="P45">Inspect the bait-prey matrix called preprocessed_MAT.txt in the output folder defined by output_dir, or the processed directory in the executable path if no output directory was defined. The bait-prey matrix is formatted according the data preparation guidelines in the next section (See <a href="#F2" class="usa-link">Figure 2B</a>).</p></li>
+</ol></section></section><section id="S14"><h2 class="pmc_sec_title">Basic Protocol 2: Quality Control</h2>
+<p id="P46">We built a number of quality control and data summary plots such as MS yield statistics and a hierarchically clustered heat map of the experiment matrix into the MiST package. The output of these quality control scripts can help to decide critical parameters that influence the MiST scores, such as samples to remove or conditions to group together as replicates.</p>
+<section id="S15"><h3 class="pmc_sec_title">Necessary Resources</h3>
+<section id="S16"><h4 class="pmc_sec_title">Hardware</h4>
+<p id="P47">Workstation running any current OS, Unix environment recommended</p></section><section id="S17"><h4 class="pmc_sec_title">Software</h4>
+<p id="P48">MiST pipeline (installed as described in Support Protocol)</p></section><section id="S18"><h4 class="pmc_sec_title">Files</h4>
+<p id="P49">Data pre-processed as described in Basic Protocol 1</p></section></section><section id="S19"><h3 class="pmc_sec_title">Data preparation</h3>
+<p id="P50">After the preprocessing protocol of the MiST pipeline has been run, the input data should be properly reformatted for the quality control algorithm. For convenience, the quality control and scoring input follows the same formatting guidelines as the SAINT algorithm bait-prey input matrix. If the pre-processing step was skipped, the user should make sure to format the input for all subsequent steps as follows (See <a href="#F2" class="usa-link">Figure 2B</a>):
+</p>
+<ul id="L9" class="list" style="list-style-type:disc">
+<li><div class="p" id="P51">
+<em>Columns</em>:
+<ol id="L10" class="list" style="list-style-type:lower-alpha">
+<li><div class="p" id="P52">(Preys) all distinct protein identifiers found as preys in the complete set of samples. These correspond to the unique identifiers in the prey_colname of the data file</div></li>
+<li><div class="p" id="P53">(PepAtlas) If Peptide Atlas counts are not known set this to 1. PepAtlas counts are for SAINT compatibility.(<a href="#R4" class="usa-link" aria-describedby="R4">Choi et al., 2012</a>).</div></li>
+<li><div class="p" id="P54">(Length) scaling factor derived from the indicated molecular weight per protein in the mw_colname column</div></li>
+<li><div class="p" id="P55">(PreyType) prey type is set to “N” to maintain matrix structure compatible with SAINT.</div></li>
+</ol>
+</div></li>
+<li><div class="p" id="P56">
+<em>Header rows</em>:
+<ol id="L11" class="list" style="list-style-type:lower-alpha">
+<li><div class="p" id="P57">(row 1) all unique sample identifiers. Sample identifiers correspond to the unique identifiers in the id_colname of the data file and the first column in the keys file.</div></li>
+<li><div class="p" id="P58">(row 2) bait names for samples on row 1. Bait names correspond to the mapping of baits to samples described in the keys file.</div></li>
+<li><div class="p" id="P59">(row 3) specificity exclusions for baits on row 2. Specificity exclusions are described in the specificity_exclusions file and will be discussed in the section on MiST scoring (Basic Protocol 3)</div></li>
+</ol>
+</div></li>
+<li><p id="P60"><em>Row 4-[unique preys] x Column 5-[samples]:</em> peptide counts per prey/sample from the pepcount_colname column in the data file</p></li>
+</ul></section><section id="S20"><h3 class="pmc_sec_title">Running the quality control protocol (See <a href="#T3" class="usa-link">Table 3</a>)</h3>
+<section class="tw xbox font-sm" id="T3"><h4 class="obj_head">Table 3.</h4>
+<div class="caption p"><p>configurable parameters for quality control</p></div>
+<div class="tbl-box p" tabindex="0"><table class="content" frame="box" rules="all">
+<thead><tr>
+<th align="left" valign="top" rowspan="1" colspan="1">name</th>
+<th align="left" valign="top" rowspan="1" colspan="1">type</th>
+<th align="left" valign="top" rowspan="1" colspan="1">description</th>
+</tr></thead>
+<tbody>
+<tr>
+<td align="left" valign="top" rowspan="1" colspan="1">matrix_file</td>
+<td align="left" valign="top" rowspan="1" colspan="1">string</td>
+<td align="left" valign="top" rowspan="1" colspan="1">Path to preprocessed matrix file. The matrix created in the preprocess step will be used if this is left blank</td>
+</tr>
+<tr>
+<td align="left" valign="top" rowspan="1" colspan="1">cluster</td>
+<td align="left" valign="top" rowspan="1" colspan="1">boolean</td>
+<td align="left" valign="top" rowspan="1" colspan="1">Whether to perform a hierarchical cluster analysis on the data</td>
+</tr>
+<tr>
+<td align="left" valign="top" rowspan="1" colspan="1">cluster_font_scale</td>
+<td align="left" valign="top" rowspan="1" colspan="1">integer</td>
+<td align="left" valign="top" rowspan="1" colspan="1">Row/column font adjustment factor for the clustered heat map</td>
+</tr>
+<tr>
+<td align="left" valign="top" rowspan="1" colspan="1">ip_distributions</td>
+<td align="left" valign="top" rowspan="1" colspan="1">string</td>
+<td align="left" valign="top" rowspan="1" colspan="1">Whether to perform a protein count and peptide distribution analysis per group of biological replicates</td>
+</tr>
+</tbody>
+</table></div>
+<div class="p text-right font-secondary"><a href="table/T3/" class="usa-link" target="_blank" rel="noopener noreferrer">Open in a new tab</a></div></section><ol id="L12" class="list" style="list-style-type:decimal">
+<li><p id="P61">If matrix_file is left blank then the output matrix produced by the pre-processing step (Basic Protocol 1) is used, otherwise this parameter should point to the path of a correctly formatted bait-prey matrix as described above.</p></li>
+<li><div class="p" id="P62">If ip_distributions is enabled then a number of plots summarizing sample features per group of biological replicates (See Figure X) are saved into the output_dir:
+<ol id="L13" class="list" style="list-style-type:lower-alpha">
+<li><div class="p" id="P63">_proteincounts.pdf shows the total number of identified proteins with unique peptides. (See <a href="#F2" class="usa-link">Figure 2C</a>)</div></li>
+<li><div class="p" id="P64">_NumUniqPep.pdf shows the distribution via boxplot of the peptide counts by the replicates grouped by bait. Replicate distributions that are very different may imply something went wrong with that sample, leading to it being removed in future scoring.</div></li>
+</ol>
+</div></li>
+<li><div class="p" id="P65">If cluster is enabled then a hierarchically clustered heatmap showing the pair-wise signal correlation between all samples is saved into the output_dir (See <a href="#F2" class="usa-link">Figure 2D</a>).
+<blockquote class="text-italic" id="Q3"><div class="p" id="P66">The correlation between the observed peptide counts for each pair of samples is measured by the Pearson correlation coefficient. Proteins that were not identified in a sample are given a zero peptide count. The resulting symmetric correlation matrix is then clustered with R's ‘hclust’ algorithm using the default Euclidian distance metric and visualized with R's ‘pheatmap’ library. Except the cluster_font_scale parameter, which can be decreased or increased for larger or smaller datasets respectively, the remaining described parameters are currently not configurable.</div></blockquote>
+</div></li>
+</ol></section></section><section id="S21"><h2 class="pmc_sec_title">Basic Protocol 3: Calculating the MiST score</h2>
+<p id="P67">The MiST score is a weighted sum of three features: 1) normalized protein abundance measured by peak intensities, spectral counts or unique number of peptide per protein (abundance); 2) invariability of abundance over replicated experiments (reproducibility); and 3) a measure of how unique a bait-prey pair is compared to all other baits (specificity). The weights of the three features are configurable in three different ways: first, pre-configured fixed weights can be used; second, they can be trained <em>de-novo</em> on a custom list of trusted bait-prey pairs identified in the data set; lastly, a principal component analysis (PCA) can be run to assign the feature weights according their contribution to the variance in the data set.</p>
+<section id="S22"><h3 class="pmc_sec_title">Necessary Resources</h3>
+<section id="S23"><h4 class="pmc_sec_title">Hardware</h4>
+<p id="P68">Workstation running any current OS, Unix environment recommended</p></section><section id="S24"><h4 class="pmc_sec_title">Software</h4>
+<p id="P69">MiST pipeline (installed as described in Support Protocol)</p></section></section><section id="S25"><h3 class="pmc_sec_title">Data preparation</h3>
+<p id="P70">After the preprocessing protocol of the MiST pipeline has been run, the input data should be properly reformatted for the main scoring algorithm. For convenience, the scoring input follows the same formatting guidelines as the SAINT algorithm bait-prey input matrix. If the preprocessing step was skipped, the user should make sure to format the input for all subsequent steps as described in the data preparation section of the Quality Control step (See also <a href="#F2" class="usa-link">Figure 2B</a>).</p>
+<p id="P71">In addition to the bait-prey matrix input file, the user also has the option of setting bait exclusion rules when calculating the MiST scores. These rules only apply when computing MiST's specificity feature value. In brief, every exclusion rule defines which baits should be excluded from the specificity denominator. Even though the definition of bait exclusion rules is an optional parameter, it can highly influence the results. Therefore, we further discuss its proper in the <strong>critical parameters</strong> section of this protocol.</p>
+<p id="P72">To apply specificity exclusion rules, create a tab-delimited file (See <a href="#F2" class="usa-link">Figure 2A</a>) where every row consists of:
+</p>
+<ul id="L14" class="list" style="list-style-type:none">
+<li><p id="P73">○ (column 1): the name of the bait, whose specificity exclusion rules you would like to define. Make sure that the bait name corresponds to the name that was used in the <em>keys</em> or <em>collapse</em> file.</p></li>
+<li><p id="P74">○ (column 2): the names of the baits that you would like to exclude when specificity is being computed for the bait listed in column 1. Multiple baits can be excluded by separating them with a pipe (‘|’) symbol. Again, make sure that all bait names correspond to names that were used in the <em>keys</em> or <em>collapse</em> file.</p></li>
+</ul></section><section id="S26"><h3 class="pmc_sec_title">Running the MiST scoring protocol (See <a href="#T4" class="usa-link">Table 4</a>)</h3>
+<section class="tw xbox font-sm" id="T4"><h4 class="obj_head">Table 4.</h4>
+<div class="caption p"><p>configurable parameters for the MiST scoring algorithm</p></div>
+<div class="tbl-box p" tabindex="0"><table class="content" frame="box" rules="all">
+<thead><tr>
+<th align="left" valign="top" rowspan="1" colspan="1">name</th>
+<th align="left" valign="top" rowspan="1" colspan="1">type</th>
+<th align="left" valign="top" rowspan="1" colspan="1">description</th>
+</tr></thead>
+<tbody>
+<tr>
+<td align="left" valign="top" rowspan="1" colspan="1">matrix_file</td>
+<td align="left" valign="top" rowspan="1" colspan="1">string</td>
+<td align="left" valign="top" rowspan="1" colspan="1">Path to preprocessed matrix file. The matrix created in the preprocess step will be used if this is left blank</td>
+</tr>
+<tr>
+<td align="left" valign="top" rowspan="1" colspan="1">weights</td>
+<td align="left" valign="top" rowspan="1" colspan="1">string</td>
+<td align="left" valign="top" rowspan="1" colspan="1">One of three possible values: fixed/training/PCA (See MiST section)</td>
+</tr>
+<tr>
+<td align="left" valign="top" rowspan="1" colspan="1">training_file</td>
+<td align="left" valign="top" rowspan="1" colspan="1">string</td>
+<td align="left" valign="top" rowspan="1" colspan="1">path the the file containing bait-prey pairs for training (only if weights : training)</td>
+</tr>
+<tr>
+<td align="left" valign="top" rowspan="1" colspan="1">reproducibility</td>
+<td align="left" valign="top" rowspan="1" colspan="1">double</td>
+<td align="left" valign="top" rowspan="1" colspan="1">MiST weight [0-1] for the reproducibility feature</td>
+</tr>
+<tr>
+<td align="left" valign="top" rowspan="1" colspan="1">abundance</td>
+<td align="left" valign="top" rowspan="1" colspan="1">double</td>
+<td align="left" valign="top" rowspan="1" colspan="1">MiST weight [0-1] for the abundance feature</td>
+</tr>
+<tr>
+<td align="left" valign="top" rowspan="1" colspan="1">specificity</td>
+<td align="left" valign="top" rowspan="1" colspan="1">double</td>
+<td align="left" valign="top" rowspan="1" colspan="1">MiST weight [0-1] for the specificity feature</td>
+</tr>
+</tbody>
+</table></div>
+<div class="p text-right font-secondary"><a href="table/T4/" class="usa-link" target="_blank" rel="noopener noreferrer">Open in a new tab</a></div></section><ol id="L15" class="list" style="list-style-type:decimal">
+<li><p id="P75">(Optional) Create a specificity exclusion file (See data preparation) and define the path to this file through the specificity_exclusions entry in the files block of the configuration file.</p></li>
+<li><p id="P76">If matrix_file is left blank then the output matrix produced by the pre-processing step (Basic Protocol 1) is used, otherwise this parameter should point to the path of a correctly formatted bait-prey matrix.</p></li>
+<li><div class="p" id="P77">Decide on a strategy to combine the abundance, reproducibility and specificity features into a single MiST score. To do so, set the weights parameter to either:
+<ol id="L16" class="list" style="list-style-type:lower-alpha">
+<li><div class="p" id="P78">
+<em>fixed</em>: Choose a decimal value between 0 and 1 for reproducibility, abundance and specificity.
+<blockquote class="text-italic" id="Q4"><div class="p" id="P79">When choosing fixed values, make sure the sum of these values sums up to 1. If no weight values are chosen the weights default to 0.309 for reproducibility, 0.685 for specificity and 0.006 for abundance. These weights were established in the first MiST publication (<a href="#R15" class="usa-link" aria-describedby="R15">Jäger et al., 2011</a>)and are a good choice to select reproducible, specific bait-prey pairs.</div></blockquote>
+</div></li>
+<li><div class="p" id="P80">
+<em>training</em>: MiST will use a training_file to exhaustively test the performance of different parameter combinations and select the optimal configuration.
+<blockquote class="text-italic" id="Q5"><div class="p" id="P81">We recommend using this option only when a sufficiently large benchmark set is available. See the <strong>advanced parameter</strong> section below for details.</div></blockquote>
+</div></li>
+<li><div class="p" id="P82">
+<em>PCA</em>: MiST will perform a Principal Component Analysis (PCA) on the three-dimensional feature matrix and select weights that project the feature values on the first principal component.
+<blockquote class="text-italic" id="Q6"><div class="p" id="P83">We recommend using this option only when the suggested fixed weights do not perform well and insufficient training data is available.</div></blockquote>
+</div></li>
+</ol>
+</div></li>
+</ol>
+<section id="S27"><h4 class="pmc_sec_title">Result file</h4>
+<p id="P84">The result file is tab-delimited file with a unique entry for observed bait-prey pair organized in the following columns:
+</p>
+<ul id="L17" class="list" style="list-style-type:none">
+<li><p id="P85">○ <em>Bait</em>: Bait name as described in the keys or collapse file</p></li>
+<li><p id="P86">○ <em>Prey</em>: Protein identifier as listed in the prey_colname column of the data file</p></li>
+<li><p id="P87">○ <em>Abundance</em>: MiST abundance feature value of the bait-prey pair</p></li>
+<li><p id="P88">○ <em>Reproducibility</em>: MiST reproducibility feature value of the bait-prey pair</p></li>
+<li><p id="P89">○ <em>Specificity</em>: MiST specificity feature value of the bait-prey pair</p></li>
+<li><p id="P90">○ <em>MiST</em>: The total MiST score value of the bait-prey pair</p></li>
+<li><p id="P91">○ <em>Ip</em>: All samples where the bait-prey was observed in.</p></li>
+</ul></section></section><section id="S28"><h3 class="pmc_sec_title">Guidelines for Understanding Results</h3>
+<section id="S29"><h4 class="pmc_sec_title">Quality Control Plots</h4>
+<p id="P92">Different protein baits can have drastically different amounts of interacting proteins.</p>
+<p id="P93">Nevertheless, these levels should be consistent across biological replicates. A simple bar plot grouping all replicates for a single bait can help spotting samples of lower quality, which can consequently be removed from the dataset (See <a href="#F2" class="usa-link">Figure 2C</a> and <a href="#F3" class="usa-link">3A</a>).</p>
+<figure class="fig xbox font-sm" id="F3"><h5 class="obj_head">Figure 3.</h5>
+<p class="img-box line-height-none margin-x-neg-2 tablet:margin-x-0 text-center"><a class="tileshop" target="_blank" href="https://www.ncbi.nlm.nih.gov/core/lw/2.0/html/tileshop_pmc/tileshop_pmc_inline.html?title=Click%20on%20image%20to%20zoom&amp;p=PMC3&amp;id=4378866_nihms-672081-f0003.jpg"><img class="graphic zoom-in" src="https://cdn.ncbi.nlm.nih.gov/pmc/blobs/0777/4378866/ecc00e5fd232/nihms-672081-f0003.jpg" loading="lazy" height="354" width="800" alt="Figure 3"></a></p>
+<div class="p text-right font-secondary"><a href="figure/F3/" class="usa-link" target="_blank" rel="noopener noreferrer">Open in a new tab</a></div>
+<figcaption><p>A) Tab-separated input files adjusted based on the Quality Control observations: (1) sample AP-3 is ‘removed’ from the data. (2) VIF and VIF+ are ‘collapsed’ into a VIF_group and. Optionally VIF and VIF+ could have been mutually excluded for specificity calculations B) The clustered heatmap after adjustments shows no low quality data and clearly distinct replicate clusters aligned with the 3 different bait groups.</p></figcaption></figure><p id="P94">The primary use of the hierarchically clustered heatmap is to validate that samples are indeed more correlated within their group of replicates compared to negative controls and different baits. If this is not the case and a sufficient number of replicates are available, the sample can be removed from the data by adding its identifier to the remove file. In addition, carefully inspecting clusters can reveal accidentally mislabeled samples. For example, if one sample clusters more tightly with an unrelated group of baits compared to the other samples in its group this could be an indication that the sample was accidentally mislabeled. If this is the case, it is helpful to inspect the number of bait peptides that should be detected at high levels in the sample. Lastly, if a bait is purified under multiple experimental conditions (mutations, beads, tags, drugs, etc.), the correlation between these conditions can be an indication of the effect of the condition. Instead of discarding these samples the user can make a conscious choice to treat the conditional purifications as replicates of the wild type (See <a href="#F2" class="usa-link">Figure 2D</a> and <a href="#F3" class="usa-link">3B</a>).</p></section><section id="S30"><h4 class="pmc_sec_title">MiST Score</h4>
+<p id="P95">MiST aims to predict whether a protein-protein interaction detected in a set of repeated AP-MS experiments is biologically relevant using three features: reproducibility, abundance and specificity. To get as close to the optimal MiST score of 1 for an interaction, it is important that this interaction scores well across all features (See <a href="#F4" class="usa-link">Figure 4A</a>). Since values of 1 or close to 1 are rare, a minimum threshold can be applied to separate the predicted true interactions from the rest. However, choosing the appropriate threshold that makes a good trade-off between prediction sensitivity (detecting all true interactions) and specificity (minimizing the number of false positives) can be challenging and depends on the choice of feature weights.</p>
+<figure class="fig xbox font-sm" id="F4"><h5 class="obj_head">Figure 4.</h5>
+<p class="img-box line-height-none margin-x-neg-2 tablet:margin-x-0 text-center"><a class="tileshop" target="_blank" href="https://www.ncbi.nlm.nih.gov/core/lw/2.0/html/tileshop_pmc/tileshop_pmc_inline.html?title=Click%20on%20image%20to%20zoom&amp;p=PMC3&amp;id=4378866_nihms-672081-f0004.jpg"><img class="graphic zoom-in" src="https://cdn.ncbi.nlm.nih.gov/pmc/blobs/0777/4378866/74a023b1ad14/nihms-672081-f0004.jpg" loading="lazy" height="1050" width="729" alt="Figure 4"></a></p>
+<div class="p text-right font-secondary"><a href="figure/F4/" class="usa-link" target="_blank" rel="noopener noreferrer">Open in a new tab</a></div>
+<figcaption><p>A) A 3d scatterplot illustrating three different areas in the three-dimensional MiST feature space: (1) biologically relevant interactions (red gradient, MiST scores &gt; 0.75) are specific and reproducible with variable abundance (2) non-specific, reproducible interactions are often background proteins and (3) specific, irreproducible interactions are often one-hit-wonders including contaminants and MS artifacts B) The scored bait-prey list at a high MiST score threshold visualized as a protein interaction network with Cytoscape. Red edges depict interactions identified by AP-MS while black edges are mined from the CORUM database. Edge width corresponds to the MiST score. High MiST scores for multiple subunits of a described complex add confidence to observed AP-MS interactions.</p></figcaption></figure><p id="P96">The easiest way to pick a threshold is therefore to stick to the recommended value for specific weights. For example, for the previously published HIV–host interaction network, a MiST lower bound threshold of 0.75 was recommended. When your dataset is comparable to a reference set this is an easy and sound solution.</p>
+<p id="P97">A slightly harder but more preferred way of picking a threshold is by making prediction plots such as a Receiver Operating Curve (ROC) or a precision-recall curve and computing prediction accuracy statistics like the f1 score. The main drawback of this approach is that these metrics depend on the presence of ‘true’ positive and negative bait-prey interactions in the MS data set. While the so-called ‘negative’ interactions are often picked randomly from the data, the absence of known ‘positive’ interactions for a protein is often the very reason to perform an AP-MS experiment. When compiling a benchmark set we recommend using a positive set of at least 20 interactions and picking a negative set roughly 100 times larger than the positive set.</p>
+<p id="P98">Finally, if neither of the aforementioned strategies for choosing a threshold is feasible, we advise to respect two rules of thumb. First, never pick a threshold lower than the highest feature weight value. For example, if specificity has the highest weight of 0.68, the MiST threshold should be strictly greater than 0.68. As explained before, biologically relevant interactions are expected to be reproducible and specific (See <a href="#F4" class="usa-link">Figure 4A</a>). Interactions with a perfect reproducibility score but zero specificity score are most likely ‘background’ interactions with highly abundant proteins. Conversely, interactions with a perfect specificity score and zero reproducibility score are likely to be ‘one-hit-wonders’. Second, keep in mind that the goal of scoring an AP-MS data set should be to approach the true biologically relevant interaction network as close as possible. Even though it is known that some proteins act as hubs and others have just one single interaction partner, current studies estimate the average number of interactions to be around 5-8 per protein. This expected bait-prey ratio could therefore be used to determine a reasonable cutoff for the MiST scores. Since the primary purpose of an AP-MS experiment is to discover new interactions and these studies are often followed up with a more targeted experiment, it is still acceptable to consciously allow a higher number of potential false positives.</p></section></section><section id="S31"><h3 class="pmc_sec_title">Commentary</h3>
+<section id="S32"><h4 class="pmc_sec_title">Background Information</h4>
+<p id="P99">The MiST score was originally developed to rank bait-prey pairs in an <em>ex vivo</em> HIV-human data set (<a href="#R15" class="usa-link" aria-describedby="R15">Jäger et al., 2011</a>). When this data set was being produced, SAINT (<a href="#R3" class="usa-link" aria-describedby="R3">Choi et al., 2011</a>, <a href="#R4" class="usa-link" aria-describedby="R4">2012</a>; UNIT 8.15) and the CompPASS-D (<a href="#R24" class="usa-link" aria-describedby="R24">Sowa et al., 2009</a>) score were the two main computational algorithms that were suited to analyze large-scale AP-MS data sets. However, their prediction performance was only reported on a data set of human-human protein interactions. The uniqueness of the HIV-human data sets became the primary reason to develop MiST, a custom AP-MS scoring algorithm. Although MiST and CompPASS both use exclusively abundance, reproducibility and specificity as predictive features, making them therefore somewhat comparable, MiST scores are easier to interpret because their feature value and total score varies between 0 and 1. Even though a ranked bait-prey list based on CompPASS scores is quite accurate, the actual scores are by definition harder to interpret because they vary between 0 and extremely high numbers.</p>
+<p id="P100">SAINT scores, on the other hand, vary between 0 and 1 but are conceptually very different because they describe the probability that a bait-prey pair is true based on a distribution model of its abundance values. For optimal SAINT performance it is therefore recommended to have a well-defined set of negative control affinity purifications to compare against. Neither MIST nor CompPASS requires explicit definition of negative controls; in fact negative controls are treated just the same as any another bait purification in the dataset.</p>
+<p id="P101">To assess the accuracy of MiST, we compared it to the SAINT, and CompPASS scores. The accuracy of each score was evaluated by its recall rate for the set of 39 well-characterized biologically relevant HIV-human bait-prey pairs. The MiST score was the most accurate among all the tested scores (<a href="#R15" class="usa-link" aria-describedby="R15">Jäger et al., 2011</a>). For example, at the threshold of 0.75, the recall number of known bait-prey pairs for the CompPASS, and MiST scores was 19, 29, and 32, respectively. Furthermore, 97 out of 127 (76% recall) top-ranked interactions predicted by MiST were validated using co-immunoprecipitation followed by Western-blot as an orthogonal assay. For an additional test, we counted bait-prey pairs involving ribosomal proteins, which are a good indicator of biologically irrelevant bait-prey pair predictions (<a href="#R10" class="usa-link" aria-describedby="R10">Ewing et al., 2007</a>). Again, MiST was the most accurate score, resulting in only 3 HIV-ribosomal protein bait-prey pairs, compared to 32 and 75 for SAINT and CompPASS, respectively.</p></section><section id="S33"><h4 class="pmc_sec_title">Critical Parameters</h4>
+<section id="S34"><h5 class="pmc_sec_title">Specificity exclusions</h5>
+<p id="P102">We repeatedly observed in gold-standard data sets that good prediction performance goes hand in hand with a high weight for specificity. Preys exclusively identified with a single bait protein will receive a high specificity value, therefore these preys will overall get high MiST scores. Conversely, prey proteins identified with several baits are not bait specific and will receive overall lower scores. However, often large-scale interrogations of biological systems are designed in a way that inherently introduces a bias into the number of times preys are identified across multiple baits. For ‘specificity’ to optimally work the way it is intended to, it is therefore important to remove design bias from the calculations. Here, we illustrate how you can achieve this by describing the three most common examples:
+</p>
+<ul id="L18" class="list" style="list-style-type:none">
+<li><p id="P103">○ <strong>Conditional interactions</strong>: When an experiment is designed to determine whether a drug or mutation influences one specific interaction between two proteins, most of the unaffected interactions will still be detected in the samples with the drug or mutation. To ensure the scores of both the wild type and conditional sample are not incorrectly penalized by their shared interactions, we add exclusion rules between the (bait, bait + condition) pair and the (bait + condition, bait) pair (See <a href="#F3" class="usa-link">Figure 3B</a>).</p></li>
+<li><p id="P104">○ <strong>Highly homologous baits</strong>: When two baits in a data set share a more than expected degree of sequence identity, they likely share a significant amount of interactions too. The most common examples are intra- or inter-species homologs, different isoforms of the same protein and cleaved protein products from poly-proteins.</p></li>
+<li><p id="P105">○ <strong>Complex subunits</strong>: When subunits of a stable multi-subunit complex are all used as baits, the remaining subunits of the full complex will be identified recurrently in all samples.</p></li>
+</ul>
+<p id="P106">Beyond these obvious cases, we recommend to not get carried away with specificity exclusions. Only data sets that have a high percentage of baits that match the conditions above should be scored with a specificity exclusion list. If there “might” be set of common interactions between baits that could throw of the specificity score, then score the data without excluding the baits from each other and look whether the MiST scores are affected by a low specificity component.</p></section></section></section><section id="S35"><h3 class="pmc_sec_title">Advanced parameters</h3>
+<section id="S36"><h4 class="pmc_sec_title">MiST training with gold-standard interactions</h4>
+<p id="P107">The training file contains known true interactions that were identified in the data. This file should be tab-delimited, listing baits with the bait name described in the keys or collapse file and preys with their name in the prey_colname column of the data file. MiST will label these bait-prey pairs as positive interactions set and compile a 100 times larger negative interaction set randomly selected from the data.</p>
+<p id="P108">MiST will then run a simulation that cycles through all possible assignments of the three weights with 0.01 increments that together sum to 1, and 0.01 increments of threshold between 0 and 1. In every simulation cycle, MiST scores using these weights are computed and the subset greater than the threshold is compared to the positive and negative set. We compare the performance of the simulated weights at a given threshold by computing the precision and recall rates along with the ‘f1 score’ to measure overall accuracy.</p>
+<p id="P109">Finally, the combination of weights with the best f1 score will be selected to compute the MiST scores and an additional file with the summary of all simulations is written to the output_dir.</p></section></section><section id="S37"><h3 class="pmc_sec_title">Suggestions for Further Analysis</h3>
+<p id="P110">Here we describe a number of suggestions for further analysis, starting from the MiST scores output file.</p>
+<section id="S38"><h4 class="pmc_sec_title">Protein interaction networks</h4>
+<p id="P111">After MiST outputs the scored list of bait-prey pairs and the appropriate threshold to select the high-confidence pairs is determined, the next step is usually to convert this filtered list into a more visual representation as a protein interaction network. Cytoscape (<a href="#R23" class="usa-link" aria-describedby="R23">Shannon, 2003</a>; <a href="#R26" class="usa-link" aria-describedby="R26">Su et al., 2014</a>; UNIT 8.13) is by far the most popular piece of software used to create such networks. An in-depth tutorial on how to create interaction networks using AP-MS data is recently reviewed by Morris et al. (Manuscript in press)</p></section><section id="S39"><h4 class="pmc_sec_title">Connecting protein complexes</h4>
+<p id="P112">Unlike yeast-two-hybrid, which is binary in nature, interactions identified by AP-MS can be either in direct contact with the bait or indirectly mediated through members of the same protein complex. By overlaying published interaction data as edges between two ‘prey’ proteins, it is easier to see which protein complexes a particular bait protein interacts with. There are many online resources that collect and curate large-scale interaction data from different experimental sources such as the Biogrid (<a href="#R25" class="usa-link" aria-describedby="R25">Stark et al., 2006</a>), STRING (<a href="#R20" class="usa-link" aria-describedby="R20">Mering, 2003</a>), Corum (<a href="#R22" class="usa-link" aria-describedby="R22">Ruepp et al., 2009</a>) and Compleat (<a href="#R28" class="usa-link" aria-describedby="R28">Vinayagam et al., 2013</a>) that allow queries with a list of proteins to return all observed interactions between them (See <a href="#F4" class="usa-link">Figure 4B</a>). If the bait-prey list is imported in Cytoscape, this process can be done automatically by using the BisoGenet plugin (<a href="#R18" class="usa-link" aria-describedby="R18">Martin et al., 2010</a>).</p></section><section id="S40"><h4 class="pmc_sec_title">Biological annotation enrichment</h4>
+<p id="P113">To make sense out of larger protein interaction data sets it is useful to annotate all identified proteins with meaningful terms describing their biological function, domain composition, pathway involvement, disease involvement and cellular localization. Again, there are many well-established online resources that collect and curate protein annotation terms such as GO (<a href="#R12" class="usa-link" aria-describedby="R12">Gene and Consortium, 2000</a>; <a href="#R2" class="usa-link" aria-describedby="R2">Blake and Harris, 2008</a>; UNIT 7.2) KEGG (<a href="#R21" class="usa-link" aria-describedby="R21">Ogata et al., 1999</a>; <a href="#R27" class="usa-link" aria-describedby="R27">Tanabe and Kanehisa, 2012</a>; UNIT 1.12) or PFAM (<a href="#R11" class="usa-link" aria-describedby="R11">Finn et al., 2014</a>; <a href="#R6" class="usa-link" aria-describedby="R6">Coggill et al., 2008</a>; UNIT 2.5). Next, these annotated protein lists can then be analyzed to test whether ontology terms are overrepresented in the full set or specifically with respect to a single bait protein. The Cytoscape software can be a valuable tool for this purpose too because plugins such as BINGO (<a href="#R17" class="usa-link" aria-describedby="R17">Maere et al., 2005</a>) take care of network annotation and enrichment tests in a few easy steps. Alternatively, complete lists of scored protein interactions or shorter lists of interactions above a certain threshold can be uploaded to online tools such as DAVID (<a href="#R8" class="usa-link" aria-describedby="R8">Dennis et al., 2003</a>) or GORILLA (<a href="#R9" class="usa-link" aria-describedby="R9">Eden et al., 2009</a>) respectively.</p></section></section></section><section id="S41" class="ack"><h2 class="pmc_sec_title">Acknowledgement</h2>
+<p>EV, JVD and NK are supported by NIH grants P50 GM082250, P50 GM081879, P01 AI090935, P01 AI091575, P01 AI106754, R01 GM084279 and the DARPA grant HR0011-11-C-0094. AS is supported by NIH R01 GM083960. PC is supported by a Howard Hughes Medical Institute Predoctoral Fellowship.</p></section><section id="fn-group1" class="fn-group"><h2 class="pmc_sec_title">Footnotes</h2>
+<div class="fn-group p font-secondary-light font-sm"><div class="fn p" id="FN1">
+<p id="P114">Internet Resources</p>
+<p id="P115">The Github repository (<a href="https://github.com/everschueren/MiST/" class="usa-link usa-link--external" data-ga-action="click_feat_suppl" target="_blank" rel="noopener noreferrer">https://github.com/everschueren/MiST/</a>) is the main online resource for this protocol. We have opened the MiST repository to the public but currently it is only editable by approved collaborators. In the near future we will also update the webpage at <a href="http://modbase.compbio.ucsf.edu/MiST/" class="usa-link usa-link--external" data-ga-action="click_feat_suppl" target="_blank" rel="noopener noreferrer">http://modbase.compbio.ucsf.edu/MiST/</a> to reflect the protocol described in this manuscript.</p>
+</div></div></section><section id="ref-list1" class="ref-list"><h2 class="pmc_sec_title">Literature Cited</h2>
+<section id="ref-list1_sec2"><ol class="ref-list font-sm">
+<li id="R1">
+<cite>Arifuzzaman M, Maeda M, Itoh A, Nishikata K, Takita C, Saito R, Ara T, Nakahigashi K, Huang H-C, Hirai A, et al.  Large-scale identification of protein-protein interaction of Escherichia coli K-12. Genome research. 2006;16:686–691. doi: 10.1101/gr.4527806.</cite> [<a href="https://doi.org/10.1101/gr.4527806" class="usa-link usa-link--external" data-ga-action="click_feat_suppl" target="_blank" rel="noopener noreferrer">DOI</a>] [<a href="/articles/PMC1457052/" class="usa-link">PMC free article</a>] [<a href="https://pubmed.ncbi.nlm.nih.gov/16606699/" class="usa-link">PubMed</a>] [<a href="https://scholar.google.com/scholar_lookup?journal=Genome%20research&amp;title=Large-scale%20identification%20of%20protein-protein%20interaction%20of%20Escherichia%20coli%20K-12.&amp;author=M%20Arifuzzaman&amp;author=M%20Maeda&amp;author=A%20Itoh&amp;author=K%20Nishikata&amp;author=C%20Takita&amp;volume=16&amp;publication_year=2006&amp;pages=686-691&amp;pmid=16606699&amp;doi=10.1101/gr.4527806&amp;" class="usa-link usa-link--external" data-ga-action="click_feat_suppl" target="_blank" rel="noopener noreferrer">Google Scholar</a>]</li>
+<li id="R2">
+<cite>Blake JA, Harris MA. The Gene Ontology (GO) Project: Structured vocabularies for molecular biology and their application to genome and expression analysis. Current Protocols in Bioinformatics. 2008;23:7.2:7.2.1–7.2.9. doi: 10.1002/0471250953.bi0702s23.</cite> [<a href="https://doi.org/10.1002/0471250953.bi0702s23" class="usa-link usa-link--external" data-ga-action="click_feat_suppl" target="_blank" rel="noopener noreferrer">DOI</a>] [<a href="https://pubmed.ncbi.nlm.nih.gov/18819077/" class="usa-link">PubMed</a>] [<a href="https://scholar.google.com/scholar_lookup?journal=Current%20Protocols%20in%20Bioinformatics&amp;title=The%20Gene%20Ontology%20(GO)%20Project:%20Structured%20vocabularies%20for%20molecular%20biology%20and%20their%20application%20to%20genome%20and%20expression%20analysis.&amp;author=JA%20Blake&amp;author=MA%20Harris&amp;volume=23&amp;publication_year=2008&amp;pages=7.2:7.2.1-7.2.9&amp;pmid=18819077&amp;doi=10.1002/0471250953.bi0702s23&amp;" class="usa-link usa-link--external" data-ga-action="click_feat_suppl" target="_blank" rel="noopener noreferrer">Google Scholar</a>]</li>
+<li id="R3">
+<cite>Choi H, Larsen B, Lin Z-Y, Breitkreutz A, Mellacheruvu D, Fermin D, Qin ZS, Tyers M, Gingras A-C, Nesvizhskii AI. SAINT: probabilistic scoring of affinity purification-mass spectrometry data. Nature methods. 2011;8:70–73. doi: 10.1038/nmeth.1541.</cite> [<a href="https://doi.org/10.1038/nmeth.1541" class="usa-link usa-link--external" data-ga-action="click_feat_suppl" target="_blank" rel="noopener noreferrer">DOI</a>] [<a href="/articles/PMC3064265/" class="usa-link">PMC free article</a>] [<a href="https://pubmed.ncbi.nlm.nih.gov/21131968/" class="usa-link">PubMed</a>] [<a href="https://scholar.google.com/scholar_lookup?journal=Nature%20methods&amp;title=SAINT:%20probabilistic%20scoring%20of%20affinity%20purification-mass%20spectrometry%20data.&amp;author=H%20Choi&amp;author=B%20Larsen&amp;author=Z-Y%20Lin&amp;author=A%20Breitkreutz&amp;author=D%20Mellacheruvu&amp;volume=8&amp;publication_year=2011&amp;pages=70-73&amp;pmid=21131968&amp;doi=10.1038/nmeth.1541&amp;" class="usa-link usa-link--external" data-ga-action="click_feat_suppl" target="_blank" rel="noopener noreferrer">Google Scholar</a>]</li>
+<li id="R4">
+<cite>Choi H, Liu G, Mellacheruvu D, Tyers M, Gingras AC, Nesvizhskii AI. Analyzing protein-protein interactions from affinity purification-mass spectrometry data with SAINT. Current Protocols in Bioinformatics. 2012;39:8.15.1–8.15.23. doi: 10.1002/0471250953.bi0815s39.</cite> [<a href="https://doi.org/10.1002/0471250953.bi0815s39" class="usa-link usa-link--external" data-ga-action="click_feat_suppl" target="_blank" rel="noopener noreferrer">DOI</a>] [<a href="/articles/PMC3446209/" class="usa-link">PMC free article</a>] [<a href="https://pubmed.ncbi.nlm.nih.gov/22948729/" class="usa-link">PubMed</a>] [<a href="https://scholar.google.com/scholar_lookup?journal=Current%20Protocols%20in%20Bioinformatics&amp;title=Analyzing%20protein-protein%20interactions%20from%20affinity%20purification-mass%20spectrometry%20data%20with%20SAINT.&amp;author=H%20Choi&amp;author=G%20Liu&amp;author=D%20Mellacheruvu&amp;author=M%20Tyers&amp;author=AC%20Gingras&amp;volume=39&amp;publication_year=2012&amp;pages=8.15.1-8.15.23&amp;pmid=22948729&amp;doi=10.1002/0471250953.bi0815s39&amp;" class="usa-link usa-link--external" data-ga-action="click_feat_suppl" target="_blank" rel="noopener noreferrer">Google Scholar</a>]</li>
+<li id="R5">
+<cite>Clauser KR, Baker P, Burlingame AL. Role of Accurate Mass Measurement (±10 ppm) in Protein Identification Strategies Employing MS or MS/MS and Database Searching. Analytical Chemistry. 1999;71:2871–2882. doi: 10.1021/ac9810516.</cite> [<a href="https://doi.org/10.1021/ac9810516" class="usa-link usa-link--external" data-ga-action="click_feat_suppl" target="_blank" rel="noopener noreferrer">DOI</a>] [<a href="https://pubmed.ncbi.nlm.nih.gov/10424174/" class="usa-link">PubMed</a>] [<a href="https://scholar.google.com/scholar_lookup?journal=Analytical%20Chemistry&amp;title=Role%20of%20Accurate%20Mass%20Measurement%20(%C2%B110%20ppm)%20in%20Protein%20Identification%20Strategies%20Employing%20MS%20or%20MS/MS%20and%20Database%20Searching.&amp;author=KR%20Clauser&amp;author=P%20Baker&amp;author=AL%20Burlingame&amp;volume=71&amp;publication_year=1999&amp;pages=2871-2882&amp;pmid=10424174&amp;doi=10.1021/ac9810516&amp;" class="usa-link usa-link--external" data-ga-action="click_feat_suppl" target="_blank" rel="noopener noreferrer">Google Scholar</a>]</li>
+<li id="R6">
+<cite>Coggill P, Finn RD, Bateman A. Identifying protein domains with the Pfam database. Current Protocols in Bioinformatics. 2008;23:2.5:2.5.1–2.5.17. doi: 10.1002/0471250953.bi0205s23.</cite> [<a href="https://doi.org/10.1002/0471250953.bi0205s23" class="usa-link usa-link--external" data-ga-action="click_feat_suppl" target="_blank" rel="noopener noreferrer">DOI</a>] [<a href="https://pubmed.ncbi.nlm.nih.gov/18819075/" class="usa-link">PubMed</a>] [<a href="https://scholar.google.com/scholar_lookup?journal=Current%20Protocols%20in%20Bioinformatics&amp;title=Identifying%20protein%20domains%20with%20the%20Pfam%20database.&amp;author=P%20Coggill&amp;author=RD%20Finn&amp;author=A%20Bateman&amp;volume=23&amp;publication_year=2008&amp;pages=2.5:2.5.1-2.5.17&amp;pmid=18819075&amp;doi=10.1002/0471250953.bi0205s23&amp;" class="usa-link usa-link--external" data-ga-action="click_feat_suppl" target="_blank" rel="noopener noreferrer">Google Scholar</a>]</li>
+<li id="R7">
+<cite>Cox J, Mann M. MaxQuant enables high peptide identification rates, individualized p.p.b.-range mass accuracies and proteome-wide protein quantification. Nature Biotechnology. 2008;26:1367–1372. doi: 10.1038/nbt.1511.</cite> [<a href="https://doi.org/10.1038/nbt.1511" class="usa-link usa-link--external" data-ga-action="click_feat_suppl" target="_blank" rel="noopener noreferrer">DOI</a>] [<a href="https://pubmed.ncbi.nlm.nih.gov/19029910/" class="usa-link">PubMed</a>] [<a href="https://scholar.google.com/scholar_lookup?journal=Nature%20Biotechnology&amp;title=MaxQuant%20enables%20high%20peptide%20identification%20rates,%20individualized%20p.p.b.-range%20mass%20accuracies%20and%20proteome-wide%20protein%20quantification.&amp;author=J%20Cox&amp;author=M%20Mann&amp;volume=26&amp;publication_year=2008&amp;pages=1367-1372&amp;pmid=19029910&amp;doi=10.1038/nbt.1511&amp;" class="usa-link usa-link--external" data-ga-action="click_feat_suppl" target="_blank" rel="noopener noreferrer">Google Scholar</a>]</li>
+<li id="R8">
+<cite>Dennis G, Sherman BT, Hosack DA, Yang J, Gao W, Lane HC, Lempicki RA. DAVID: Database for Annotation, Visualization, and Integrated Discovery. Genome Biol. 2003;4:P3.</cite> [<a href="https://pubmed.ncbi.nlm.nih.gov/12734009/" class="usa-link">PubMed</a>] [<a href="https://scholar.google.com/scholar_lookup?journal=Genome%20Biol&amp;title=DAVID:%20Database%20for%20Annotation,%20Visualization,%20and%20Integrated%20Discovery.&amp;author=G%20Dennis&amp;author=BT%20Sherman&amp;author=DA%20Hosack&amp;author=J%20Yang&amp;author=W%20Gao&amp;volume=4&amp;publication_year=2003&amp;pages=P3&amp;pmid=12734009&amp;" class="usa-link usa-link--external" data-ga-action="click_feat_suppl" target="_blank" rel="noopener noreferrer">Google Scholar</a>]</li>
+<li id="R9">
+<cite>Eden E, Navon R, Steinfeld I, Lipson D, Yakhini Z. GOrilla: a tool for discovery and visualization of enriched GO terms in ranked gene lists. BMC bioinformatics. 2009;10:48. doi: 10.1186/1471-2105-10-48.</cite> [<a href="https://doi.org/10.1186/1471-2105-10-48" class="usa-link usa-link--external" data-ga-action="click_feat_suppl" target="_blank" rel="noopener noreferrer">DOI</a>] [<a href="/articles/PMC2644678/" class="usa-link">PMC free article</a>] [<a href="https://pubmed.ncbi.nlm.nih.gov/19192299/" class="usa-link">PubMed</a>] [<a href="https://scholar.google.com/scholar_lookup?journal=BMC%20bioinformatics&amp;title=GOrilla:%20a%20tool%20for%20discovery%20and%20visualization%20of%20enriched%20GO%20terms%20in%20ranked%20gene%20lists.&amp;author=E%20Eden&amp;author=R%20Navon&amp;author=I%20Steinfeld&amp;author=D%20Lipson&amp;author=Z%20Yakhini&amp;volume=10&amp;publication_year=2009&amp;pages=48&amp;pmid=19192299&amp;doi=10.1186/1471-2105-10-48&amp;" class="usa-link usa-link--external" data-ga-action="click_feat_suppl" target="_blank" rel="noopener noreferrer">Google Scholar</a>]</li>
+<li id="R10">
+<cite>Ewing RM, Chu P, Elisma F, Li H, Taylor P, Climie S, McBroom-Cerajewski L, Robinson MD, O'Connor L, Li M, et al.  Large-scale mapping of human protein- protein interactions by mass spectrometry. Molecular systems biology. 2007;3:89. doi: 10.1038/msb4100134.</cite> [<a href="https://doi.org/10.1038/msb4100134" class="usa-link usa-link--external" data-ga-action="click_feat_suppl" target="_blank" rel="noopener noreferrer">DOI</a>] [<a href="/articles/PMC1847948/" class="usa-link">PMC free article</a>] [<a href="https://pubmed.ncbi.nlm.nih.gov/17353931/" class="usa-link">PubMed</a>] [<a href="https://scholar.google.com/scholar_lookup?journal=Molecular%20systems%20biology&amp;title=Large-scale%20mapping%20of%20human%20protein-%20protein%20interactions%20by%20mass%20spectrometry.&amp;author=RM%20Ewing&amp;author=P%20Chu&amp;author=F%20Elisma&amp;author=H%20Li&amp;author=P%20Taylor&amp;volume=3&amp;publication_year=2007&amp;pages=89&amp;pmid=17353931&amp;doi=10.1038/msb4100134&amp;" class="usa-link usa-link--external" data-ga-action="click_feat_suppl" target="_blank" rel="noopener noreferrer">Google Scholar</a>]</li>
+<li id="R11">
+<cite>Finn RD, Bateman A, Clements J, Coggill P, Eberhardt RY, Eddy SR, Heger A, Hetherington K, Holm L, Mistry J, et al.  Pfam: The protein families database. Nucleic Acids Research. 2014;42 doi: 10.1093/nar/gkt1223.</cite> [<a href="https://doi.org/10.1093/nar/gkt1223" class="usa-link usa-link--external" data-ga-action="click_feat_suppl" target="_blank" rel="noopener noreferrer">DOI</a>] [<a href="/articles/PMC3965110/" class="usa-link">PMC free article</a>] [<a href="https://pubmed.ncbi.nlm.nih.gov/24288371/" class="usa-link">PubMed</a>] [<a href="https://scholar.google.com/scholar_lookup?journal=Nucleic%20Acids%20Research&amp;title=Pfam:%20The%20protein%20families%20database.&amp;author=RD%20Finn&amp;author=A%20Bateman&amp;author=J%20Clements&amp;author=P%20Coggill&amp;author=RY%20Eberhardt&amp;volume=42&amp;publication_year=2014&amp;pmid=24288371&amp;doi=10.1093/nar/gkt1223&amp;" class="usa-link usa-link--external" data-ga-action="click_feat_suppl" target="_blank" rel="noopener noreferrer">Google Scholar</a>]</li>
+<li id="R12">
+<cite>Gene T, Consortium O. Gene Ontology: tool for the. nature genetics. 2000;25:25–29. doi: 10.1038/75556.</cite> [<a href="https://doi.org/10.1038/75556" class="usa-link usa-link--external" data-ga-action="click_feat_suppl" target="_blank" rel="noopener noreferrer">DOI</a>] [<a href="/articles/PMC3037419/" class="usa-link">PMC free article</a>] [<a href="https://pubmed.ncbi.nlm.nih.gov/10802651/" class="usa-link">PubMed</a>] [<a href="https://scholar.google.com/scholar_lookup?journal=Gene%20Ontology:%20tool%20for%20the.%20nature%20genetics&amp;author=T%20Gene&amp;author=O%20Consortium&amp;volume=25&amp;publication_year=2000&amp;pages=25-29&amp;pmid=10802651&amp;doi=10.1038/75556&amp;" class="usa-link usa-link--external" data-ga-action="click_feat_suppl" target="_blank" rel="noopener noreferrer">Google Scholar</a>]</li>
+<li id="R13">
+<cite>Grigoriev A. On the number of protein-protein interactions in the yeast proteome.  [August 11, 2014];Nucleic Acids Research. 2003 31:4157–4161. doi: 10.1093/nar/gkg466. Available at:  <a href="http://nar.oxfordjournals.org/content/31/14/4157.full" class="usa-link usa-link--external" data-ga-action="click_feat_suppl" target="_blank" rel="noopener noreferrer">http://nar.oxfordjournals.org/content/31/14/4157.full</a>.</cite> [<a href="https://doi.org/10.1093/nar/gkg466" class="usa-link usa-link--external" data-ga-action="click_feat_suppl" target="_blank" rel="noopener noreferrer">DOI</a>] [<a href="/articles/PMC165980/" class="usa-link">PMC free article</a>] [<a href="https://pubmed.ncbi.nlm.nih.gov/12853633/" class="usa-link">PubMed</a>] [<a href="https://scholar.google.com/scholar_lookup?journal=Nucleic%20Acids%20Research&amp;title=On%20the%20number%20of%20protein-protein%20interactions%20in%20the%20yeast%20proteome.&amp;author=A%20Grigoriev&amp;volume=31&amp;publication_year=2003&amp;pages=4157-4161&amp;pmid=12853633&amp;doi=10.1093/nar/gkg466&amp;" class="usa-link usa-link--external" data-ga-action="click_feat_suppl" target="_blank" rel="noopener noreferrer">Google Scholar</a>]</li>
+<li id="R14">
+<cite>Hughes NC, Wong EYK, Fan J, Bajaj N. Determination of carryover and contamination for mass spectrometry-based chromatographic assays. The AAPS journal. 2007;9:E353–E360. doi: 10.1208/aapsj0903042.</cite> [<a href="https://doi.org/10.1208/aapsj0903042" class="usa-link usa-link--external" data-ga-action="click_feat_suppl" target="_blank" rel="noopener noreferrer">DOI</a>] [<a href="/articles/PMC2751487/" class="usa-link">PMC free article</a>] [<a href="https://pubmed.ncbi.nlm.nih.gov/18170982/" class="usa-link">PubMed</a>] [<a href="https://scholar.google.com/scholar_lookup?journal=The%20AAPS%20journal&amp;title=Determination%20of%20carryover%20and%20contamination%20for%20mass%20spectrometry-based%20chromatographic%20assays.&amp;author=NC%20Hughes&amp;author=EYK%20Wong&amp;author=J%20Fan&amp;author=N%20Bajaj&amp;volume=9&amp;publication_year=2007&amp;pages=E353-E360&amp;pmid=18170982&amp;doi=10.1208/aapsj0903042&amp;" class="usa-link usa-link--external" data-ga-action="click_feat_suppl" target="_blank" rel="noopener noreferrer">Google Scholar</a>]</li>
+<li id="R15">
+<cite>Jäger S, Cimermancic P, Gulbahce N, Johnson JR, McGovern KE, Clarke SC, Shales M, Mercenne G, Pache L, Li K, et al.  Global landscape of HIV–human protein complexes. Nature. 2011 doi: 10.1038/nature10719.</cite> [<a href="https://doi.org/10.1038/nature10719" class="usa-link usa-link--external" data-ga-action="click_feat_suppl" target="_blank" rel="noopener noreferrer">DOI</a>] [<a href="/articles/PMC3310911/" class="usa-link">PMC free article</a>] [<a href="https://pubmed.ncbi.nlm.nih.gov/22190034/" class="usa-link">PubMed</a>] [<a href="https://scholar.google.com/scholar_lookup?journal=Nature&amp;title=Global%20landscape%20of%20HIV%E2%80%93human%20protein%20complexes.&amp;author=S%20J%C3%A4ger&amp;author=P%20Cimermancic&amp;author=N%20Gulbahce&amp;author=JR%20Johnson&amp;author=KE%20McGovern&amp;publication_year=2011&amp;pmid=22190034&amp;doi=10.1038/nature10719&amp;" class="usa-link usa-link--external" data-ga-action="click_feat_suppl" target="_blank" rel="noopener noreferrer">Google Scholar</a>]</li>
+<li id="R16">
+<cite>MacLean B, Tomazela DM, Shulman N, Chambers M, Finney GL, Frewen B, Kern R, Tabb DL, Liebler DC, MacCoss MJ. Skyline: an open source document editor for creating and analyzing targeted proteomics experiments. Bioinformatics. 2010;26:966–968. doi: 10.1093/bioinformatics/btq054.</cite> [<a href="https://doi.org/10.1093/bioinformatics/btq054" class="usa-link usa-link--external" data-ga-action="click_feat_suppl" target="_blank" rel="noopener noreferrer">DOI</a>] [<a href="/articles/PMC2844992/" class="usa-link">PMC free article</a>] [<a href="https://pubmed.ncbi.nlm.nih.gov/20147306/" class="usa-link">PubMed</a>] [<a href="https://scholar.google.com/scholar_lookup?journal=Bioinformatics&amp;title=Skyline:%20an%20open%20source%20document%20editor%20for%20creating%20and%20analyzing%20targeted%20proteomics%20experiments.&amp;author=B%20MacLean&amp;author=DM%20Tomazela&amp;author=N%20Shulman&amp;author=M%20Chambers&amp;author=GL%20Finney&amp;volume=26&amp;publication_year=2010&amp;pages=966-968&amp;pmid=20147306&amp;doi=10.1093/bioinformatics/btq054&amp;" class="usa-link usa-link--external" data-ga-action="click_feat_suppl" target="_blank" rel="noopener noreferrer">Google Scholar</a>]</li>
+<li id="R17">
+<cite>Maere S, Heymans K, Kuiper M. BiNGO: A Cytoscape plugin to assess overrepresentation of Gene Ontology categories in Biological Networks. Bioinformatics. 2005;21:3448–3449. doi: 10.1093/bioinformatics/bti551.</cite> [<a href="https://doi.org/10.1093/bioinformatics/bti551" class="usa-link usa-link--external" data-ga-action="click_feat_suppl" target="_blank" rel="noopener noreferrer">DOI</a>] [<a href="https://pubmed.ncbi.nlm.nih.gov/15972284/" class="usa-link">PubMed</a>] [<a href="https://scholar.google.com/scholar_lookup?journal=Bioinformatics&amp;title=BiNGO:%20A%20Cytoscape%20plugin%20to%20assess%20overrepresentation%20of%20Gene%20Ontology%20categories%20in%20Biological%20Networks.&amp;author=S%20Maere&amp;author=K%20Heymans&amp;author=M%20Kuiper&amp;volume=21&amp;publication_year=2005&amp;pages=3448-3449&amp;pmid=15972284&amp;doi=10.1093/bioinformatics/bti551&amp;" class="usa-link usa-link--external" data-ga-action="click_feat_suppl" target="_blank" rel="noopener noreferrer">Google Scholar</a>]</li>
+<li id="R18">
+<cite>Martin A, Ochagavia ME, Rabasa LC, Miranda J, Fernandez-de-Cossio J, Bringas R. BisoGenet: a new tool for gene network building, visualization and analysis. BMC bioinformatics. 2010;11:91. doi: 10.1186/1471-2105-11-91.</cite> [<a href="https://doi.org/10.1186/1471-2105-11-91" class="usa-link usa-link--external" data-ga-action="click_feat_suppl" target="_blank" rel="noopener noreferrer">DOI</a>] [<a href="/articles/PMC3098113/" class="usa-link">PMC free article</a>] [<a href="https://pubmed.ncbi.nlm.nih.gov/20163717/" class="usa-link">PubMed</a>] [<a href="https://scholar.google.com/scholar_lookup?journal=BMC%20bioinformatics&amp;title=BisoGenet:%20a%20new%20tool%20for%20gene%20network%20building,%20visualization%20and%20analysis.&amp;author=A%20Martin&amp;author=ME%20Ochagavia&amp;author=LC%20Rabasa&amp;author=J%20Miranda&amp;author=J%20Fernandez-de-Cossio&amp;volume=11&amp;publication_year=2010&amp;pages=91&amp;pmid=20163717&amp;doi=10.1186/1471-2105-11-91&amp;" class="usa-link usa-link--external" data-ga-action="click_feat_suppl" target="_blank" rel="noopener noreferrer">Google Scholar</a>]</li>
+<li id="R19">
+<cite>Mellacheruvu D, Wright Z, Couzens AL, Lambert J-P, St-Denis NA, Li T, Miteva YV, Hauri S, Sardiu ME, Low TY, et al.  The CRAPome: a contaminant repository for affinity purification&amp;ndash;mass spectrometry data. Nature Methods. 2013:1–11. doi: 10.1038/nmeth.2557.</cite> [<a href="https://doi.org/10.1038/nmeth.2557" class="usa-link usa-link--external" data-ga-action="click_feat_suppl" target="_blank" rel="noopener noreferrer">DOI</a>] [<a href="/articles/PMC3773500/" class="usa-link">PMC free article</a>] [<a href="https://pubmed.ncbi.nlm.nih.gov/23921808/" class="usa-link">PubMed</a>] [<a href="https://scholar.google.com/scholar_lookup?journal=Nature%20Methods&amp;title=The%20CRAPome:%20a%20contaminant%20repository%20for%20affinity%20purification&amp;ndash;mass%20spectrometry%20data.&amp;author=D%20Mellacheruvu&amp;author=Z%20Wright&amp;author=AL%20Couzens&amp;author=J-P%20Lambert&amp;author=NA%20St-Denis&amp;publication_year=2013&amp;pages=1-11&amp;pmid=23921808&amp;doi=10.1038/nmeth.2557&amp;" class="usa-link usa-link--external" data-ga-action="click_feat_suppl" target="_blank" rel="noopener noreferrer">Google Scholar</a>]</li>
+<li id="R20">
+<cite>Mering CV. STRING: a database of predicted functional associations between proteins.  [March 10, 2011];Nucleic Acids Research. 2003 31:258–261. doi: 10.1093/nar/gkg034. Available at:  <a href="http://www.nar.oupjournals.org/cgi/doi/10.1093/nar/gkg034" class="usa-link usa-link--external" data-ga-action="click_feat_suppl" target="_blank" rel="noopener noreferrer">http://www.nar.oupjournals.org/cgi/doi/10.1093/nar/gkg034</a>.</cite> [<a href="https://doi.org/10.1093/nar/gkg034" class="usa-link usa-link--external" data-ga-action="click_feat_suppl" target="_blank" rel="noopener noreferrer">DOI</a>] [<a href="/articles/PMC165481/" class="usa-link">PMC free article</a>] [<a href="https://pubmed.ncbi.nlm.nih.gov/12519996/" class="usa-link">PubMed</a>] [<a href="https://scholar.google.com/scholar_lookup?journal=Nucleic%20Acids%20Research&amp;title=STRING:%20a%20database%20of%20predicted%20functional%20associations%20between%20proteins.&amp;author=CV%20Mering&amp;volume=31&amp;publication_year=2003&amp;pages=258-261&amp;pmid=12519996&amp;doi=10.1093/nar/gkg034&amp;" class="usa-link usa-link--external" data-ga-action="click_feat_suppl" target="_blank" rel="noopener noreferrer">Google Scholar</a>]</li>
+<li id="R21">
+<cite>Ogata H, Goto S, Sato K, Fujibuchi W, Bono H, Kanehisa M. KEGG: Kyoto encyclopedia of genes and genomes. Nucleic Acids Research. 1999;27:29–34. doi: 10.1093/nar/27.1.29.</cite> [<a href="https://doi.org/10.1093/nar/27.1.29" class="usa-link usa-link--external" data-ga-action="click_feat_suppl" target="_blank" rel="noopener noreferrer">DOI</a>] [<a href="/articles/PMC148090/" class="usa-link">PMC free article</a>] [<a href="https://pubmed.ncbi.nlm.nih.gov/9847135/" class="usa-link">PubMed</a>] [<a href="https://scholar.google.com/scholar_lookup?journal=Nucleic%20Acids%20Research&amp;title=KEGG:%20Kyoto%20encyclopedia%20of%20genes%20and%20genomes.&amp;author=H%20Ogata&amp;author=S%20Goto&amp;author=K%20Sato&amp;author=W%20Fujibuchi&amp;author=H%20Bono&amp;volume=27&amp;publication_year=1999&amp;pages=29-34&amp;pmid=9847135&amp;doi=10.1093/nar/27.1.29&amp;" class="usa-link usa-link--external" data-ga-action="click_feat_suppl" target="_blank" rel="noopener noreferrer">Google Scholar</a>]</li>
+<li id="R22">
+<cite>Ruepp A, Waegele B, Lechner M, Brauner B, Dunger-Kaltenbach I, Fobo G, Frishman G, Montrone C, Mewes HW. CORUM: the comprehensive resource of mammalian protein complexes--2009. Nucleic Acids Research. 2009;38:D497–D501. doi: 10.1093/nar/gkp914.</cite> [<a href="https://doi.org/10.1093/nar/gkp914" class="usa-link usa-link--external" data-ga-action="click_feat_suppl" target="_blank" rel="noopener noreferrer">DOI</a>] [<a href="/articles/PMC2808912/" class="usa-link">PMC free article</a>] [<a href="https://pubmed.ncbi.nlm.nih.gov/19884131/" class="usa-link">PubMed</a>] [<a href="https://scholar.google.com/scholar_lookup?journal=Nucleic%20Acids%20Research&amp;title=CORUM:%20the%20comprehensive%20resource%20of%20mammalian%20protein%20complexes--2009.&amp;author=A%20Ruepp&amp;author=B%20Waegele&amp;author=M%20Lechner&amp;author=B%20Brauner&amp;author=I%20Dunger-Kaltenbach&amp;volume=38&amp;publication_year=2009&amp;pages=D497-D501&amp;pmid=19884131&amp;doi=10.1093/nar/gkp914&amp;" class="usa-link usa-link--external" data-ga-action="click_feat_suppl" target="_blank" rel="noopener noreferrer">Google Scholar</a>]</li>
+<li id="R23">
+<cite>Shannon P. Cytoscape: A Software Environment for Integrated Models of Biomolecular Interaction Networks. Genome Research. 2003;13:2498–2504. doi: 10.1101/gr.1239303. Available at:  <a href="http://www.genome.org/cgi/doi/10.1101/gr.1239303" class="usa-link usa-link--external" data-ga-action="click_feat_suppl" target="_blank" rel="noopener noreferrer">http://www.genome.org/cgi/doi/10.1101/gr.1239303</a>.</cite> [<a href="https://doi.org/10.1101/gr.1239303" class="usa-link usa-link--external" data-ga-action="click_feat_suppl" target="_blank" rel="noopener noreferrer">DOI</a>] [<a href="/articles/PMC403769/" class="usa-link">PMC free article</a>] [<a href="https://pubmed.ncbi.nlm.nih.gov/14597658/" class="usa-link">PubMed</a>] [<a href="https://scholar.google.com/scholar_lookup?journal=Genome%20Research&amp;title=Cytoscape:%20A%20Software%20Environment%20for%20Integrated%20Models%20of%20Biomolecular%20Interaction%20Networks.&amp;author=P%20Shannon&amp;volume=13&amp;publication_year=2003&amp;pages=2498-2504&amp;pmid=14597658&amp;doi=10.1101/gr.1239303&amp;" class="usa-link usa-link--external" data-ga-action="click_feat_suppl" target="_blank" rel="noopener noreferrer">Google Scholar</a>]</li>
+<li id="R24">
+<cite>Sowa ME, Bennett EJ, Gygi SP, Harper JW. Defining the Human Deubiquitinating Enzyme Interaction Landscape. Cell. 2009;138:389–403. doi: 10.1016/j.cell.2009.04.042.</cite> [<a href="https://doi.org/10.1016/j.cell.2009.04.042" class="usa-link usa-link--external" data-ga-action="click_feat_suppl" target="_blank" rel="noopener noreferrer">DOI</a>] [<a href="/articles/PMC2716422/" class="usa-link">PMC free article</a>] [<a href="https://pubmed.ncbi.nlm.nih.gov/19615732/" class="usa-link">PubMed</a>] [<a href="https://scholar.google.com/scholar_lookup?journal=Cell&amp;title=Defining%20the%20Human%20Deubiquitinating%20Enzyme%20Interaction%20Landscape.&amp;author=ME%20Sowa&amp;author=EJ%20Bennett&amp;author=SP%20Gygi&amp;author=JW%20Harper&amp;volume=138&amp;publication_year=2009&amp;pages=389-403&amp;pmid=19615732&amp;doi=10.1016/j.cell.2009.04.042&amp;" class="usa-link usa-link--external" data-ga-action="click_feat_suppl" target="_blank" rel="noopener noreferrer">Google Scholar</a>]</li>
+<li id="R25">
+<cite>Stark C, Breitkreutz B-J, Reguly T, Boucher L, Breitkreutz A, Tyers M. BioGRID: a general repository for interaction datasets. Nucleic acids research. 2006;34:D535–9. doi: 10.1093/nar/gkj109.</cite> [<a href="https://doi.org/10.1093/nar/gkj109" class="usa-link usa-link--external" data-ga-action="click_feat_suppl" target="_blank" rel="noopener noreferrer">DOI</a>] [<a href="/articles/PMC1347471/" class="usa-link">PMC free article</a>] [<a href="https://pubmed.ncbi.nlm.nih.gov/16381927/" class="usa-link">PubMed</a>] [<a href="https://scholar.google.com/scholar_lookup?journal=Nucleic%20acids%20research&amp;title=BioGRID:%20a%20general%20repository%20for%20interaction%20datasets.&amp;author=C%20Stark&amp;author=B-J%20Breitkreutz&amp;author=T%20Reguly&amp;author=L%20Boucher&amp;author=A%20Breitkreutz&amp;volume=34&amp;publication_year=2006&amp;pages=D535-9&amp;pmid=16381927&amp;doi=10.1093/nar/gkj109&amp;" class="usa-link usa-link--external" data-ga-action="click_feat_suppl" target="_blank" rel="noopener noreferrer">Google Scholar</a>]</li>
+<li id="R26">
+<cite>Su G, Morris JH, Demchak B, Bader GD. Biological Network Exploration with Cytoscape 3. Current Protocols in Bioinformatics. 2014;47:8.13:8.13.1–8.13.24. doi: 10.1002/0471250953.bi0813s47.</cite> [<a href="https://doi.org/10.1002/0471250953.bi0813s47" class="usa-link usa-link--external" data-ga-action="click_feat_suppl" target="_blank" rel="noopener noreferrer">DOI</a>] [<a href="/articles/PMC4174321/" class="usa-link">PMC free article</a>] [<a href="https://pubmed.ncbi.nlm.nih.gov/25199793/" class="usa-link">PubMed</a>] [<a href="https://scholar.google.com/scholar_lookup?journal=Current%20Protocols%20in%20Bioinformatics&amp;title=Biological%20Network%20Exploration%20with%20Cytoscape%203.&amp;author=G%20Su&amp;author=JH%20Morris&amp;author=B%20Demchak&amp;author=GD%20Bader&amp;volume=47&amp;publication_year=2014&amp;pages=8.13:8.13.1-8.13.24&amp;pmid=25199793&amp;doi=10.1002/0471250953.bi0813s47&amp;" class="usa-link usa-link--external" data-ga-action="click_feat_suppl" target="_blank" rel="noopener noreferrer">Google Scholar</a>]</li>
+<li id="R27">
+<cite>Tanabe M, Kanehisa M. Using the KEGG database resource. Current Protocols in Bioinformatics. 2012;38:1.12:1.12.1–1.12.43. doi: 10.1002/0471250953.bi0112s38.</cite> [<a href="https://doi.org/10.1002/0471250953.bi0112s38" class="usa-link usa-link--external" data-ga-action="click_feat_suppl" target="_blank" rel="noopener noreferrer">DOI</a>] [<a href="https://pubmed.ncbi.nlm.nih.gov/22700311/" class="usa-link">PubMed</a>] [<a href="https://scholar.google.com/scholar_lookup?journal=Current%20Protocols%20in%20Bioinformatics&amp;title=Using%20the%20KEGG%20database%20resource.&amp;author=M%20Tanabe&amp;author=M%20Kanehisa&amp;volume=38&amp;publication_year=2012&amp;pages=1.12:1.12.1-1.12.43&amp;pmid=22700311&amp;doi=10.1002/0471250953.bi0112s38&amp;" class="usa-link usa-link--external" data-ga-action="click_feat_suppl" target="_blank" rel="noopener noreferrer">Google Scholar</a>]</li>
+<li id="R28">
+<cite>Vinayagam A, Hu Y, Kulkarni M, Roesel C, Sopko R, Mohr SE, Perrimon N. Protein Complex-Based Analysis Framework for High-Throughput Data Sets. Science Signaling. 2013;6:rs5–rs5. doi: 10.1126/scisignal.2003629.</cite> [<a href="https://doi.org/10.1126/scisignal.2003629" class="usa-link usa-link--external" data-ga-action="click_feat_suppl" target="_blank" rel="noopener noreferrer">DOI</a>] [<a href="/articles/PMC3756668/" class="usa-link">PMC free article</a>] [<a href="https://pubmed.ncbi.nlm.nih.gov/23443684/" class="usa-link">PubMed</a>] [<a href="https://scholar.google.com/scholar_lookup?journal=Science%20Signaling&amp;title=Protein%20Complex-Based%20Analysis%20Framework%20for%20High-Throughput%20Data%20Sets.&amp;author=A%20Vinayagam&amp;author=Y%20Hu&amp;author=M%20Kulkarni&amp;author=C%20Roesel&amp;author=R%20Sopko&amp;volume=6&amp;publication_year=2013&amp;pages=rs5-rs5&amp;pmid=23443684&amp;doi=10.1126/scisignal.2003629&amp;" class="usa-link usa-link--external" data-ga-action="click_feat_suppl" target="_blank" rel="noopener noreferrer">Google Scholar</a>]</li>
+<li id="R29">
+<cite>Yu X, Ivanic J, Wallqvist A, Reifman J. A Novel Scoring Approach for Protein Co- Purification Data Reveals High Interaction Specificity. PLoS Computational Biology. 2009;5:e1000515. doi: 10.1371/journal.pcbi.1000515.</cite> [<a href="https://doi.org/10.1371/journal.pcbi.1000515" class="usa-link usa-link--external" data-ga-action="click_feat_suppl" target="_blank" rel="noopener noreferrer">DOI</a>] [<a href="/articles/PMC2738424/" class="usa-link">PMC free article</a>] [<a href="https://pubmed.ncbi.nlm.nih.gov/19779545/" class="usa-link">PubMed</a>] [<a href="https://scholar.google.com/scholar_lookup?journal=PLoS%20Computational%20Biology&amp;title=A%20Novel%20Scoring%20Approach%20for%20Protein%20Co-%20Purification%20Data%20Reveals%20High%20Interaction%20Specificity.&amp;author=X%20Yu&amp;author=J%20Ivanic&amp;author=A%20Wallqvist&amp;author=J%20Reifman&amp;volume=5&amp;publication_year=2009&amp;pages=e1000515&amp;pmid=19779545&amp;doi=10.1371/journal.pcbi.1000515&amp;" class="usa-link usa-link--external" data-ga-action="click_feat_suppl" target="_blank" rel="noopener noreferrer">Google Scholar</a>]</li>
+</ol></section></section></section></section></article>
+
+                      
+
+                    </main>
+                </div>
+            </div>
+        </div>
+
+        
+
+
+
+<!-- Secondary navigation placeholder -->
+<div class="pmc-sidenav desktop:grid-col-4 display-flex">
+    <section class="pmc-sidenav__container" aria-label="Article resources and navigation">
+        <button type="button" class="pmc-sidenav__container__close">
+            <img src="https://cdn.ncbi.nlm.nih.gov/pmc/pd-medc-pmc-cloudpmc-viewer/production/a2b04810/var/data/static/img/usa-icons/close.svg" role="img" alt="Close" />
+        </button>
+    <div class="display-none desktop:display-block">
+       <section class="margin-top-4 desktop:margin-top-0">
+              <h2 class="margin-top-0">ACTIONS</h2>
+           <ul class="usa-list usa-list--unstyled usa-list--actions">
+               
+               <li>
+                     <a
+                             href="https://doi.org/10.1002/0471250953.bi0819s49"
+                             class="usa-button usa-button--outline width-24 font-xs display-inline-flex flex-align-center flex-justify-start padding-left-1"
+                             target="_blank"
+                             rel="noreferrer noopener"
+                             data-ga-category="actions"
+                             data-ga-action="click"
+                             data-ga-label="publisher_link_desktop"
+                     >
+                         <img src="https://cdn.ncbi.nlm.nih.gov/pmc/pd-medc-pmc-cloudpmc-viewer/production/a2b04810/var/data/static/img/launch.svg" alt="View on publisher site icon" class="usa-icon usa-icon--size-3 usa-icon--link"/>
+                         <span class="display-inline-flex flex-justify-center flex-1 padding-right-2">View on publisher site</span>
+                     </a>
+               </li>
+               
+               
+               <li>
+                    <a
+                            href="pdf/nihms-672081.pdf"
+                            class="usa-button usa-button--outline width-24 display-inline-flex flex-align-center flex-justify-start padding-left-1"
+                            data-ga-category="actions"
+                            data-ga-action="click"
+                            data-ga-label="pdf_download_desktop"
+                    >
+                         <img src="https://cdn.ncbi.nlm.nih.gov/pmc/pd-medc-pmc-cloudpmc-viewer/production/a2b04810/var/data/static/img/file_download.svg" alt="Download PDF icon" class="usa-icon usa-icon--size-3 usa-icon--link"/>
+                        <span class="display-inline-flex flex-justify-center flex-1">PDF (1.5 MB)</span>
+                    </a>
+               </li>
+               
+                
+               <li>
+                   <button role="button" class="usa-button width-24 citation-dialog-trigger display-inline-flex flex-align-center flex-justify-start padding-left-1"
+                        aria-label="Open dialog with citation text in different styles"
+                        data-ga-category="actions"
+                        data-ga-action="open"
+                        data-ga-label="cite_desktop"
+                        data-all-citations-url="/resources/citations/4378866/"
+                        data-citation-style="nlm"
+                        data-download-format-link="/resources/citations/4378866/export/"
+                    >
+                       <img src="https://cdn.ncbi.nlm.nih.gov/pmc/pd-medc-pmc-cloudpmc-viewer/production/a2b04810/var/data/static/img/format_quote.svg" alt="Cite icon" class="usa-icon usa-icon--size-3 usa-icon--white"/>
+                       <span class="display-inline-flex flex-justify-center flex-1 button-label">Cite</span>
+                    </button>
+               </li>
+                
+               <li>
+
+                        <button class="usa-button width-24 collections-dialog-trigger collections-button display-inline-flex flex-align-center flex-justify-start padding-left-1 collections-button-empty"
+                              aria-label="Save article in MyNCBI collections."
+                              data-ga-category="actions"
+                              data-ga-action="click"
+                              data-ga-label="collections_button_desktop"
+                              data-collections-open-dialog-enabled="false"
+                              data-collections-open-dialog-url="https://account.ncbi.nlm.nih.gov/?back_url=https%3A%2F%2Fpmc.ncbi.nlm.nih.gov%2Farticles%2FPMC4378866%2F%23open-collections-dialog"
+                              data-in-collections="false">
+                            <img src="https://cdn.ncbi.nlm.nih.gov/pmc/pd-medc-pmc-cloudpmc-viewer/production/a2b04810/var/data/static/img/action-bookmark-full.svg" alt="Collections icon" class="usa-icon usa-icon--size-3 usa-icon--white usa-icon--bookmark-full" hidden />
+                            <img src="https://cdn.ncbi.nlm.nih.gov/pmc/pd-medc-pmc-cloudpmc-viewer/production/a2b04810/var/data/static/img/action-bookmark-empty.svg" alt="Collections icon" class="usa-icon usa-icon--size-3 usa-icon--white usa-icon--bookmark-empty" hidden />
+                            <span class="display-inline-flex flex-justify-center flex-1">Collections</span>
+                       </button>
+               </li>
+               <li class="pmc-permalink">
+                    <button
+                            type="button"
+                            class="usa-button width-24 display-inline-flex flex-align-center flex-justify padding-left-1 shadow-none"
+                            aria-label="Show article permalink"
+                            aria-expanded="false"
+                            aria-haspopup="true"
+                            data-ga-category="actions"
+                            data-ga-action="open"
+                            data-ga-label="permalink_desktop"
+                    >
+                        <img src="https://cdn.ncbi.nlm.nih.gov/pmc/pd-medc-pmc-cloudpmc-viewer/production/a2b04810/var/data/static/img/share.svg" alt="Permalink icon" class="usa-icon usa-icon--size-3 usa-icon--white"/>
+                        <span class="display-inline-flex flex-justify-center flex-1 button-label">Permalink</span>
+                    </button>
+                   
+
+<div class="pmc-permalink__dropdown" hidden>
+    <div class="pmc-permalink__dropdown__container">
+          <h2 class="usa-modal__heading margin-top-0 margin-bottom-2 text-uppercase font-sans-xs">PERMALINK</h2>
+          <div class="pmc-permalink__dropdown__content">
+              <input type="text" class="usa-input" value="https://pmc.ncbi.nlm.nih.gov/articles/PMC4378866/" aria-label="Article permalink">
+              <button class="usa-button display-inline-flex pmc-permalink__dropdown__copy__btn margin-right-0" title="Copy article permalink" data-ga-category="save_share" data-ga-action="link" data-ga-label="copy_link">
+                  <img src="https://cdn.ncbi.nlm.nih.gov/pmc/pd-medc-pmc-cloudpmc-viewer/production/a2b04810/var/data/static/img/content_copy.svg" alt="Copy icon" aria-hidden="true" class="usa-icon usa-icon--white" />
+                  <span class="margin-left-1">Copy</span>
+              </button>
+          </div>
+    </div>
+</div>
+               </li>
+           </ul>
+       </section>
+     </div>
+
+        <section class="pmc-resources margin-top-6 desktop:margin-top-4" data-page-path="/articles/PMC4378866/">
+            <h2 class="margin-top-0">RESOURCES</h2>
+            
+                <div class="usa-accordion usa-accordion--multiselectable" data-allow-multiple>
+                    <h3 class="usa-accordion__heading">
+                        <button
+                        type="button"
+                        class="usa-accordion__button"
+                        aria-expanded="false"
+                        aria-controls="resources-similar-articles"
+                        data-ga-category="resources_accordion"
+                        data-ga-action="open_similar_articles"
+                        data-ga-label="/articles/PMC4378866/"
+                        data-action-open="open_similar_articles"
+                        data-action-close="close_similar_articles"
+                        >
+                            Similar articles
+                        </button>
+                    </h3>
+                    <div
+                            id="resources-similar-articles"
+                            class="usa-accordion__content usa-prose"
+                            
+                                data-source-url="/resources/similar-article-links/25754993/"
+                            
+                    >
+                        
+                    </div>
+                    <h3 class="usa-accordion__heading">
+                        <button
+                        type="button"
+                        class="usa-accordion__button"
+                        aria-expanded="false"
+                        aria-controls="resources-cited-by-other-articles"
+                        data-ga-category="resources_accordion"
+                        data-ga-action="open_cited_by"
+                        data-ga-label="/articles/PMC4378866/"
+                        data-action-open="open_cited_by"
+                        data-action-close="close_cited_by"
+                        >
+                             Cited by other articles
+                        </button>
+                    </h3>
+                    <div
+                            id="resources-cited-by-other-articles"
+                            class="usa-accordion__content usa-prose"
+                            
+                                data-source-url="/resources/cited-by-links/25754993/"
+                            
+                    >
+                          
+                    </div>
+                    
+                        <h3 class="usa-accordion__heading">
+                            <button
+                            type="button"
+                            class="usa-accordion__button"
+                            aria-expanded="false"
+                            aria-controls="resources-links-to-ncbi-databases"
+                            data-ga-category="resources_accordion"
+                            data-ga-action="open_NCBI_links"
+                            data-ga-label="/articles/PMC4378866/"
+                            data-action-open="open_NCBI_links"
+                            data-action-close="close_NCBI_link"
+                            >
+                                 Links to NCBI Databases
+                            </button>
+                        </h3>
+                        <div
+                                id="resources-links-to-ncbi-databases"
+                                class="usa-accordion__content usa-prose"
+                                data-source-url="/resources/db-links/4378866/"
+                        >
+                        </div>
+                    
+                    
+                </div>
+            
+        </section>
+
+
+        <section
+        class="usa-in-page-nav usa-in-page-nav--wide margin-top-6 desktop:margin-top-4"
+        data-title-text="On this page"
+        data-title-heading-level="h2"
+        data-scroll-offset="0"
+        data-root-margin="-10% 0px -80% 0px"
+        data-main-content-selector="main"
+        data-threshold="1"
+        hidden
+        ></section>
+    </section>
+</div>
+
+        
+
+<div class="overlay" role="dialog" aria-label="Citation Dialog" hidden>
+    <div class="dialog citation-dialog" aria-hidden="true">
+        <div class="display-inline-flex flex-align-center flex-justify width-full margin-bottom-2">
+            <h2 class="usa-modal__heading margin-0">Cite</h2>
+             <button type="button" class="usa-button usa-button--unstyled close-overlay text-black width-auto"  tabindex="1">
+                 <img src="https://cdn.ncbi.nlm.nih.gov/pmc/pd-medc-pmc-cloudpmc-viewer/production/a2b04810/var/data/static/img/close.svg" alt="Close icon" class="usa-icon usa-icon--size-3 usa-icon--button" />
+             </button>
+        </div>
+
+        
+
+<div class="citation-text-block">
+  <div class="citation-text margin-bottom-2"></div>
+  <ul class="usa-list usa-list--unstyled display-inline-flex flex-justify width-full flex-align-center">
+      <li>
+        <button
+          class="usa-button usa-button--unstyled text-no-underline display-flex flex-align-center copy-button dialog-focus"
+          data-ga-category="save_share"
+          data-ga-action="cite"
+          data-ga-label="copy"
+          tabindex="2">
+            <img src="https://cdn.ncbi.nlm.nih.gov/pmc/pd-medc-pmc-cloudpmc-viewer/production/a2b04810/var/data/static/img/content_copy.svg" alt="Copy icon" class="usa-icon usa-icon--size-3 usa-icon--link" />
+            <span>Copy</span>
+        </button>
+      </li>
+      <li>
+          <a
+              href="#"
+              role="button"
+              class="usa-button usa-button--unstyled text-no-underline display-flex flex-align-center export-button"
+              data-ga-category="save_share"
+              data-ga-action="cite"
+              data-ga-label="download"
+              title="Download a file for external citation management software"
+              tabindex="3">
+                <img src="https://cdn.ncbi.nlm.nih.gov/pmc/pd-medc-pmc-cloudpmc-viewer/production/a2b04810/var/data/static/img/file_download.svg" alt="Download icon" aria-hidden="true" class="usa-icon usa-icon--size-3 usa-icon--link" />
+                <span class="display-none mobile-lg:display-inline">Download .nbib</span>
+                <span class="display-inline mobile-lg:display-none">.nbib</span>
+            </a>
+      </li>
+      <li>
+          
+
+<div class="display-inline-flex flex-align-center">
+  <label class="usa-label margin-top-0">Format:</label>
+  <select aria-label="Format" class="usa-select citation-style-selector padding-1 margin-top-0 border-0 padding-right-4" tabindex="4" >
+    
+      <option data-style-url-name="ama"
+              value="AMA"
+              >
+        AMA
+      </option>
+    
+      <option data-style-url-name="apa"
+              value="APA"
+              >
+        APA
+      </option>
+    
+      <option data-style-url-name="mla"
+              value="MLA"
+              >
+        MLA
+      </option>
+    
+      <option data-style-url-name="nlm"
+              value="NLM"
+              selected="selected">
+        NLM
+      </option>
+    
+  </select>
+</div>
+      </li>
+  </ul>
+</div>
+    </div>
+</div>
+
+        <div class="overlay" role="dialog" hidden>
+  <div id="collections-action-dialog" class="dialog collections-dialog" aria-hidden="true">
+   <div class="display-inline-flex flex-align-center flex-justify width-full margin-bottom-2">
+        <h2 class="usa-modal__heading margin-0">Add to Collections</h2>
+    </div>
+    <div class="collections-action-panel action-panel">
+      
+
+
+<form id="collections-action-dialog-form"
+      class="usa-form maxw-full collections-action-panel-form action-panel-content action-form action-panel-smaller-selectors"
+      data-existing-collections-url="/list-existing-collections/"
+      data-add-to-existing-collection-url="/add-to-existing-collection/"
+      data-create-and-add-to-new-collection-url="/create-and-add-to-new-collection/"
+      data-myncbi-max-collection-name-length="100"
+      data-collections-root-url="https://www.ncbi.nlm.nih.gov/myncbi/collections/">
+
+    <input type="hidden" name="csrfmiddlewaretoken" value="IjqYL8fha9kosGxrYzHc7lccwqEzLTjA7kBrcjFfYxMCtc8B3oXzIXZD2110d3zr">
+
+    <fieldset class="usa-fieldset margin-bottom-2">
+        <div class="usa-radio">
+            <input type="radio"
+            id="collections-action-dialog-new"
+            class="usa-radio__input usa-radio__input--tile collections-new  margin-top-0"
+            name="collections"
+            value="new"
+            data-ga-category="collections_button"
+            data-ga-action="click"
+            data-ga-label="collections_radio_new" />
+            <label class="usa-radio__label" for="collections-action-dialog-new">Create a new collection</label>
+        </div>
+        <div class="usa-radio">
+            <input type="radio"
+            id="collections-action-dialog-existing"
+            class="usa-radio__input usa-radio__input--tile collections-existing"
+            name="collections"
+            value="existing"
+            checked="true"
+            data-ga-category="collections_button"
+            data-ga-action="click"
+            data-ga-label="collections_radio_existing" />
+            <label class="usa-radio__label" for="collections-action-dialog-existing">Add to an existing collection</label>
+        </div>
+    </fieldset>
+
+    <fieldset class="usa-fieldset margin-bottom-2">
+        <div class="action-panel-control-wrap new-collections-controls">
+           <label for="collections-action-dialog-add-to-new" class="usa-label margin-top-0">
+                Name your collection
+               <abbr title="required" class="usa-hint usa-hint--required text-no-underline">*</abbr>
+          </label>
+          <input
+            type="text"
+            name="add-to-new-collection"
+            id="collections-action-dialog-add-to-new"
+            class="usa-input collections-action-add-to-new"
+            pattern="[^&quot;&amp;=&lt;&gt;/]*" title="The following characters are not allowed in the Name field: &quot;&amp;=&lt;&gt;/"
+            maxlength=""
+            data-ga-category="collections_button"
+            data-ga-action="create_collection"
+            data-ga-label="non_favorties_collection"
+            required
+          />
+        </div>
+        <div class="action-panel-control-wrap existing-collections-controls">
+             <label for="collections-action-dialog-add-to-existing" class="usa-label margin-top-0">
+                Choose a collection
+              </label>
+              <select id="collections-action-dialog-add-to-existing"
+                      class="usa-select collections-action-add-to-existing"
+                      data-ga-category="collections_button"
+                      data-ga-action="select_collection"
+                      data-ga-label="($('.collections-action-add-to-existing').val() === 'Favorites') ? 'Favorites' : 'non_favorites_collection'">
+              </select>
+              <div class="collections-retry-load-on-error usa-input-error-message selection-validation-message">
+                Unable to load your collection due to an error<br>
+                <a href="#">Please try again</a>
+              </div>
+        </div>
+    </fieldset>
+
+    <div class="display-inline-flex">
+        <button class="usa-button margin-top-0 action-panel-submit"
+            type="submit"
+            data-loading-label="Adding..."
+            data-pinger-ignore
+            data-ga-category="collections_button"
+            data-ga-action="click"
+            data-ga-label="add">
+          Add
+        </button>
+        <button class="usa-button usa-button--outline margin-top-0 action-panel-cancel"
+                aria-label="Close 'Add to Collections' panel"
+                ref="linksrc=close_collections_panel"
+                data-ga-category="collections_button"
+                data-ga-action="click"
+                data-ga-label="cancel">
+          Cancel
+        </button>
+    </div>
+</form>
+    </div>
+  </div>
+</div>
+
+        
+
+      </div>
+    </div>
+  </div>
+
+
+
+        
+    
+    
+
+<footer class="ncbi-footer ncbi-dark-background " >
+    
+        <div class="ncbi-footer__icon-section">
+            <div class="ncbi-footer__social-header">
+                Follow NCBI
+            </div>
+
+            <div class="grid-container ncbi-footer__ncbi-social-icons-container">
+                
+                    <a href="https://twitter.com/ncbi"
+                       class="ncbi-footer__social-icon ncbi-footer__social-icon--gray"
+                       target="_blank"
+                       rel="noreferrer noopener">
+                        <svg width="40"
+                             height="40"
+                             viewBox="0 0 40 40"
+                             fill="none"
+                             xmlns="http://www.w3.org/2000/svg"
+                             focusable="false"
+                             aria-hidden="true">
+                            <path d="m6.067 8 10.81 13.9L6 33.2h4.2l8.4-9.1 7.068 9.1H34L22.8 18.5 31.9 8h-3.5l-7.7 8.4L14.401 8H6.067Zm3.6 1.734h3.266l16.8 21.732H26.57L9.668 9.734Z">
+                            </path>
+                        </svg>
+                        <span class="usa-sr-only">NCBI on X (formerly known as Twitter)</span>
+                    </a>
+                
+
+                
+                    <a href="https://www.facebook.com/ncbi.nlm"
+                       class="ncbi-footer__social-icon ncbi-footer__social-icon--gray"
+                       target="_blank"
+                       rel="noreferrer noopener">
+                        <svg width="16"
+                             height="29"
+                             focusable="false"
+                             aria-hidden="true"
+                             viewBox="0 0 16 29"
+                             fill="none"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <path d="M3.8809 21.4002C3.8809 19.0932 3.8809 16.7876 3.8809 14.478C3.8809 14.2117 3.80103 14.1452 3.54278 14.1492C2.53372 14.1638 1.52334 14.1492 0.514288 14.1598C0.302626 14.1598 0.248047 14.0972 0.248047 13.8936C0.256034 12.4585 0.256034 11.0239 0.248047 9.58978C0.248047 9.37013 0.302626 9.30224 0.528931 9.3049C1.53798 9.31688 2.54837 9.3049 3.55742 9.31555C3.80103 9.31555 3.8809 9.26097 3.87957 9.00272C3.87158 8.00565 3.85428 7.00592 3.90753 6.00884C3.97142 4.83339 4.31487 3.73115 5.04437 2.78467C5.93095 1.63318 7.15699 1.09005 8.56141 0.967577C10.5582 0.79319 12.555 0.982221 14.5518 0.927641C14.7102 0.927641 14.7462 0.99287 14.7449 1.13664C14.7449 2.581 14.7449 4.02668 14.7449 5.47104C14.7449 5.67604 14.6517 5.68669 14.4946 5.68669C13.4523 5.68669 12.4113 5.68669 11.3703 5.68669C10.3506 5.68669 9.92057 6.10868 9.90593 7.13904C9.89661 7.7647 9.91525 8.39303 9.89794 9.01869C9.88995 9.26364 9.96583 9.31822 10.2015 9.31688C11.7204 9.30623 13.2393 9.31688 14.7595 9.3049C15.0257 9.3049 15.0723 9.3728 15.0444 9.62439C14.89 10.9849 14.7515 12.3467 14.6144 13.7085C14.5691 14.1571 14.5785 14.1585 14.1458 14.1585C12.8386 14.1585 11.5313 14.1665 10.2254 14.1518C9.95119 14.1518 9.89794 14.2317 9.89794 14.4899C9.90593 19.0799 9.89794 23.6752 9.91125 28.2612C9.91125 28.5674 9.8407 28.646 9.53186 28.6433C7.77866 28.6273 6.02414 28.6366 4.27094 28.634C3.82499 28.634 3.87158 28.6992 3.87158 28.22C3.87602 25.9472 3.87913 23.6739 3.8809 21.4002Z">
+                            </path>
+                        </svg>
+                        <span class="usa-sr-only">NCBI on Facebook</span>
+                    </a>
+                
+
+                
+                    <a href="https://www.linkedin.com/company/ncbinlm"
+                       class="ncbi-footer__social-icon ncbi-footer__social-icon--gray"
+                       target="_blank"
+                       rel="noreferrer noopener">
+                        <svg width="25"
+                             height="23"
+                             viewBox="0 0 26 24"
+                             fill="none"
+                             xmlns="http://www.w3.org/2000/svg"
+                             focusable="false"
+                             aria-hidden="true">
+                            <path d="M14.6983 9.98423C15.6302 9.24808 16.5926 8.74754 17.6762 8.51991C19.673 8.09126 21.554 8.30824 23.1262 9.7526C24.2351 10.7723 24.7529 12.1115 25.0165 13.5612C25.1486 14.3363 25.2105 15.1218 25.2015 15.9081C25.2015 18.3043 25.2015 20.6898 25.2082 23.0806C25.2082 23.3468 25.1549 23.444 24.8621 23.4414C23.1297 23.4272 21.3992 23.4272 19.6704 23.4414C19.4041 23.4414 19.3429 23.3588 19.3442 23.1019C19.3535 20.5194 19.3442 17.9368 19.3442 15.3543C19.3442 14.0005 18.3258 12.9448 17.0266 12.9488C15.7273 12.9528 14.6983 14.0071 14.6983 15.361C14.6983 17.9328 14.6917 20.5047 14.6983 23.0753C14.6983 23.3708 14.6198 23.444 14.3296 23.4427C12.6185 23.4294 10.9079 23.4294 9.19779 23.4427C8.93155 23.4427 8.86099 23.3735 8.86232 23.1086C8.8783 19.7619 8.88628 16.4144 8.88628 13.066C8.88628 11.5688 8.87874 10.0708 8.86365 8.57182C8.86365 8.3575 8.90758 8.27896 9.14054 8.28029C10.9048 8.29094 12.6687 8.29094 14.4321 8.28029C14.6464 8.28029 14.6983 8.34818 14.6983 8.54653C14.6903 9.00047 14.6983 9.45441 14.6983 9.98423Z">
+                            </path>
+                            <path d="M6.55316 15.8443C6.55316 18.2564 6.55316 20.6699 6.55316 23.082C6.55316 23.3629 6.48127 23.4388 6.19906 23.4374C4.47737 23.4241 2.75568 23.4241 1.03399 23.4374C0.767751 23.4374 0.69986 23.3629 0.701191 23.1006C0.709178 18.2648 0.709178 13.4281 0.701191 8.59053C0.701191 8.34026 0.765089 8.27237 1.01669 8.2737C2.74991 8.28435 4.48048 8.28435 6.20838 8.2737C6.47462 8.2737 6.5465 8.33627 6.54517 8.6065C6.54783 11.0186 6.55316 13.4308 6.55316 15.8443Z">
+                            </path>
+                            <path d="M3.65878 0.243898C5.36804 0.243898 6.58743 1.45529 6.58743 3.1406C6.58743 4.75801 5.32145 5.95742 3.60819 5.96807C3.22177 5.97614 2.83768 5.90639 2.47877 5.76299C2.11985 5.61959 1.79344 5.40546 1.51897 5.13334C1.24449 4.86123 1.02755 4.53668 0.881058 4.17902C0.734563 3.82136 0.661505 3.43788 0.666231 3.05141C0.67555 1.42601 1.9362 0.242566 3.65878 0.243898Z">
+                            </path>
+                        </svg>
+                        <span class="usa-sr-only">NCBI on LinkedIn</span>
+                    </a>
+                
+
+                
+                    <a href="https://github.com/ncbi"
+                       class="ncbi-footer__social-icon ncbi-footer__social-icon--gray"
+                       target="_blank"
+                       rel="noreferrer noopener">
+                        <svg width="28"
+                             height="27"
+                             viewBox="0 0 28 28"
+                             fill="none"
+                             xmlns="http://www.w3.org/2000/svg"
+                             focusable="false"
+                             aria-hidden="true">
+                            <path d="M16.7228 20.6334C17.5057 20.5527 18.2786 20.3944 19.0301 20.1608C21.3108 19.4193 22.5822 17.8259 22.963 15.4909C23.1228 14.5112 23.1814 13.5287 22.9883 12.5437C22.8106 11.6423 22.4013 10.8028 21.8007 10.1076C21.7526 10.0605 21.7197 10 21.7064 9.934C21.6931 9.86799 21.7 9.79952 21.7262 9.73748C22.0856 8.6206 21.9711 7.51969 21.601 6.42677C21.582 6.3497 21.5345 6.2827 21.468 6.23923C21.4016 6.19577 21.3211 6.17906 21.2429 6.19248C20.7329 6.21649 20.2313 6.33051 19.7611 6.52928C19.1103 6.7908 18.4899 7.12198 17.9104 7.51703C17.84 7.56996 17.7581 7.60551 17.6713 7.62078C17.5846 7.63605 17.4954 7.6306 17.4112 7.60489C15.2596 7.05882 13.0054 7.06203 10.8554 7.61421C10.7806 7.63586 10.7018 7.63967 10.6253 7.62534C10.5487 7.611 10.4766 7.57892 10.4148 7.53167C9.64788 7.03247 8.85171 6.58918 7.96368 6.33359C7.65781 6.24338 7.34123 6.19458 7.02239 6.18849C6.94879 6.17986 6.87462 6.19893 6.81432 6.242C6.75402 6.28507 6.71191 6.34904 6.69621 6.42145C6.32342 7.51437 6.2209 8.61527 6.56307 9.73348C6.59635 9.84264 6.64694 9.93316 6.54177 10.0516C5.47666 11.2604 5.09988 12.6834 5.19574 14.2676C5.2663 15.4244 5.46201 16.5466 6.01454 17.5769C6.84399 19.1171 8.21664 19.9119 9.85158 20.3352C10.3938 20.4706 10.9444 20.5698 11.4998 20.632C11.5384 20.7492 11.4506 20.7798 11.408 20.8291C11.1734 21.1179 10.9894 21.4441 10.8634 21.7942C10.7622 22.0458 10.8315 22.4039 10.6065 22.5516C10.263 22.7766 9.83827 22.8485 9.42421 22.8871C8.17936 23.0056 7.26471 22.4877 6.6283 21.4348C6.25552 20.8184 5.76956 20.3325 5.08523 20.0663C4.76981 19.9325 4.42139 19.8967 4.08537 19.9638C3.7898 20.029 3.73788 20.1901 3.93891 20.4111C4.03639 20.5234 4.14989 20.6207 4.27575 20.6999C4.9796 21.1318 5.51717 21.7884 5.80152 22.5636C6.37002 23.9973 7.48039 24.5697 8.93825 24.6323C9.43741 24.6575 9.93768 24.615 10.4254 24.5058C10.5892 24.4672 10.6531 24.4872 10.6517 24.6762C10.6451 25.4936 10.6637 26.3123 10.6517 27.131C10.6517 27.6635 10.1684 27.9297 9.58663 27.7393C8.17396 27.2671 6.84977 26.5631 5.66838 25.656C2.59555 23.2891 0.720966 20.1861 0.217704 16.3376C-0.357453 11.9127 0.911353 8.00824 3.98551 4.73881C6.11909 2.42656 8.99932 0.939975 12.1203 0.540191C16.5351 -0.0601815 20.4347 1.14323 23.7232 4.16373C26.2449 6.47869 27.724 9.37672 28.1048 12.7726C28.5828 17.0325 27.3686 20.7945 24.4768 23.9827C22.9762 25.6323 21.0956 26.8908 18.9982 27.6488C18.8783 27.6927 18.7585 27.738 18.636 27.7726C18.0356 27.9404 17.6189 27.6395 17.6189 27.0098C17.6189 25.7452 17.6308 24.4806 17.6295 23.2159C17.6329 22.9506 17.6128 22.6856 17.5696 22.4238C17.4325 21.6664 17.3419 21.484 16.7228 20.6334Z">
+                            </path>
+                        </svg>
+                        <span class="usa-sr-only">NCBI on GitHub</span>
+                    </a>
+                
+
+                
+                    <a href="https://ncbiinsights.ncbi.nlm.nih.gov/"
+                       class="ncbi-footer__social-icon ncbi-footer__social-icon--gray"
+                       target="_blank"
+                       rel="noreferrer noopener">
+                        <svg width="26"
+                             height="26"
+                             viewBox="0 0 27 27"
+                             fill="none"
+                             xmlns="http://www.w3.org/2000/svg"
+                             focusable="false"
+                             aria-hidden="true">
+                            <path d="M23.7778 26.4574C23.1354 26.3913 22.0856 26.8024 21.636 26.3087C21.212 25.8444 21.4359 24.8111 21.324 24.0347C19.9933 14.8323 14.8727 8.80132 6.09057 5.85008C4.37689 5.28406 2.58381 4.99533 0.779072 4.99481C0.202773 4.99481 -0.0229751 4.83146 0.00455514 4.21479C0.0660406 3.08627 0.0660406 1.95525 0.00455514 0.826734C-0.0413285 0.0815827 0.259669 -0.0193618 0.896534 0.00266238C6.96236 0.222904 12.3693 2.24179 16.9889 6.16209C22.9794 11.2478 26.1271 17.7688 26.4372 25.648C26.4629 26.294 26.3179 26.5271 25.6609 26.4684C25.0827 26.417 24.4991 26.4574 23.7778 26.4574Z">
+                            </path>
+                            <path d="M14.8265 26.441C14.0924 26.441 13.2371 26.6795 12.6626 26.3786C12.0092 26.0372 12.3781 25.0644 12.246 24.378C11.1154 18.5324 6.6849 14.5497 0.74755 14.1001C0.217135 14.0615 -0.0104482 13.9422 0.0134113 13.3659C0.0519536 12.1454 0.0482829 10.9213 0.0134113 9.69524C-0.00127145 9.14464 0.196946 9.03268 0.703502 9.04736C9.21217 9.27128 16.5994 16.2511 17.2804 24.7231C17.418 26.4446 17.418 26.4446 15.6579 26.4446H14.832L14.8265 26.441Z">
+                            </path>
+                            <path d="M3.58928 26.4555C2.64447 26.4618 1.73584 26.0925 1.06329 25.4289C0.39073 24.7653 0.00933763 23.8617 0.0030097 22.9169C-0.00331824 21.9721 0.365937 21.0635 1.02954 20.3909C1.69315 19.7184 2.59675 19.337 3.54156 19.3306C4.48637 19.3243 5.39499 19.6936 6.06755 20.3572C6.7401 21.0208 7.1215 21.9244 7.12782 22.8692C7.13415 23.814 6.7649 24.7226 6.10129 25.3952C5.43768 26.0677 4.53409 26.4491 3.58928 26.4555Z">
+                            </path>
+                        </svg>
+                        <span class="usa-sr-only">NCBI RSS feed</span>
+                    </a>
+                
+            </div>
+        </div>
+    
+
+    <div data-testid="gridContainer"
+         class="grid-container ncbi-footer__container">
+        <div class="grid-row ncbi-footer__main-content-container"
+             data-testid="grid">
+            
+                <div class="ncbi-footer__column">
+                    
+                        <p class="ncbi-footer__circled-icons-heading">
+                            Connect with NLM
+                        </p>
+                    
+
+                    <div class="ncbi-footer__circled-icons-list">
+                        
+                            <a href=https://twitter.com/nlm_nih class="ncbi-footer__social-icon ncbi-footer__social-icon--circled" target="_blank" rel="noreferrer noopener">
+                                <svg width="32"
+                                     height="32"
+                                     viewBox="0 0 40 40"
+                                     fill="none"
+                                     xmlns="http://www.w3.org/2000/svg"
+                                     focusable="false"
+                                     aria-hidden="true">
+                                    <path d="m6.067 8 10.81 13.9L6 33.2h4.2l8.4-9.1 7.068 9.1H34L22.8 18.5 31.9 8h-3.5l-7.7 8.4L14.401 8H6.067Zm3.6 1.734h3.266l16.8 21.732H26.57L9.668 9.734Z">
+                                    </path>
+                                </svg>
+                                <span class="usa-sr-only">NLM on X (formerly known as Twitter)</span>
+                            </a>
+                        
+
+                        
+                            <a href=https://www.facebook.com/nationallibraryofmedicine class="ncbi-footer__social-icon ncbi-footer__social-icon--circled" target="_blank" rel="noreferrer noopener">
+                                <svg width="13"
+                                     height="24"
+                                     viewBox="0 0 13 24"
+                                     fill="none"
+                                     xmlns="http://www.w3.org/2000/svg"
+                                     focusable="false"
+                                     aria-hidden="true">
+                                    <path d="M4.11371 23.1369C4.11371 23.082 4.11371 23.0294 4.11371 22.9745V12.9411H0.817305C0.6709 12.9411 0.670898 12.9411 0.670898 12.8016C0.670898 11.564 0.670898 10.3287 0.670898 9.09341C0.670898 8.97903 0.705213 8.95158 0.815017 8.95158C1.8673 8.95158 2.91959 8.95158 3.97417 8.95158H4.12057V8.83263C4.12057 7.8055 4.12057 6.7738 4.12057 5.74897C4.1264 4.92595 4.31387 4.11437 4.66959 3.37217C5.12916 2.38246 5.94651 1.60353 6.95717 1.1921C7.64827 0.905008 8.3913 0.764035 9.13953 0.778051C10.0019 0.791777 10.8644 0.830666 11.7268 0.860404C11.8869 0.860404 12.047 0.894717 12.2072 0.90158C12.2964 0.90158 12.3261 0.940469 12.3261 1.02968C12.3261 1.5421 12.3261 2.05452 12.3261 2.56465C12.3261 3.16857 12.3261 3.7725 12.3261 4.37642C12.3261 4.48165 12.2964 4.51367 12.1912 4.51138C11.5369 4.51138 10.8804 4.51138 10.2261 4.51138C9.92772 4.51814 9.63058 4.5526 9.33855 4.61433C9.08125 4.6617 8.84537 4.78881 8.66431 4.97766C8.48326 5.16652 8.3662 5.40755 8.32972 5.66661C8.28476 5.89271 8.26027 6.1224 8.25652 6.35289C8.25652 7.19014 8.25652 8.02969 8.25652 8.86923C8.25652 8.89439 8.25652 8.91955 8.25652 8.95615H12.0219C12.1797 8.95615 12.182 8.95616 12.1614 9.10714C12.0768 9.76596 11.9876 10.4248 11.9029 11.0813C11.8312 11.6319 11.7626 12.1824 11.697 12.733C11.6719 12.9434 11.6787 12.9434 11.4683 12.9434H8.26338V22.899C8.26338 22.979 8.26338 23.0591 8.26338 23.1392L4.11371 23.1369Z">
+                                    </path>
+                                </svg>
+                                <span class="usa-sr-only">NLM on Facebook</span>
+                            </a>
+                        
+
+                        
+                            <a href=https://www.youtube.com/user/NLMNIH class="ncbi-footer__social-icon ncbi-footer__social-icon--circled" target="_blank" rel="noreferrer noopener">
+                                <svg width="21"
+                                     height="15"
+                                     viewBox="0 0 21 15"
+                                     fill="none"
+                                     xmlns="http://www.w3.org/2000/svg"
+                                     focusable="false"
+                                     aria-hidden="true">
+                                    <path d="M19.2561 1.47914C18.9016 1.15888 18.5699 0.957569 17.2271 0.834039C15.5503 0.678484 13.2787 0.655608 11.563 0.65332H9.43556C7.71987 0.65332 5.4483 0.678484 3.77151 0.834039C2.43098 0.957569 2.097 1.15888 1.74242 1.47914C0.813665 2.32097 0.619221 4.62685 0.598633 6.89384C0.598633 7.31781 0.598633 7.74101 0.598633 8.16345C0.626084 10.4121 0.827391 12.686 1.74242 13.521C2.097 13.8412 2.4287 14.0425 3.77151 14.1661C5.4483 14.3216 7.71987 14.3445 9.43556 14.3468H11.563C13.2787 14.3468 15.5503 14.3216 17.2271 14.1661C18.5676 14.0425 18.9016 13.8412 19.2561 13.521C20.1712 12.6929 20.3725 10.451 20.3999 8.22064C20.3999 7.74025 20.3999 7.25986 20.3999 6.77946C20.3725 4.54907 20.1689 2.30724 19.2561 1.47914ZM8.55942 10.5311V4.65201L13.5601 7.50005L8.55942 10.5311Z"
+                                          fill="white" />
+                                </svg>
+                                <span class="usa-sr-only">NLM on YouTube</span>
+                            </a>
+                        
+                    </div>
+                </div>
+            
+
+            
+                <address class="ncbi-footer__address ncbi-footer__column">
+                    
+        <p>
+            <a class="usa-link usa-link--external"
+            href="https://www.google.com/maps/place/8600+Rockville+Pike,+Bethesda,+MD+20894/%4038.9959508,
+            -77.101021,17z/data%3D!3m1!4b1!4m5!3m4!1s0x89b7c95e25765ddb%3A0x19156f88b27635b8!8m2!3d38.9959508!
+            4d-77.0988323"
+            rel="noopener noreferrer" target="_blank">National Library of Medicine
+            <br/> 8600 Rockville Pike<br/> Bethesda, MD 20894</a>
+        </p>
+    
+                </address>
+            
+
+            
+                <ul class="usa-list usa-list--unstyled ncbi-footer__vertical-list ncbi-footer__column">
+                    
+                        <li class="ncbi-footer__vertical-list-item">
+                            
+
+
+
+
+
+
+
+
+
+    <a href="https://www.nlm.nih.gov/web_policies.html" class="usa-link  usa-link--alt ncbi-footer__link"  >
+        
+
+        
+            Web Policies
+        
+
+        
+    </a>
+
+
+                        </li>
+                    
+                        <li class="ncbi-footer__vertical-list-item">
+                            
+
+
+
+
+
+
+
+
+
+    <a href="https://www.nih.gov/institutes-nih/nih-office-director/office-communications-public-liaison/freedom-information-act-office" class="usa-link  usa-link--alt ncbi-footer__link"  >
+        
+
+        
+            FOIA
+        
+
+        
+    </a>
+
+
+                        </li>
+                    
+                        <li class="ncbi-footer__vertical-list-item">
+                            
+
+
+
+
+
+
+
+
+
+    <a href="https://www.hhs.gov/vulnerability-disclosure-policy/index.html" class="usa-link usa-link--external usa-link--alt ncbi-footer__link" rel="noreferrer noopener" target='_blank' >
+        
+
+        
+            HHS Vulnerability Disclosure
+        
+
+        
+    </a>
+
+
+                        </li>
+                    
+                </ul>
+            
+
+            
+                <ul class="usa-list usa-list--unstyled ncbi-footer__vertical-list ncbi-footer__column">
+                    
+                        <li class="ncbi-footer__vertical-list-item">
+                            
+
+
+
+
+
+
+
+
+
+    <a href="https://support.nlm.nih.gov/" class="usa-link  usa-link--alt ncbi-footer__link"  >
+        
+
+        
+            Help
+        
+
+        
+    </a>
+
+
+                        </li>
+                    
+                        <li class="ncbi-footer__vertical-list-item">
+                            
+
+
+
+
+
+
+
+
+
+    <a href="https://www.nlm.nih.gov/accessibility.html" class="usa-link  usa-link--alt ncbi-footer__link"  >
+        
+
+        
+            Accessibility
+        
+
+        
+    </a>
+
+
+                        </li>
+                    
+                        <li class="ncbi-footer__vertical-list-item">
+                            
+
+
+
+
+
+
+
+
+
+    <a href="https://www.nlm.nih.gov/careers/careers.html" class="usa-link  usa-link--alt ncbi-footer__link"  >
+        
+
+        
+            Careers
+        
+
+        
+    </a>
+
+
+                        </li>
+                    
+                </ul>
+            
+        </div>
+
+        
+            <div class="grid-row grid-col-12" data-testid="grid">
+                <ul class="ncbi-footer__bottom-links-list">
+                    
+                        <li class="ncbi-footer__bottom-list-item">
+                            
+
+
+
+
+
+
+
+
+
+    <a href="https://www.nlm.nih.gov/" class="usa-link  usa-link--alt ncbi-footer__link"  >
+        
+
+        
+            NLM
+        
+
+        
+    </a>
+
+
+                        </li>
+                    
+                        <li class="ncbi-footer__bottom-list-item">
+                            
+
+
+
+
+
+
+
+
+
+    <a href="https://www.nih.gov/" class="usa-link  usa-link--alt ncbi-footer__link"  >
+        
+
+        
+            NIH
+        
+
+        
+    </a>
+
+
+                        </li>
+                    
+                        <li class="ncbi-footer__bottom-list-item">
+                            
+
+
+
+
+
+
+
+
+
+    <a href="https://www.hhs.gov/" class="usa-link usa-link--external usa-link--alt ncbi-footer__link" rel="noreferrer noopener" target='_blank' >
+        
+
+        
+            HHS
+        
+
+        
+    </a>
+
+
+                        </li>
+                    
+                        <li class="ncbi-footer__bottom-list-item">
+                            
+
+
+
+
+
+
+
+
+
+    <a href="https://www.usa.gov/" class="usa-link usa-link--external usa-link--alt ncbi-footer__link" rel="noreferrer noopener" target='_blank' >
+        
+
+        
+            USA.gov
+        
+
+        
+    </a>
+
+
+                        </li>
+                    
+                </ul>
+            </div>
+        
+    </div>
+</footer>
+
+    
+
+
+        
+        
+    
+  <script  type="text/javascript" src="https://cdn.ncbi.nlm.nih.gov/core/pinger/pinger.js"> </script>
+
+
+    
+        
+
+<button class="back-to-top" data-ga-category="pagination" data-ga-action="back_to_top">
+    <label>Back to Top</label>
+    <img src="https://cdn.ncbi.nlm.nih.gov/pmc/pd-medc-pmc-cloudpmc-viewer/production/a2b04810/var/data/static/img/arrow_upward.svg" alt="back to top icon" class="usa-icon usa-icon--size-3 order-0 usa-icon--white" />
+</button>
+    
+
+
+        
+    
+    <div id="icon-container" style="display: none;"></div>
+    
+    
+        
+    <script type="application/javascript">
+    window.ncbi = window.ncbi || {};
+    window.ncbi.pmc = window.ncbi.pmc || {};
+    window.ncbi.pmc.options = {
+        logLevel: 'INFO',
+        
+        staticEndpoint: 'https://cdn.ncbi.nlm.nih.gov/pmc/pd-medc-pmc-cloudpmc-viewer/production/a2b04810/var/data/static/',
+        
+        citeCookieName: 'pmc-cf',
+    };
+</script>
+    <script type="module" crossorigin="" src="https://cdn.ncbi.nlm.nih.gov/pmc/pd-medc-pmc-cloudpmc-viewer/production/a2b04810/var/data/static/assets/base-Cp_Il6gk.js"></script>
+<link href="https://cdn.ncbi.nlm.nih.gov/pmc/pd-medc-pmc-cloudpmc-viewer/production/a2b04810/var/data/static/assets/vendor-Co8Vdmw2.js" type="text/javascript" crossorigin="anonymous" rel="modulepreload" as="script" />
+    
+    <script type="text/javascript" src="https://cdn.ncbi.nlm.nih.gov/core/jquery/jquery-3.6.0.min.js">&#xA0;</script>
+    <script type="text/javascript">
+        jQuery.getScript("https://cdn.ncbi.nlm.nih.gov/core/alerts/alerts.js", function () {
+            galert(['div.nav_and_browser', 'div.header', '#universal_header', '.usa-banner', 'body > *:nth-child(1)'])
+        });
+    </script>
+
+
+    <script type="text/javascript">var exports = {};</script>
+     <script src="https://cdn.ncbi.nlm.nih.gov/pmc/pd-medc-pmc-cloudpmc-viewer/production/a2b04810/var/data/static/CACHE/js/output.4e25b6297b38.js"></script>
+
+    <script type="module" crossorigin="" src="https://cdn.ncbi.nlm.nih.gov/pmc/pd-medc-pmc-cloudpmc-viewer/production/a2b04810/var/data/static/assets/article-BxyWTbsj.js"></script>
+<link href="https://cdn.ncbi.nlm.nih.gov/pmc/pd-medc-pmc-cloudpmc-viewer/production/a2b04810/var/data/static/assets/vendor-Co8Vdmw2.js" type="text/javascript" crossorigin="anonymous" rel="modulepreload" as="script" />
+<link href="https://cdn.ncbi.nlm.nih.gov/pmc/pd-medc-pmc-cloudpmc-viewer/production/a2b04810/var/data/static/assets/index-DXSA0fsx.js" type="text/javascript" crossorigin="anonymous" rel="modulepreload" as="script" />
+<link href="https://cdn.ncbi.nlm.nih.gov/pmc/pd-medc-pmc-cloudpmc-viewer/production/a2b04810/var/data/static/assets/secure-cookie-Br6x5jtB.js" type="text/javascript" crossorigin="anonymous" rel="modulepreload" as="script" />
+    
+    
+
+    </body>
+</html>

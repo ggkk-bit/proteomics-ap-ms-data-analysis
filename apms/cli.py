@@ -299,6 +299,10 @@ def run_command(args: argparse.Namespace) -> int:
             root / "06_PPIrank_网络补充排序" / "6.PPIrank排序结果" / "ppirank_ranked.tsv",
             "ppirank_score",
         ),
+        "PPI evidence summary": (
+            root / "06_PPIrank_网络补充排序" / "6.PPIrank排序结果" / "ppi_evidence_summary.tsv",
+            "ppirank_score",
+        ),
     }
     table_summaries: dict[str, tuple[str, dict[str, Any]]] = {}
     for name, (src, score_col) in copied_tables.items():

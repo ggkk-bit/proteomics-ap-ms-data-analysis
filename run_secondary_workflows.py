@@ -489,6 +489,13 @@ def plot_ppirank_component_summary(path: Path, df: pd.DataFrame) -> None:
     plot_bar(path, list(categories.keys()), [float(v) for v in categories.values()], "PPIrank component support summary", "Candidate count")
 
 
+def plot_category_counts(path: Path, series: pd.Series, title: str, ylabel: str = "Candidate count") -> None:
+    counts = series.fillna("missing").astype(str).value_counts()
+    if counts.empty:
+        return
+    plot_bar(path, counts.index.tolist(), counts.astype(float).tolist(), title, ylabel)
+
+
 def add_standard_plots(
     out_dir: Path,
     df: pd.DataFrame,
@@ -580,6 +587,111 @@ def write_standard_interactions(path: Path, frames: list[pd.DataFrame]) -> dict[
     standard.to_csv(path, sep="\t", index=False)
     counts = standard.groupby("algorithm").size().astype(int).to_dict() if len(standard) else {}
     return {"standard_interactions_rows": int(len(standard)), "standard_interactions_by_algorithm": counts}
+
+
+def edge_key_frame(df: pd.DataFrame) -> pd.Series:
+    bait = df["bait_name"].fillna("").astype(str).str.upper()
+    prey_gene = df.get("prey_gene", pd.Series("", index=df.index)).fillna("").astype(str).str.upper()
+    prey_id = df.get("prey_id", pd.Series("", index=df.index)).fillna("").astype(str).str.upper()
+    prey = prey_gene.where(prey_gene.ne(""), prey_id)
+    return bait + "||" + prey
+
+
+def high_confidence_edges(df: pd.DataFrame, score_col: str, threshold: float | None = None) -> set[str]:
+    if df.empty or score_col not in df.columns:
+        return set()
+    work = df.copy()
+    work[score_col] = pd.to_numeric(work[score_col], errors="coerce").fillna(0.0)
+    if threshold is None:
+        threshold = float(work[score_col].quantile(0.90))
+    return set(edge_key_frame(work[work[score_col] >= threshold]))
+
+
+def load_optional_ppi_reference(root: Path) -> tuple[set[str], str]:
+    ppi_dir = find_prefixed_dir(root, "06_PPIrank")
+    input_dir = find_prefixed_dir(ppi_dir, "4.")
+    candidates = [
+        input_dir / "ppi_reference.tsv",
+        input_dir / "known_ppi_reference.tsv",
+        input_dir / "string_reference.tsv",
+    ]
+    for path in candidates:
+        if not path.exists():
+            continue
+        ref = pd.read_csv(path, sep="\t", dtype=str).fillna("")
+        left = next((c for c in ["protein_a", "gene_a", "bait_name", "source"] if c in ref.columns), None)
+        right = next((c for c in ["protein_b", "gene_b", "prey_gene", "prey_id", "target"] if c in ref.columns), None)
+        if not left or not right:
+            continue
+        keys = set((ref[left].str.upper() + "||" + ref[right].str.upper()).tolist())
+        keys |= set((ref[right].str.upper() + "||" + ref[left].str.upper()).tolist())
+        return keys, path.name
+    return set(), "external_reference_not_configured"
+
+
+def annotate_ppi_evidence(
+    root: Path,
+    ppi_out: pd.DataFrame,
+    compass_out: pd.DataFrame,
+    mist_out: pd.DataFrame,
+    hgs_out: pd.DataFrame,
+    cs_out: pd.DataFrame,
+    crap_pass: pd.DataFrame,
+) -> pd.DataFrame:
+    out = ppi_out.copy()
+    out["edge_key"] = edge_key_frame(out)
+    support_sets = {
+        "CompPASS": high_confidence_edges(compass_out, "compass_scorewd"),
+        "MiST": high_confidence_edges(mist_out, "mist_score", threshold=0.75),
+        "HGSCore": high_confidence_edges(hgs_out, "hgs_score"),
+        "CS_Score": high_confidence_edges(cs_out, "cs_score"),
+        "CRAPome_pass": set(edge_key_frame(crap_pass)) if len(crap_pass) else set(),
+    }
+    reference_edges, reference_name = load_optional_ppi_reference(root)
+    support_names: list[str] = []
+    support_counts: list[int] = []
+    for key in out["edge_key"]:
+        names = [name for name, edges in support_sets.items() if key in edges]
+        support_names.append(",".join(names))
+        support_counts.append(len(names))
+    out["algorithm_support_count"] = support_counts
+    out["supported_by"] = support_names
+    out["known_ppi_reference"] = out["edge_key"].isin(reference_edges) if reference_edges else False
+    out["ppi_reference_source"] = reference_name
+    out["ppi_evidence_class"] = np.select(
+        [
+            out["known_ppi_reference"].astype(bool),
+            out["project_background_contaminant"].astype(bool),
+            out["algorithm_support_count"] >= 3,
+            out["algorithm_support_count"] == 2,
+            out["algorithm_support_count"] == 1,
+        ],
+        [
+            "known_reference_supported",
+            "background_flagged",
+            "apms_consensus_high",
+            "apms_consensus_medium",
+            "single_algorithm_support",
+        ],
+        default="ppirank_only",
+    )
+    keep_cols = [
+        "bait_name",
+        "prey_id",
+        "prey_gene",
+        "ppirank_score",
+        "apms_support_score",
+        "hgs_score",
+        "cs_score",
+        "crapome_filter_score",
+        "project_background_contaminant",
+        "algorithm_support_count",
+        "supported_by",
+        "known_ppi_reference",
+        "ppi_reference_source",
+        "ppi_evidence_class",
+    ]
+    return out[keep_cols].sort_values(["ppirank_score", "algorithm_support_count"], ascending=[False, False])
 
 
 def load_compass_candidates(root: Path, top_n: int) -> pd.DataFrame:
@@ -858,7 +970,24 @@ def run_workflows(paths: Paths, top_n: int, contaminant_frequency: float) -> dic
     ppi.loc[ppi["project_background_contaminant"].astype(bool), "ppirank_score"] *= 0.5
     ppi_out = top_per_bait(ppi[common_cols + ["hgs_score", "cs_score", "crapome_filter_score", "project_background_contaminant", "ppirank_score"]], "ppirank_score", top_n)
     ppi_out["apms_support_score"] = 0.5 * ppi_out["hgs_score"] + 0.5 * ppi_out["cs_score"]
+    ppi_evidence = annotate_ppi_evidence(root, ppi_out, compass_out, mist_out, hgs_out, cs_out, crap_pass)
+    ppi_out = ppi_out.merge(
+        ppi_evidence[
+            [
+                "bait_name",
+                "prey_id",
+                "algorithm_support_count",
+                "supported_by",
+                "known_ppi_reference",
+                "ppi_reference_source",
+                "ppi_evidence_class",
+            ]
+        ],
+        on=["bait_name", "prey_id"],
+        how="left",
+    )
     write_tsv(root / "06_PPIrank_网络补充排序" / "6.PPIrank排序结果" / "ppirank_ranked.tsv", ppi_out)
+    write_tsv(root / "06_PPIrank_网络补充排序" / "6.PPIrank排序结果" / "ppi_evidence_summary.tsv", ppi_evidence)
     plot_hist(
         root / "06_PPIrank_网络补充排序" / "7.可视化结果" / "ppirank_score_distribution.png",
         ppi_out["ppirank_score"],
@@ -890,11 +1019,19 @@ def run_workflows(paths: Paths, top_n: int, contaminant_frequency: float) -> dic
     )
     plot_ppi_network(ppi_figure_dir / "ppirank_06_top_network.png", ppi_out, "ppirank_score", "PPIrank top bait-prey network")
     plot_ppirank_component_summary(ppi_figure_dir / "ppirank_07_component_support_summary.png", ppi_out)
+    plot_category_counts(ppi_figure_dir / "ppirank_08_evidence_class_counts.png", ppi_out["ppi_evidence_class"], "PPI evidence classes")
+    plot_category_counts(
+        ppi_figure_dir / "ppirank_09_algorithm_support_counts.png",
+        ppi_out["algorithm_support_count"].astype(str) + " methods",
+        "PPIrank cross-algorithm support",
+    )
     ppi_figures.extend(
         str(path)
         for path in [
             ppi_figure_dir / "ppirank_06_top_network.png",
             ppi_figure_dir / "ppirank_07_component_support_summary.png",
+            ppi_figure_dir / "ppirank_08_evidence_class_counts.png",
+            ppi_figure_dir / "ppirank_09_algorithm_support_counts.png",
         ]
         if path.exists()
     )
@@ -932,6 +1069,8 @@ def run_workflows(paths: Paths, top_n: int, contaminant_frequency: float) -> dic
         "CRAPome_background_rows": int(len(crap_out)),
         "CRAPome_filtered_rows": int(len(crap_pass)),
         "PPIrank_rows": int(len(ppi_out)),
+        "PPI_evidence_rows": int(len(ppi_evidence)),
+        "PPI_reference_source": str(ppi_evidence["ppi_reference_source"].iloc[0]) if len(ppi_evidence) else "none",
         "top_n_per_bait": int(top_n),
         "contaminant_frequency_threshold": float(contaminant_frequency),
         "figures_generated": {

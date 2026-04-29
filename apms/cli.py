@@ -208,7 +208,15 @@ def should_keep_biogrid_edge(normalized: dict[str, str], query_genes: set[str]) 
     return normalized["protein_a"] in query_genes or normalized["protein_b"] in query_genes
 
 
-def fetch_biogrid_reference(root: Path, access_key: str, batch_size: int, max_genes: int | None, mode: str) -> dict[str, Any]:
+def fetch_biogrid_reference(
+    root: Path,
+    access_key: str,
+    batch_size: int,
+    max_genes: int | None,
+    mode: str,
+    batch_limit: int | None,
+    reset_progress: bool,
+) -> dict[str, Any]:
     genes = collect_ppi_query_genes(root, max_genes=max_genes, mode=mode)
     if not genes:
         raise ValueError("No genes were found in current AP-MS outputs. Run the workflow once before fetch-ppi.")
@@ -219,6 +227,28 @@ def fetch_biogrid_reference(root: Path, access_key: str, batch_size: int, max_ge
     input_dir = find_prefixed_dir(ppi_dir, "4.")
     cache_dir = input_dir / ".biogrid_cache"
     cache_dir.mkdir(parents=True, exist_ok=True)
+    output = input_dir / "ppi_reference.tsv"
+    progress_path = input_dir / "biogrid_fetch_progress.json"
+
+    if reset_progress and progress_path.exists():
+        progress_path.unlink()
+
+    completed_genes: set[str] = set()
+    if progress_path.exists():
+        progress = json.loads(progress_path.read_text(encoding="utf-8"))
+        if progress.get("mode") == mode:
+            completed_genes = set(progress.get("completed_genes", []))
+
+    if output.exists():
+        existing = pd.read_csv(output, sep="\t", dtype=str).fillna("")
+        for _, row in existing.iterrows():
+            key = (
+                str(row.get("protein_a", "")),
+                str(row.get("protein_b", "")),
+                str(row.get("evidence_type", "")),
+                str(row.get("publication", "")),
+            )
+            records[key] = row.to_dict()
 
     def add_records(batch: list[str]) -> None:
         if not batch:
@@ -267,10 +297,33 @@ def fetch_biogrid_reference(root: Path, access_key: str, batch_size: int, max_ge
             records[key] = normalized
         time.sleep(0.25)
 
+    batches_processed = 0
     for start in range(0, len(genes), batch_size):
         batch = genes[start : start + batch_size]
+        if all(gene in completed_genes for gene in batch):
+            continue
+        if batch_limit is not None and batches_processed >= batch_limit:
+            break
         add_records(batch)
-    output = input_dir / "ppi_reference.tsv"
+        completed_genes.update(batch)
+        batches_processed += 1
+        progress_path.write_text(
+            json.dumps(
+                {
+                    "source": "BioGRID",
+                    "mode": mode,
+                    "batch_size": batch_size,
+                    "max_genes": max_genes,
+                    "completed_genes": sorted(completed_genes),
+                    "failed_genes": failed_genes,
+                    "updated_at": datetime.now().isoformat(timespec="seconds"),
+                },
+                indent=2,
+                ensure_ascii=False,
+            )
+            + "\n",
+            encoding="utf-8",
+        )
     df = pd.DataFrame(
         records.values(),
         columns=["protein_a", "protein_b", "source", "reference_score", "evidence_type", "publication", "organism", "is_physical"],
@@ -281,10 +334,14 @@ def fetch_biogrid_reference(root: Path, access_key: str, batch_size: int, max_ge
         "source": "BioGRID",
         "query_genes": len(genes),
         "query_mode": mode,
+        "completed_genes": len(completed_genes),
+        "remaining_genes": max(0, len(genes) - len(completed_genes)),
+        "batches_processed": batches_processed,
         "reference_edges": int(len(df)),
         "failed_genes": len(failed_genes),
         "failed_gene_examples": failed_genes[:20],
         "output": str(output),
+        "progress": str(progress_path),
     }
 
 
@@ -566,6 +623,8 @@ def fetch_ppi_command(args: argparse.Namespace) -> int:
         batch_size=int(args.batch_size),
         max_genes=args.max_genes,
         mode=args.mode,
+        batch_limit=args.batch_limit,
+        reset_progress=args.reset_progress,
     )
     print(json.dumps(summary, indent=2, ensure_ascii=False))
     return 0
@@ -588,6 +647,8 @@ def main(argv: list[str] | None = None) -> int:
     fetch_parser.add_argument("--batch-size", type=int, default=75, help="Genes per BioGRID request")
     fetch_parser.add_argument("--max-genes", type=int, default=None, help="Optional cap for testing")
     fetch_parser.add_argument("--mode", choices=["high-confidence", "all"], default="high-confidence", help="Gene collection mode")
+    fetch_parser.add_argument("--batch-limit", type=int, default=None, help="Only process this many new batches, then stop")
+    fetch_parser.add_argument("--reset-progress", action="store_true", help="Ignore previous BioGRID progress and start over")
     fetch_parser.set_defaults(func=fetch_ppi_command)
 
     args = parser.parse_args(argv)

@@ -72,6 +72,7 @@ def copy_if_exists(src: Path, dest: Path) -> None:
 
 def copy_algorithm_figures(root: Path, figures_dir: Path) -> dict[str, str]:
     figure_specs = [
+        ("CompPASS", "01_CompPASS"),
         ("HGSCore", "03_HGSCore"),
         ("CS Score", "04_CS_Score"),
         ("CRAPome", "05_CRAPome"),
@@ -85,7 +86,7 @@ def copy_algorithm_figures(root: Path, figures_dir: Path) -> dict[str, str]:
         except FileNotFoundError:
             continue
         safe_prefix = display_name.lower().replace(" ", "_")
-        for src in sorted(source_dir.glob("*.png")):
+        for src in sorted(source_dir.rglob("*.png")):
             dest = figures_dir / f"{safe_prefix}_{src.name}"
             copy_if_exists(src, dest)
             if dest.exists():
@@ -268,6 +269,10 @@ def run_command(args: argparse.Namespace) -> int:
         "Standard interactions": (
             find_prefixed_dir(root, "07_") / "结果输出" / "standard_interactions.tsv",
             "score",
+        ),
+        "CompPASS candidates": (
+            root / "01_CompPASS_互作评分" / "6.CompPASS评分结果" / "compass_candidates.tsv",
+            "compass_scorewd",
         ),
         "HGSCore candidates": (
             root / "03_HGSCore_辅助评分" / "6.HGSCore评分结果" / "hgscore_candidates.tsv",

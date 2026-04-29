@@ -582,6 +582,42 @@ def write_standard_interactions(path: Path, frames: list[pd.DataFrame]) -> dict[
     return {"standard_interactions_rows": int(len(standard)), "standard_interactions_by_algorithm": counts}
 
 
+def load_compass_candidates(root: Path, top_n: int) -> pd.DataFrame:
+    compass_dir = find_prefixed_dir(root, "01_CompPASS")
+    results_dir = find_prefixed_dir(compass_dir, "6.")
+    matches = sorted(results_dir.rglob("comppass_results.tsv"))
+    if not matches:
+        return pd.DataFrame()
+    src = matches[0]
+    usecols = ["Bait", "Prey", "preyGene", "AvePSM", "Z", "WD", "scoreZ", "scoreWD"]
+    df = pd.read_csv(src, sep="\t", usecols=lambda col: col in usecols)
+    if "scoreWD" not in df.columns:
+        return pd.DataFrame()
+    out = pd.DataFrame(
+        {
+            "bait_name": df.get("Bait", ""),
+            "prey_id": df.get("Prey", ""),
+            "prey_gene": df.get("preyGene", df.get("Prey", "")),
+            "mean_intensity": pd.to_numeric(df.get("AvePSM", 0.0), errors="coerce").fillna(0.0),
+            "max_intensity": pd.to_numeric(df.get("AvePSM", 0.0), errors="coerce").fillna(0.0),
+            "present_count": 1,
+            "replicate_count": 1,
+            "replicate_fraction": 1.0,
+            "background_bait_count": 0,
+            "background_frequency": 0.0,
+            "specificity": pd.to_numeric(df.get("scoreZ", df.get("Z", 0.0)), errors="coerce").fillna(0.0),
+            "compass_wd": pd.to_numeric(df.get("WD", df["scoreWD"]), errors="coerce").fillna(0.0),
+            "compass_z": pd.to_numeric(df.get("Z", df.get("scoreZ", 0.0)), errors="coerce").fillna(0.0),
+            "compass_scorewd": pd.to_numeric(df["scoreWD"], errors="coerce").fillna(0.0),
+            "compass_scorez": pd.to_numeric(df.get("scoreZ", df.get("Z", 0.0)), errors="coerce").fillna(0.0),
+        }
+    )
+    out = out[out["bait_name"].astype(str).ne("") & out["prey_id"].astype(str).ne("")].copy()
+    out = top_per_bait(out, "compass_scorewd", top_n)
+    write_tsv(results_dir / "compass_candidates.tsv", out)
+    return out
+
+
 def run_workflows(paths: Paths, top_n: int, contaminant_frequency: float) -> dict:
     annotation = load_annotation(paths.annotation)
     cleaned, annotation, clean_stats = load_and_clean(paths, annotation)
@@ -602,6 +638,7 @@ def run_workflows(paths: Paths, top_n: int, contaminant_frequency: float) -> dic
     ]
 
     root = paths.root
+    compass_out = load_compass_candidates(root, top_n)
     hgs_dir = find_prefixed_dir(root, "03_HGSCore")
     cs_dir = find_prefixed_dir(root, "04_CS_Score")
     crapome_dir = find_prefixed_dir(root, "05_CRAPome")
@@ -782,6 +819,13 @@ def run_workflows(paths: Paths, top_n: int, contaminant_frequency: float) -> dic
     standard_summary = write_standard_interactions(
         integration_output_dir / "standard_interactions.tsv",
         [
+            standardize_interactions(
+                compass_out,
+                "CompPASS",
+                "compass_scorewd",
+                "compass_candidates.tsv",
+                "compass_scorez",
+            ),
             standardize_interactions(hgs_out, "HGSCore", "hgs_score", "hgscore_candidates.tsv", "replicate_fraction"),
             standardize_interactions(cs_out, "CS_Score", "cs_score", "cs_score_candidates.tsv", "specificity"),
             standardize_interactions(
@@ -797,6 +841,7 @@ def run_workflows(paths: Paths, top_n: int, contaminant_frequency: float) -> dic
     )
 
     all_summary["outputs"] = {
+        "CompPASS_rows": int(len(compass_out)),
         "HGSCore_rows": int(len(hgs_out)),
         "CS_Score_rows": int(len(cs_out)),
         "CRAPome_background_rows": int(len(crap_out)),

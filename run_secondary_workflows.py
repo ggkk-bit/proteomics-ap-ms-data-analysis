@@ -67,9 +67,39 @@ def first_token(value: object) -> str:
     return text.split(";")[0].strip()
 
 
+def tokens(value: object) -> list[str]:
+    if pd.isna(value):
+        return []
+    return [part.strip() for part in str(value).split(";") if part.strip()]
+
+
 def ensure_dir(path: Path) -> Path:
     path.mkdir(parents=True, exist_ok=True)
     return path
+
+
+def build_protein_gene_map(cleaned: pd.DataFrame) -> dict[str, str]:
+    mapping: dict[str, str] = {}
+    id_cols = [col for col in ["Protein IDs", "Majority protein IDs", "prey_id"] if col in cleaned.columns]
+    if not id_cols:
+        return mapping
+    gene_series = cleaned["prey_gene"] if "prey_gene" in cleaned.columns else cleaned.get("Gene names", pd.Series("", index=cleaned.index))
+    for idx, gene_value in gene_series.items():
+        gene = first_token(gene_value)
+        if not gene:
+            continue
+        for col in id_cols:
+            for token in tokens(cleaned.at[idx, col]):
+                mapping.setdefault(token, gene)
+    return mapping
+
+
+def map_protein_tokens_to_gene(value: object, protein_gene_map: dict[str, str]) -> str:
+    for token in tokens(value):
+        mapped = protein_gene_map.get(token)
+        if mapped:
+            return mapped
+    return first_token(value)
 
 
 def find_prefixed_dir(parent: Path, prefix: str) -> Path:
@@ -730,7 +760,8 @@ def load_compass_candidates(root: Path, top_n: int) -> pd.DataFrame:
     return out
 
 
-def load_mist_candidates(root: Path, top_n: int) -> pd.DataFrame:
+def load_mist_candidates(root: Path, top_n: int, protein_gene_map: dict[str, str] | None = None) -> pd.DataFrame:
+    protein_gene_map = protein_gene_map or {}
     mist_dir = find_prefixed_dir(root, "02_MiST")
     results_dir = find_prefixed_dir(mist_dir, "6.")
     src = results_dir / "preprocessed_NoC_MAT_MIST.txt"
@@ -744,7 +775,7 @@ def load_mist_candidates(root: Path, top_n: int) -> pd.DataFrame:
         {
             "bait_name": df.get("Bait", ""),
             "prey_id": df.get("Prey", "").map(first_token),
-            "prey_gene": df.get("Prey", "").map(first_token),
+            "prey_gene": df.get("Prey", "").map(lambda value: map_protein_tokens_to_gene(value, protein_gene_map)),
             "mean_intensity": pd.to_numeric(df.get("Abundance", 0.0), errors="coerce").fillna(0.0),
             "max_intensity": pd.to_numeric(df.get("Abundance", 0.0), errors="coerce").fillna(0.0),
             "present_count": df.get("Ip", "").fillna("").astype(str).str.count(",") + 1,
@@ -817,7 +848,8 @@ def run_workflows(paths: Paths, top_n: int, contaminant_frequency: float) -> dic
 
     root = paths.root
     compass_out = load_compass_candidates(root, top_n)
-    mist_out = load_mist_candidates(root, top_n)
+    protein_gene_map = build_protein_gene_map(cleaned)
+    mist_out = load_mist_candidates(root, top_n, protein_gene_map)
     mist_dir = find_prefixed_dir(root, "02_MiST")
     hgs_dir = find_prefixed_dir(root, "03_HGSCore")
     cs_dir = find_prefixed_dir(root, "04_CS_Score")

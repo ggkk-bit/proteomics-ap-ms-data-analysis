@@ -265,6 +265,10 @@ def run_command(args: argparse.Namespace) -> int:
         standard_summary = write_standard_table(tables_dir / "standard_apms_table.tsv", cleaned, annotation)
 
     copied_tables = {
+        "Standard interactions": (
+            find_prefixed_dir(root, "07_") / "结果输出" / "standard_interactions.tsv",
+            "score",
+        ),
         "HGSCore candidates": (
             root / "03_HGSCore_辅助评分" / "6.HGSCore评分结果" / "hgscore_candidates.tsv",
             "hgs_score",

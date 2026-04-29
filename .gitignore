@@ -29,6 +29,7 @@ crapome_input.tsv
 
 # Generated workflow output directories
 runs/
+07_复合分析与整合/结果输出/
 
 # Generated algorithm output directories
 secondary_workflow_validation.json

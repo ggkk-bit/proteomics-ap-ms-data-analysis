@@ -517,6 +517,71 @@ def add_standard_plots(
     return [str(out_dir / name) for name in figures if (out_dir / name).exists()]
 
 
+STANDARD_INTERACTION_COLUMNS = [
+    "algorithm",
+    "bait_name",
+    "prey_id",
+    "prey_gene",
+    "score",
+    "score_name",
+    "rank",
+    "is_hit",
+    "mean_intensity",
+    "replicate_fraction",
+    "background_frequency",
+    "evidence_score",
+    "source_table",
+]
+
+
+def standardize_interactions(
+    df: pd.DataFrame,
+    algorithm: str,
+    score_col: str,
+    source_table: str,
+    evidence_col: str | None = None,
+    hit_threshold: float | None = None,
+) -> pd.DataFrame:
+    if df.empty:
+        return pd.DataFrame(columns=STANDARD_INTERACTION_COLUMNS)
+    work = df.copy()
+    work[score_col] = pd.to_numeric(work[score_col], errors="coerce").fillna(0.0)
+    if hit_threshold is None:
+        hit_threshold = float(work[score_col].quantile(0.90))
+    work = work.sort_values(["bait_name", score_col], ascending=[True, False]).copy()
+    work["rank"] = work.groupby("bait_name")[score_col].rank(method="first", ascending=False).astype(int)
+    out = pd.DataFrame(
+        {
+            "algorithm": algorithm,
+            "bait_name": work.get("bait_name", ""),
+            "prey_id": work.get("prey_id", ""),
+            "prey_gene": work.get("prey_gene", ""),
+            "score": work[score_col],
+            "score_name": score_col,
+            "rank": work["rank"],
+            "is_hit": work[score_col] >= hit_threshold,
+            "mean_intensity": pd.to_numeric(work.get("mean_intensity", 0.0), errors="coerce").fillna(0.0),
+            "replicate_fraction": pd.to_numeric(work.get("replicate_fraction", 0.0), errors="coerce").fillna(0.0),
+            "background_frequency": pd.to_numeric(work.get("background_frequency", 0.0), errors="coerce").fillna(0.0),
+            "evidence_score": (
+                pd.to_numeric(work[evidence_col], errors="coerce").fillna(0.0)
+                if evidence_col and evidence_col in work.columns
+                else work[score_col]
+            ),
+            "source_table": source_table,
+        }
+    )
+    return out[STANDARD_INTERACTION_COLUMNS]
+
+
+def write_standard_interactions(path: Path, frames: list[pd.DataFrame]) -> dict[str, int]:
+    ensure_dir(path.parent)
+    standard = pd.concat(frames, ignore_index=True) if frames else pd.DataFrame(columns=STANDARD_INTERACTION_COLUMNS)
+    standard.to_csv(path, sep="\t", index=False)
+    counts = standard.groupby("algorithm").size().astype(int).to_dict() if len(standard) else {}
+    return {"standard_interactions_rows": int(len(standard)), "standard_interactions_by_algorithm": counts}
+
+
 def run_workflows(paths: Paths, top_n: int, contaminant_frequency: float) -> dict:
     annotation = load_annotation(paths.annotation)
     cleaned, annotation, clean_stats = load_and_clean(paths, annotation)
@@ -545,6 +610,8 @@ def run_workflows(paths: Paths, top_n: int, contaminant_frequency: float) -> dic
     cs_figure_dir = ensure_dir(find_prefixed_dir(cs_dir, "7."))
     crapome_figure_dir = ensure_dir(find_prefixed_dir(crapome_dir, "7."))
     ppi_figure_dir = ensure_dir(find_prefixed_dir(ppi_dir, "7."))
+    integration_dir = find_prefixed_dir(root, "07_")
+    integration_output_dir = ensure_dir(integration_dir / "结果输出")
     all_summary = {
         "input": {
             "protein_groups": str(paths.protein_groups),
@@ -712,6 +779,23 @@ def run_workflows(paths: Paths, top_n: int, contaminant_frequency: float) -> dic
         if path.exists()
     )
 
+    standard_summary = write_standard_interactions(
+        integration_output_dir / "standard_interactions.tsv",
+        [
+            standardize_interactions(hgs_out, "HGSCore", "hgs_score", "hgscore_candidates.tsv", "replicate_fraction"),
+            standardize_interactions(cs_out, "CS_Score", "cs_score", "cs_score_candidates.tsv", "specificity"),
+            standardize_interactions(
+                crap_pass,
+                "CRAPome",
+                "crapome_filter_score",
+                "crapome_filtered.tsv",
+                "background_frequency",
+                hit_threshold=1.0 - contaminant_frequency,
+            ),
+            standardize_interactions(ppi_out, "PPIrank", "ppirank_score", "ppirank_ranked.tsv", "apms_support_score"),
+        ],
+    )
+
     all_summary["outputs"] = {
         "HGSCore_rows": int(len(hgs_out)),
         "CS_Score_rows": int(len(cs_out)),
@@ -726,6 +810,7 @@ def run_workflows(paths: Paths, top_n: int, contaminant_frequency: float) -> dic
             "CRAPome": len(crapome_figures),
             "PPIrank": len(ppi_figures),
         },
+        **standard_summary,
     }
     all_summary["assumptions"] = [
         "MaxQuant contaminants/reverse/site-only rows are removed before all scoring.",

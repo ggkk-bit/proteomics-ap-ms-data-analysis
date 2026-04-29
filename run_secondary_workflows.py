@@ -618,6 +618,72 @@ def load_compass_candidates(root: Path, top_n: int) -> pd.DataFrame:
     return out
 
 
+def load_mist_candidates(root: Path, top_n: int) -> pd.DataFrame:
+    mist_dir = find_prefixed_dir(root, "02_MiST")
+    results_dir = find_prefixed_dir(mist_dir, "6.")
+    src = results_dir / "preprocessed_NoC_MAT_MIST.txt"
+    if not src.exists():
+        return pd.DataFrame()
+    usecols = ["Bait", "Prey", "Abundance", "Reproducibility", "Specificity", "FcVsBg", "Specificity18", "MIST", "Ip"]
+    df = pd.read_csv(src, sep="\t", usecols=lambda col: col in usecols)
+    if "MIST" not in df.columns:
+        return pd.DataFrame()
+    out = pd.DataFrame(
+        {
+            "bait_name": df.get("Bait", ""),
+            "prey_id": df.get("Prey", "").map(first_token),
+            "prey_gene": df.get("Prey", "").map(first_token),
+            "mean_intensity": pd.to_numeric(df.get("Abundance", 0.0), errors="coerce").fillna(0.0),
+            "max_intensity": pd.to_numeric(df.get("Abundance", 0.0), errors="coerce").fillna(0.0),
+            "present_count": df.get("Ip", "").fillna("").astype(str).str.count(",") + 1,
+            "replicate_count": df.get("Ip", "").fillna("").astype(str).str.count(",") + 1,
+            "replicate_fraction": pd.to_numeric(df.get("Reproducibility", 0.0), errors="coerce").fillna(0.0).clip(0, 1),
+            "background_bait_count": 0,
+            "background_frequency": 0.0,
+            "specificity": pd.to_numeric(df.get("Specificity", 0.0), errors="coerce").fillna(0.0),
+            "mist_abundance": pd.to_numeric(df.get("Abundance", 0.0), errors="coerce").fillna(0.0),
+            "mist_reproducibility": pd.to_numeric(df.get("Reproducibility", 0.0), errors="coerce").fillna(0.0),
+            "mist_specificity": pd.to_numeric(df.get("Specificity", 0.0), errors="coerce").fillna(0.0),
+            "mist_fc_vs_bg": pd.to_numeric(df.get("FcVsBg", 0.0), errors="coerce").fillna(0.0),
+            "mist_score": pd.to_numeric(df["MIST"], errors="coerce").fillna(0.0),
+        }
+    )
+    out = out[out["bait_name"].astype(str).ne("") & out["prey_id"].astype(str).ne("")].copy()
+    out = top_per_bait(out, "mist_score", top_n)
+    write_tsv(results_dir / "mist_candidates.tsv", out)
+    return out
+
+
+def plot_mist_components(path: Path, df: pd.DataFrame) -> None:
+    ensure_dir(path.parent)
+    required = {"mist_abundance", "mist_reproducibility", "mist_specificity", "mist_score"}
+    if df.empty or not required.issubset(df.columns):
+        return
+    work = df.copy()
+    for col in required:
+        work[col] = pd.to_numeric(work[col], errors="coerce")
+    work = work.dropna(subset=list(required))
+    if work.empty:
+        return
+    if len(work) > 60000:
+        work = work.sample(60000, random_state=7)
+    fig, axes = plt.subplots(1, 3, figsize=(15, 4.8))
+    scatter_args = {"c": work["mist_score"], "s": 8, "alpha": 0.35, "cmap": "viridis", "edgecolors": "none"}
+    axes[0].scatter(work["mist_abundance"], work["mist_reproducibility"], **scatter_args)
+    axes[0].set_xlabel("Abundance")
+    axes[0].set_ylabel("Reproducibility")
+    axes[1].scatter(work["mist_specificity"], work["mist_score"], s=8, alpha=0.35, color="#486581", edgecolors="none")
+    axes[1].set_xlabel("Specificity")
+    axes[1].set_ylabel("MIST")
+    axes[2].scatter(work["mist_abundance"], work["mist_specificity"], **scatter_args)
+    axes[2].set_xlabel("Abundance")
+    axes[2].set_ylabel("Specificity")
+    fig.suptitle("MiST component diagnostics")
+    fig.tight_layout()
+    fig.savefig(path, dpi=170)
+    plt.close(fig)
+
+
 def run_workflows(paths: Paths, top_n: int, contaminant_frequency: float) -> dict:
     annotation = load_annotation(paths.annotation)
     cleaned, annotation, clean_stats = load_and_clean(paths, annotation)
@@ -639,10 +705,13 @@ def run_workflows(paths: Paths, top_n: int, contaminant_frequency: float) -> dic
 
     root = paths.root
     compass_out = load_compass_candidates(root, top_n)
+    mist_out = load_mist_candidates(root, top_n)
+    mist_dir = find_prefixed_dir(root, "02_MiST")
     hgs_dir = find_prefixed_dir(root, "03_HGSCore")
     cs_dir = find_prefixed_dir(root, "04_CS_Score")
     crapome_dir = find_prefixed_dir(root, "05_CRAPome")
     ppi_dir = find_prefixed_dir(root, "06_PPIrank")
+    mist_figure_dir = ensure_dir(find_prefixed_dir(mist_dir, "7."))
     hgs_figure_dir = ensure_dir(find_prefixed_dir(hgs_dir, "7."))
     cs_figure_dir = ensure_dir(find_prefixed_dir(cs_dir, "7."))
     crapome_figure_dir = ensure_dir(find_prefixed_dir(crapome_dir, "7."))
@@ -660,6 +729,20 @@ def run_workflows(paths: Paths, top_n: int, contaminant_frequency: float) -> dic
             "bait_count": int(annotation["bait_name"].nunique()),
         },
     }
+
+    mist_figures = add_standard_plots(
+        mist_figure_dir,
+        mist_out,
+        "mist",
+        "mist_score",
+        "MiST",
+        "mist_reproducibility",
+        "Reproducibility",
+        threshold=0.75,
+    )
+    plot_mist_components(mist_figure_dir / "mist_06_component_diagnostics.png", mist_out)
+    if (mist_figure_dir / "mist_06_component_diagnostics.png").exists():
+        mist_figures.append(str(mist_figure_dir / "mist_06_component_diagnostics.png"))
 
     # HGSCore-like auxiliary scoring: length-normalized abundance proxy plus
     # replicate support and bait specificity.
@@ -826,6 +909,7 @@ def run_workflows(paths: Paths, top_n: int, contaminant_frequency: float) -> dic
                 "compass_candidates.tsv",
                 "compass_scorez",
             ),
+            standardize_interactions(mist_out, "MiST", "mist_score", "mist_candidates.tsv", "mist_reproducibility", hit_threshold=0.75),
             standardize_interactions(hgs_out, "HGSCore", "hgs_score", "hgscore_candidates.tsv", "replicate_fraction"),
             standardize_interactions(cs_out, "CS_Score", "cs_score", "cs_score_candidates.tsv", "specificity"),
             standardize_interactions(
@@ -842,6 +926,7 @@ def run_workflows(paths: Paths, top_n: int, contaminant_frequency: float) -> dic
 
     all_summary["outputs"] = {
         "CompPASS_rows": int(len(compass_out)),
+        "MiST_rows": int(len(mist_out)),
         "HGSCore_rows": int(len(hgs_out)),
         "CS_Score_rows": int(len(cs_out)),
         "CRAPome_background_rows": int(len(crap_out)),
@@ -850,6 +935,7 @@ def run_workflows(paths: Paths, top_n: int, contaminant_frequency: float) -> dic
         "top_n_per_bait": int(top_n),
         "contaminant_frequency_threshold": float(contaminant_frequency),
         "figures_generated": {
+            "MiST": len(mist_figures),
             "HGSCore": len(hgs_figures),
             "CS_Score": len(cs_figures),
             "CRAPome": len(crapome_figures),

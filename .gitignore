@@ -1,6 +1,8 @@
 # Local assistant/editor state
 .claude/
 .DS_Store
+.env
+.env.*
 
 # Runtime/cache files
 __pycache__/
@@ -31,6 +33,8 @@ crapome_input.tsv
 runs/
 07_复合分析与整合/结果输出/
 02_MiST_互作评分/7.可视化/
+06_PPIrank_网络补充排序/4.PPIrank输入文件/ppi_reference.tsv
+06_PPIrank_网络补充排序/4.PPIrank输入文件/.biogrid_cache/
 
 # Generated algorithm output directories
 secondary_workflow_validation.json

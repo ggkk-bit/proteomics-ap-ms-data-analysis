@@ -3,8 +3,13 @@ from __future__ import annotations
 import argparse
 import html
 import json
+import os
+import re
 import shutil
 import subprocess
+import time
+import urllib.parse
+import urllib.request
 from datetime import datetime
 from pathlib import Path
 from typing import Any
@@ -93,6 +98,194 @@ def copy_algorithm_figures(root: Path, figures_dir: Path) -> dict[str, str]:
             if dest.exists():
                 copied[f"{display_name}: {src.stem}"] = str(dest)
     return copied
+
+
+def first_text(value: object) -> str:
+    if pd.isna(value):
+        return ""
+    text = str(value).strip()
+    if not text:
+        return ""
+    return text.split(";")[0].strip()
+
+
+UNIPROT_ACCESSION_RE = re.compile(r"^(?:[OPQ][0-9][A-Z0-9]{3}[0-9]|[A-NR-Z][0-9][A-Z][A-Z0-9]{2}[0-9])$")
+
+
+def looks_like_gene_symbol(value: str) -> bool:
+    text = value.strip().upper()
+    if not text or len(text) > 25:
+        return False
+    if "." in text or ";" in text or "_" in text:
+        return False
+    if text.startswith("A0A") or UNIPROT_ACCESSION_RE.match(text):
+        return False
+    return bool(re.match(r"^[A-Z0-9-]+$", text))
+
+
+def collect_ppi_query_genes(root: Path, max_genes: int | None = None, mode: str = "high-confidence") -> list[str]:
+    standard_path = find_prefixed_dir(root, "07_") / "结果输出" / "standard_interactions.tsv"
+    if mode == "high-confidence" and standard_path.exists():
+        genes: set[str] = set()
+        usecols = ["bait_name", "prey_gene", "algorithm", "is_hit"]
+        for chunk in pd.read_csv(standard_path, sep="\t", usecols=usecols, chunksize=100000):
+            hits = chunk[chunk["is_hit"].astype(str).str.lower().isin(["true", "1", "yes"])]
+            hits = hits[hits["algorithm"].isin(["CompPASS", "MiST", "PPIrank"])]
+            for col in ["bait_name", "prey_gene"]:
+                for value in hits[col].dropna().map(first_text):
+                    if looks_like_gene_symbol(value):
+                        genes.add(value.upper())
+            if max_genes and len(genes) >= max_genes:
+                return sorted(genes)[:max_genes]
+        return sorted(genes)[:max_genes] if max_genes else sorted(genes)
+
+    candidates = [
+        standard_path,
+        find_prefixed_dir(root, "01_CompPASS") / "6.CompPASS评分结果" / "compass_candidates.tsv",
+        find_prefixed_dir(root, "02_MiST") / "6.MiST评分结果" / "mist_candidates.tsv",
+        find_prefixed_dir(root, "06_PPIrank") / "6.PPIrank排序结果" / "ppirank_ranked.tsv",
+    ]
+    genes: set[str] = set()
+    for path in candidates:
+        if not path.exists():
+            continue
+        usecols = [col for col in ["bait_name", "prey_gene"] if col in pd.read_csv(path, sep="\t", nrows=0).columns]
+        if not usecols:
+            continue
+        for chunk in pd.read_csv(path, sep="\t", usecols=usecols, chunksize=100000):
+            for col in usecols:
+                for value in chunk[col].dropna().map(first_text):
+                    if looks_like_gene_symbol(value):
+                        genes.add(value.upper())
+            if max_genes and len(genes) >= max_genes:
+                return sorted(genes)[:max_genes]
+    return sorted(genes)[:max_genes] if max_genes else sorted(genes)
+
+
+def biogrid_get_json(params: dict[str, str], retries: int = 3) -> dict[str, Any]:
+    url = "https://webservice.thebiogrid.org/interactions/?" + urllib.parse.urlencode(params)
+    last_error: Exception | None = None
+    for attempt in range(retries):
+        try:
+            request = urllib.request.Request(url, headers={"User-Agent": "apms-workflow/0.1"})
+            with urllib.request.urlopen(request, timeout=90) as response:
+                return json.loads(response.read().decode("utf-8"))
+        except Exception as exc:
+            last_error = exc
+            time.sleep(1.5 * (attempt + 1))
+    raise RuntimeError(f"BioGRID request failed after {retries} attempts") from last_error
+
+
+def normalize_biogrid_record(record: dict[str, Any]) -> dict[str, str] | None:
+    gene_a = first_text(record.get("OFFICIAL_SYMBOL_A") or record.get("Official Symbol Interactor A"))
+    gene_b = first_text(record.get("OFFICIAL_SYMBOL_B") or record.get("Official Symbol Interactor B"))
+    if not gene_a or not gene_b or gene_a == gene_b:
+        return None
+    org_a = str(record.get("ORGANISM_A_ID") or record.get("Organism ID Interactor A") or "")
+    org_b = str(record.get("ORGANISM_B_ID") or record.get("Organism ID Interactor B") or "")
+    system_type = str(record.get("EXPERIMENTAL_SYSTEM_TYPE") or record.get("Experimental System Type") or "")
+    if org_a and org_a != "9606":
+        return None
+    if org_b and org_b != "9606":
+        return None
+    if system_type and system_type.lower() != "physical":
+        return None
+    publication = str(record.get("PUBMED_ID") or record.get("Pubmed ID") or "")
+    evidence_type = str(record.get("EXPERIMENTAL_SYSTEM") or record.get("Experimental System") or "")
+    return {
+        "protein_a": gene_a.upper(),
+        "protein_b": gene_b.upper(),
+        "source": "BioGRID",
+        "reference_score": "",
+        "evidence_type": evidence_type,
+        "publication": publication,
+        "organism": "9606",
+        "is_physical": "true",
+    }
+
+
+def should_keep_biogrid_edge(normalized: dict[str, str], query_genes: set[str]) -> bool:
+    return normalized["protein_a"] in query_genes or normalized["protein_b"] in query_genes
+
+
+def fetch_biogrid_reference(root: Path, access_key: str, batch_size: int, max_genes: int | None, mode: str) -> dict[str, Any]:
+    genes = collect_ppi_query_genes(root, max_genes=max_genes, mode=mode)
+    if not genes:
+        raise ValueError("No genes were found in current AP-MS outputs. Run the workflow once before fetch-ppi.")
+    query_gene_set = set(genes)
+    records: dict[tuple[str, str, str, str], dict[str, str]] = {}
+    failed_genes: list[str] = []
+    ppi_dir = find_prefixed_dir(root, "06_PPIrank")
+    input_dir = find_prefixed_dir(ppi_dir, "4.")
+    cache_dir = input_dir / ".biogrid_cache"
+    cache_dir.mkdir(parents=True, exist_ok=True)
+
+    def add_records(batch: list[str]) -> None:
+        if not batch:
+            return
+        cache_name = "_".join(batch)
+        if len(cache_name) > 120:
+            cache_name = f"{batch[0]}__{batch[-1]}__{len(batch)}"
+        cache_path = cache_dir / f"{cache_name}.json"
+        try:
+            if cache_path.exists():
+                data = json.loads(cache_path.read_text(encoding="utf-8"))
+            else:
+                data = biogrid_get_json(
+                    {
+                        "accesskey": access_key,
+                        "format": "json",
+                        "taxId": "9606",
+                        "searchNames": "true",
+                        "includeInteractors": "true",
+                        "includeInteractorInteractions": "false",
+                        "geneList": "|".join(batch),
+                    }
+                )
+                cache_path.write_text(json.dumps(data), encoding="utf-8")
+        except Exception:
+            if len(batch) == 1:
+                failed_genes.extend(batch)
+                return
+            midpoint = max(1, len(batch) // 2)
+            add_records(batch[:midpoint])
+            add_records(batch[midpoint:])
+            return
+        values = data.values() if isinstance(data, dict) else data
+        for record in values:
+            if not isinstance(record, dict):
+                continue
+            normalized = normalize_biogrid_record(record)
+            if not normalized:
+                continue
+            if not should_keep_biogrid_edge(normalized, query_gene_set):
+                continue
+            a, b = sorted([normalized["protein_a"], normalized["protein_b"]])
+            key = (a, b, normalized["evidence_type"], normalized["publication"])
+            normalized["protein_a"] = a
+            normalized["protein_b"] = b
+            records[key] = normalized
+        time.sleep(0.25)
+
+    for start in range(0, len(genes), batch_size):
+        batch = genes[start : start + batch_size]
+        add_records(batch)
+    output = input_dir / "ppi_reference.tsv"
+    df = pd.DataFrame(
+        records.values(),
+        columns=["protein_a", "protein_b", "source", "reference_score", "evidence_type", "publication", "organism", "is_physical"],
+    ).sort_values(["protein_a", "protein_b", "evidence_type", "publication"])
+    output.parent.mkdir(parents=True, exist_ok=True)
+    df.to_csv(output, sep="\t", index=False)
+    return {
+        "source": "BioGRID",
+        "query_genes": len(genes),
+        "query_mode": mode,
+        "reference_edges": int(len(df)),
+        "failed_genes": len(failed_genes),
+        "failed_gene_examples": failed_genes[:20],
+        "output": str(output),
+    }
 
 
 def write_standard_table(path: Path, cleaned: pd.DataFrame, annotation: pd.DataFrame) -> dict[str, int]:
@@ -358,6 +551,26 @@ def run_command(args: argparse.Namespace) -> int:
     return 0
 
 
+def fetch_ppi_command(args: argparse.Namespace) -> int:
+    config_path = Path(args.config).resolve()
+    root = project_root_from_config(config_path)
+    source = args.source.lower()
+    if source != "biogrid":
+        raise ValueError("Only BioGRID fetching is implemented in this command.")
+    access_key = os.getenv("BIOGRID_ACCESS_KEY")
+    if not access_key:
+        raise ValueError("Set BIOGRID_ACCESS_KEY in the environment before running fetch-ppi.")
+    summary = fetch_biogrid_reference(
+        root=root,
+        access_key=access_key,
+        batch_size=int(args.batch_size),
+        max_genes=args.max_genes,
+        mode=args.mode,
+    )
+    print(json.dumps(summary, indent=2, ensure_ascii=False))
+    return 0
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description="AP-MS analyzer command line interface")
     subparsers = parser.add_subparsers(dest="command", required=True)
@@ -368,6 +581,14 @@ def main(argv: list[str] | None = None) -> int:
     run_parser.add_argument("--top-n-per-bait", type=int, default=None, help="Override top candidates per bait")
     run_parser.add_argument("--contaminant-frequency", type=float, default=None, help="Override contaminant frequency threshold")
     run_parser.set_defaults(func=run_command)
+
+    fetch_parser = subparsers.add_parser("fetch-ppi", help="Fetch external PPI references")
+    fetch_parser.add_argument("--config", default="config/project.yaml", help="Project YAML config")
+    fetch_parser.add_argument("--source", default="biogrid", choices=["biogrid"], help="PPI reference source")
+    fetch_parser.add_argument("--batch-size", type=int, default=75, help="Genes per BioGRID request")
+    fetch_parser.add_argument("--max-genes", type=int, default=None, help="Optional cap for testing")
+    fetch_parser.add_argument("--mode", choices=["high-confidence", "all"], default="high-confidence", help="Gene collection mode")
+    fetch_parser.set_defaults(func=fetch_ppi_command)
 
     args = parser.parse_args(argv)
     return args.func(args)
